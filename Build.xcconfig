@@ -1,0 +1,16 @@
+//
+//  Build.xcconfig
+//  TextGrabber2
+//
+//  Created by cyan on 2024/3/20.
+//
+// https://help.apple.com/xcode/#/dev745c5c974
+
+CODE_SIGN_IDENTITY = -
+DEVELOPMENT_TEAM =
+PRODUCT_BUNDLE_IDENTIFIER = app.cyan.textgrabber2-dev
+
+MARKETING_VERSION = 1.0.0
+CURRENT_PROJECT_VERSION = 1
+
+#include? "Local.xcconfig"
