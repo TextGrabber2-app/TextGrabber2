@@ -14,7 +14,7 @@ It also functions effectively for any form of image copying.
 
 > Note that keyboard shortcuts can be remapped (and it's recommended since pressing 4 keys is a bit clunky). Please check out Apple's [documentation](https://support.apple.com/guide/mac-help/mchlp2271/mac) for details.
 > 
-> Also, once the keyboard shortcut is remapped, TextGrabber2 cannot tell you the new key-bindings due to system limitations. You need to check out the system settings.
+> Learn more [here](https://github.com/TextGrabber2-app/TextGrabber2/wiki).
 
 ## Installation
 

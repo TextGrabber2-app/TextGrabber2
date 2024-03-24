@@ -23,6 +23,7 @@ final class App: NSObject, NSApplicationDelegate {
     menu.delegate = self
 
     menu.addItem(hintItem)
+    menu.addItem(howToItem)
     menu.addItem(.separator())
     menu.addItem(copyAllItem)
     menu.addItem(clipboardItem)
@@ -56,6 +57,14 @@ final class App: NSObject, NSApplicationDelegate {
   }()
 
   private let hintItem = NSMenuItem()
+  private let howToItem: NSMenuItem = {
+    let item = NSMenuItem(title: Localized.menuTitleHowTo)
+    item.addAction {
+      NSWorkspace.shared.safelyOpenURL(string: "\(Links.github)/wiki")
+    }
+
+    return item
+  }()
 
   private lazy var copyAllItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleCopyAll)
@@ -148,6 +157,7 @@ private extension App {
 
   func clearMenuItems() {
     hintItem.title = Localized.menuTitleHintCapture
+    howToItem.isHidden = false
     copyAllItem.isHidden = true
     clipboardItem.isHidden = true
     statusItem.menu?.removeItems { $0 is ResultItem }
@@ -166,21 +176,19 @@ private extension App {
     }
 
     hintItem.title = Localized.menuTitleHintRecognizing
+    howToItem.isHidden = true
 
     Task {
       let resultData = await Recognizer.detect(image: image)
       currentResult = resultData
+
+      hintItem.title = resultData.candidates.isEmpty ? Localized.menuTitleHintCapture : Localized.menuTitleHintCopy
+      howToItem.isHidden = !resultData.candidates.isEmpty
       copyAllItem.isHidden = resultData.candidates.count < 2
       clipboardItem.isHidden = false
 
-      if resultData.candidates.isEmpty {
-        hintItem.title = Localized.menuTitleHintCapture
-      } else {
-        hintItem.title = Localized.menuTitleHintCopy
-      }
-
       let separator = NSMenuItem.separator()
-      menu.insertItem(separator, at: menu.index(of: hintItem) + 1)
+      menu.insertItem(separator, at: menu.index(of: howToItem) + 1)
       menu.removeItems { $0 is ResultItem }
 
       for text in resultData.candidates.reversed() {

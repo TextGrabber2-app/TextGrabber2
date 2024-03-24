@@ -14,9 +14,10 @@ import Foundation
  https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog
  */
 enum Localized {
-  static let menuTitleHintCapture = String(localized: "Press ⌃⇧⌘4 to Capture", comment: "[Menu] Hint for capturing text")
+  static let menuTitleHintCapture = String(localized: "Capture Screen to Detect", comment: "[Menu] Hint for capturing the screen")
   static let menuTitleHintCopy = String(localized: "Click to Copy", comment: "[Menu] Hint for copying text")
   static let menuTitleHintRecognizing = String(localized: "Recognizing...", comment: "[Menu] The recognition is ongoing")
+  static let menuTitleHowTo = String(localized: "How to Capture?", comment: "[Menu] How to use the app")
   static let menuTitleCopyAll = String(localized: "Copy All", comment: "[Menu] Copy all text at once")
   static let menuTitleJoinWithLineBreaks = String(localized: "Join with Line Breaks", comment: "[Menu] Join all text with line breaks and copy them")
   static let menuTitleJoinWithSpaces = String(localized: "Join with Spaces", comment: "[Menu] Join all text with spaces and copy them")

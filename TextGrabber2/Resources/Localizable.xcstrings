@@ -1,6 +1,23 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Capture Screen to Detect" : {
+      "comment" : "[Menu] Hint for capturing the screen",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "捕捉屏幕来检测"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "擷取螢幕來檢測"
+          }
+        }
+      }
+    },
     "Clear Contents" : {
       "comment" : "[Menu] Clear the clipboard",
       "localizations" : {
@@ -86,6 +103,23 @@
         }
       }
     },
+    "How to Capture?" : {
+      "comment" : "[Menu] How to use the app",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如何捕捉？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如何捕捉？"
+          }
+        }
+      }
+    },
     "Join with Line Breaks" : {
       "comment" : "[Menu] Join all text with line breaks and copy them",
       "localizations" : {
@@ -133,23 +167,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "登入時啟動"
-          }
-        }
-      }
-    },
-    "Press ⌃⇧⌘4 to Capture" : {
-      "comment" : "[Menu] Hint for capturing text",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "按下 ⌃⇧⌘4 来截图"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "按下 ⌃⇧⌘4 來截圖"
           }
         }
       }
