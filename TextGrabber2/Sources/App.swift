@@ -100,12 +100,14 @@ final class App: NSObject, NSApplicationDelegate {
 
   private let launchAtLoginItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleLaunchAtLogin)
-    item.addAction {
+    item.addAction { [weak item] in
       do {
         try SMAppService.mainApp.toggle()
       } catch {
         Logger.log(.error, "\(error)")
       }
+
+      item?.toggle()
     }
 
     return item
@@ -161,7 +163,6 @@ private extension App {
     copyAllItem.isHidden = true
     clipboardItem.isHidden = true
     statusItem.menu?.removeItems { $0 is ResultItem }
-    launchAtLoginItem.setOn(SMAppService.mainApp.isEnabled)
   }
 
   @MainActor func startDetection() {

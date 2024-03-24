@@ -14,4 +14,8 @@ extension NSMenuItem {
   func setOn(_ on: Bool) {
     state = on ? .on : .off
   }
+
+  func toggle() {
+    state = state == .on ? .off : .on
+  }
 }
