@@ -26,6 +26,7 @@ final class App: NSObject, NSApplicationDelegate {
     menu.addItem(howToItem)
     menu.addItem(.separator())
     menu.addItem(copyAllItem)
+    menu.addItem(servicesItem)
     menu.addItem(clipboardItem)
     menu.addItem(.separator())
     menu.addItem(launchAtLoginItem)
@@ -82,6 +83,23 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
+  private let servicesItem: NSMenuItem = {
+    let item = NSMenuItem(title: Localized.menuTitleServices)
+    let menu = NSMenu()
+    menu.addItem(.separator())
+
+    menu.addItem(withTitle: Localized.menuTitleConfigure) {
+      NSWorkspace.shared.open(Services.fileURL)
+    }
+
+    menu.addItem(withTitle: Localized.menuTitleDocumentation) {
+      NSWorkspace.shared.safelyOpenURL(string: "\(Links.github)/wiki#connect-to-system-services")
+    }
+
+    item.submenu = menu
+    return item
+  }()
+
   private let clipboardItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleClipboard)
     let menu = NSMenu()
@@ -118,6 +136,7 @@ final class App: NSObject, NSApplicationDelegate {
 
 extension App {
   func applicationDidFinishLaunching(_ notification: Notification) {
+    Services.initialize()
     clearMenuItems()
     statusItem.isVisible = true
   }
@@ -128,6 +147,18 @@ extension App {
 extension App: NSMenuDelegate {
   func menuWillOpen(_ menu: NSMenu) {
     startDetection()
+    
+    // Update the services menu
+    servicesItem.submenu?.removeItems { $0 is ServiceItem }
+    for service in Services.items.reversed() {
+      let item = ServiceItem(title: service.displayName)
+      item.addAction {
+        NSPasteboard.general.string = self.currentResult?.spacesJoined
+        NSPerformService(service.serviceName, .general)
+      }
+
+      servicesItem.submenu?.insertItem(item, at: 0)
+    }
 
     // For an edge case, we can capture the screen while the menu is shown.
     let timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
@@ -153,9 +184,8 @@ extension App: NSMenuDelegate {
 // MARK: - Private
 
 private extension App {
-  class ResultItem: NSMenuItem {
-    /* Just a sub-class to be identifiable */
-  }
+  class ResultItem: NSMenuItem { /* Just a sub-class to be identifiable */ }
+  class ServiceItem: NSMenuItem { /* Just a sub-class to be identifiable */ }
 
   func clearMenuItems() {
     hintItem.title = Localized.menuTitleHintCapture

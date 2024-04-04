@@ -69,6 +69,23 @@
         }
       }
     },
+    "Configure" : {
+      "comment" : "[Menu] Configure system services",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "配置"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "配置"
+          }
+        }
+      }
+    },
     "Copy All" : {
       "comment" : "[Menu] Copy all text at once",
       "localizations" : {
@@ -82,6 +99,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拷貝全部"
+          }
+        }
+      }
+    },
+    "Documentation" : {
+      "comment" : "[Menu] Open the wiki for system services",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文档"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文檔"
+          }
+        }
+      }
+    },
+    "en-US" : {
+      "comment" : "Identifier used to locate localized resources",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "zh-Hans"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "zh-Hant"
           }
         }
       }
@@ -218,6 +269,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "儲存為檔案"
+          }
+        }
+      }
+    },
+    "Services" : {
+      "comment" : "[Menu] System services menu",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服务"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服務"
           }
         }
       }

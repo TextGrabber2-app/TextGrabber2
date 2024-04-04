@@ -6,7 +6,7 @@
 
 TextGrabber2 is a free and **open-source** macOS menu bar app that efficiently detects text from copied images. This eliminates the need to save images as files and then delete them solely for the purpose of text detection.
 
-<img src="./Screenshots/01.png" width="320" alt="Screenshot 01"> <img src="./Screenshots/02.png" width="320" alt="Screenshot 02">
+<img src="./Screenshots/01.png" width="360" alt="Screenshot 01"> <img src="./Screenshots/02.png" width="360" alt="Screenshot 02">
 
 For example, press `Control-Shift-Command-4` to capture a portion of the screen and then open TextGrabber2 from the menu bar.
 
@@ -30,7 +30,7 @@ TextGrabber2 is NOT a screenshot tool, meaning it doesn't require access like `S
 
 TextGrabber2 utilizes the built-in [Vision](https://developer.apple.com/documentation/vision/) framework, which is on-device, secure, fast, accurate, and **free**. In fact, it's often superior to many paid services.
 
-TextGrabber2 automatically extracts data types like numbers and links, making copying super easy.
+TextGrabber2 connects to [system services](https://github.com/TextGrabber2-app/TextGrabber2/wiki#connect-to-system-services), you can easily integrate your workflows.
 
 TextGrabber2 does NOT have any settings; it works magically until something goes wrong.
 

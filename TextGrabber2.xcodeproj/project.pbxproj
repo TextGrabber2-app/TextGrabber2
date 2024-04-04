@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8737A24A2BBEC27700042E83 /* Services in Resources */ = {isa = PBXBuildFile; fileRef = 8737A2492BBEC27700042E83 /* Services */; };
+		8737A24C2BBECB8800042E83 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8737A24B2BBECB8800042E83 /* Services.swift */; };
 		8772FAE92BAC743D00DBEAA0 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8772FAE82BAC743D00DBEAA0 /* Localizable.xcstrings */; };
 		87E192C32BAADE1200A87A4E /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E192C22BAADE1200A87A4E /* App.swift */; };
 		87E192C72BAADE1300A87A4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87E192C62BAADE1300A87A4E /* Assets.xcassets */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8737A2492BBEC27700042E83 /* Services */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Services; sourceTree = "<group>"; };
+		8737A24B2BBECB8800042E83 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		8772FAE82BAC743D00DBEAA0 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		87E192BF2BAADE1200A87A4E /* TextGrabber2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextGrabber2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E192C22BAADE1200A87A4E /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -65,6 +69,7 @@
 		8772FAE72BAC73F100DBEAA0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8737A2492BBEC27700042E83 /* Services */,
 				87E192C62BAADE1300A87A4E /* Assets.xcassets */,
 				8772FAE82BAC743D00DBEAA0 /* Localizable.xcstrings */,
 			);
@@ -133,6 +138,7 @@
 				87E192F62BABD18900A87A4E /* Logger.swift */,
 				87E192F02BABB6EA00A87A4E /* Recognizer.swift */,
 				87E192E82BAAFF0200A87A4E /* Resources.swift */,
+				8737A24B2BBECB8800042E83 /* Services.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -197,6 +203,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8737A24A2BBEC27700042E83 /* Services in Resources */,
 				8772FAE92BAC743D00DBEAA0 /* Localizable.xcstrings in Resources */,
 				87E192C72BAADE1300A87A4E /* Assets.xcassets in Resources */,
 			);
@@ -209,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8737A24C2BBECB8800042E83 /* Services.swift in Sources */,
 				87E192DF2BAAE38700A87A4E /* NSControl+Extension.swift in Sources */,
 				87E192F32BABB71D00A87A4E /* NSPasteboard+Extension.swift in Sources */,
 				87E192E72BAAFBC900A87A4E /* SMAppService+Extension.swift in Sources */,

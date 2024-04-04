@@ -14,6 +14,7 @@ import Foundation
  https://developer.apple.com/documentation/xcode/localizing-and-varying-text-with-a-string-catalog
  */
 enum Localized {
+  static let languageIdentifier = String(localized: "en-US", comment: "Identifier used to locate localized resources")
   static let menuTitleHintCapture = String(localized: "Capture Screen to Detect", comment: "[Menu] Hint for capturing the screen")
   static let menuTitleHintCopy = String(localized: "Click to Copy", comment: "[Menu] Hint for copying text")
   static let menuTitleHintRecognizing = String(localized: "Recognizing...", comment: "[Menu] The recognition is ongoing")
@@ -21,6 +22,9 @@ enum Localized {
   static let menuTitleCopyAll = String(localized: "Copy All", comment: "[Menu] Copy all text at once")
   static let menuTitleJoinWithLineBreaks = String(localized: "Join with Line Breaks", comment: "[Menu] Join all text with line breaks and copy them")
   static let menuTitleJoinWithSpaces = String(localized: "Join with Spaces", comment: "[Menu] Join all text with spaces and copy them")
+  static let menuTitleServices = String(localized: "Services", comment: "[Menu] System services menu")
+  static let menuTitleConfigure = String(localized: "Configure", comment: "[Menu] Configure system services")
+  static let menuTitleDocumentation = String(localized: "Documentation", comment: "[Menu] Open the wiki for system services")
   static let menuTitleClipboard = String(localized: "Clipboard", comment: "[Menu] Clipboard options")
   static let menuTitleSaveAsFile = String(localized: "Save as File", comment: "[Menu] Save the clipboard as file")
   static let menuTitleClearContents = String(localized: "Clear Contents", comment: "[Menu] Clear the clipboard")

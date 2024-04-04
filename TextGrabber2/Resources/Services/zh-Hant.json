@@ -1,0 +1,34 @@
+[
+  {
+    "serviceName": "Look Up in Dictionary",
+    "displayName": "在辭典中查詢"
+  },
+  {
+    "serviceName": "Search With %WebSearchProvider@",
+    "displayName": "在 Safari 中搜尋"
+  },
+  {
+    "serviceName": "SEARCH_WITH_SPOTLIGHT",
+    "displayName": "用 Spotlight 搜尋"
+  },
+  {
+    "serviceName": "Convert Text from Simplified to Traditional Chinese",
+    "displayName": "轉換為繁體中文"
+  },
+  {
+    "serviceName": "Convert Text from Traditional to Simplified Chinese",
+    "displayName": "轉換為簡體中文"
+  },
+  {
+    "serviceName": "New TextEdit Window Containing Selection",
+    "displayName": "在 TextEdit 新建檔案"
+  },
+  {
+    "serviceName": "Make Sticky",
+    "displayName": "建立新便條紙"
+  },
+  {
+    "serviceName": "Summarize",
+    "displayName": "摘要"
+  }
+]

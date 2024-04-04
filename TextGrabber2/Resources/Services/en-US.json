@@ -1,0 +1,34 @@
+[
+  {
+    "serviceName": "Look Up in Dictionary",
+    "displayName": "Look Up in Dictionary"
+  },
+  {
+    "serviceName": "Search With %WebSearchProvider@",
+    "displayName": "Search in Safari"
+  },
+  {
+    "serviceName": "SEARCH_WITH_SPOTLIGHT",
+    "displayName": "Search with Spotlight"
+  },
+  {
+    "serviceName": "Convert Text from Simplified to Traditional Chinese",
+    "displayName": "Convert to Traditional Chinese"
+  },
+  {
+    "serviceName": "Convert Text from Traditional to Simplified Chinese",
+    "displayName": "Convert to Simplified Chinese"
+  },
+  {
+    "serviceName": "New TextEdit Window Containing Selection",
+    "displayName": "New File in TextEdit"
+  },
+  {
+    "serviceName": "Make Sticky",
+    "displayName": "Make New Sticky Note"
+  },
+  {
+    "serviceName": "Summarize",
+    "displayName": "Summarize"
+  }
+]
