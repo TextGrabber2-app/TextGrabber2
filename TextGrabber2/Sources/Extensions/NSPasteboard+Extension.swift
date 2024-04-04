@@ -40,6 +40,12 @@ extension NSPasteboard {
   }
 
   func saveImageAsFile() {
+    if #available(macOS 14.0, *) {
+      NSApp.activate()
+    } else {
+      NSApp.activate(ignoringOtherApps: true)
+    }
+
     let savePanel = NSSavePanel()
     savePanel.allowedContentTypes = [.png]
     savePanel.isExtensionHidden = false
