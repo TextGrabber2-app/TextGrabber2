@@ -60,7 +60,7 @@ final class App: NSObject, NSApplicationDelegate {
   private let howToItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleHowTo)
     item.addAction {
-      NSWorkspace.shared.safelyOpenURL(string: "\(Links.github)/wiki")
+      NSWorkspace.shared.safelyOpenURL(string: "\(Links.github)/wiki#capture-screen-on-mac")
     }
 
     return item
