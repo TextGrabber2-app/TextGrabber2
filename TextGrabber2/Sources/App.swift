@@ -128,6 +128,7 @@ final class App: NSObject, NSApplicationDelegate {
       item?.toggle()
     }
 
+    item.setOn(SMAppService.mainApp.isEnabled)
     return item
   }()
 }
