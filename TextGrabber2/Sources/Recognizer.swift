@@ -6,7 +6,7 @@
 //
 
 import AppKit
-import Vision
+@preconcurrency import Vision
 
 /**
  https://developer.apple.com/documentation/vision/recognizing_text_in_images

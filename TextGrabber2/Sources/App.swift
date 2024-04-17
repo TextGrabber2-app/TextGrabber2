@@ -8,6 +8,7 @@
 import AppKit
 import ServiceManagement
 
+@MainActor
 final class App: NSObject, NSApplicationDelegate {
   private var currentResult: Recognizer.ResultData?
   private var pasteboardObserver: Timer?
@@ -163,11 +164,17 @@ extension App: NSMenuDelegate {
 
     // For an edge case, we can capture the screen while the menu is shown.
     let timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
-      guard let self, NSPasteboard.general.changeCount != self.pasteboardChangeCount else {
+      guard let self else {
         return
       }
 
-      DispatchQueue.main.async(execute: startDetection)
+      DispatchQueue.main.async {
+        guard NSPasteboard.general.changeCount != self.pasteboardChangeCount else {
+          return
+        }
+
+        self.startDetection()
+      }
     }
 
     pasteboardObserver = timer
@@ -196,7 +203,7 @@ private extension App {
     statusItem.menu?.removeItems { $0 is ResultItem }
   }
 
-  @MainActor func startDetection() {
+  func startDetection() {
     guard let menu = statusItem.menu else {
       return Logger.assertFail("Missing menu to proceed")
     }

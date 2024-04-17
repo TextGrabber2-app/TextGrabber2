@@ -39,6 +39,7 @@ extension NSPasteboard {
     return (readObjects(forClasses: [NSImage.self]) as? [NSImage])?.first
   }
 
+  @MainActor
   func saveImageAsFile() {
     if #available(macOS 14.0, *) {
       NSApp.activate()
