@@ -171,6 +171,23 @@
         }
       }
     },
+    "Join Directly" : {
+      "comment" : "[Menu] Join all text directly",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "直接合并"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "直接合併"
+          }
+        }
+      }
+    },
     "Join with Line Breaks" : {
       "comment" : "[Menu] Join all text with line breaks and copy them",
       "localizations" : {

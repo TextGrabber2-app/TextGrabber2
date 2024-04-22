@@ -24,6 +24,10 @@ enum Recognizer {
       }
     }
 
+    var directlyJoined: String {
+      candidates.joined()
+    }
+
     var lineBreaksJoined: String {
       candidates.joined(separator: "\n")
     }

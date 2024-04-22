@@ -72,6 +72,10 @@ final class App: NSObject, NSApplicationDelegate {
     let item = NSMenuItem(title: Localized.menuTitleCopyAll)
     let menu = NSMenu()
 
+    menu.addItem(withTitle: Localized.menuTitleJoinDirectly) {
+      NSPasteboard.general.string = self.currentResult?.directlyJoined
+    }
+
     menu.addItem(withTitle: Localized.menuTitleJoinWithLineBreaks) {
       NSPasteboard.general.string = self.currentResult?.lineBreaksJoined
     }
