@@ -137,6 +137,23 @@
         }
       }
     },
+    "Failed to run \"%@\"." : {
+      "comment" : "Error message when a system service failed",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@”运行失败。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“%@”執行失敗。"
+          }
+        }
+      }
+    },
     "GitHub" : {
       "comment" : "[Menu] Open the TextGrabber2 repository on GitHub",
       "localizations" : {

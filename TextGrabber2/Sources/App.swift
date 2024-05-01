@@ -166,7 +166,10 @@ extension App: NSMenuDelegate {
       let item = ServiceItem(title: service.displayName)
       item.addAction {
         NSPasteboard.general.string = self.currentResult?.spacesJoined
-        NSPerformService(service.serviceName, .general)
+        
+        if !NSPerformService(service.serviceName, .general) {
+          NSAlert.runModal(message: String(format: Localized.failedToRun, service.displayName))
+        }
       }
 
       servicesItem.submenu?.insertItem(item, at: 0)
