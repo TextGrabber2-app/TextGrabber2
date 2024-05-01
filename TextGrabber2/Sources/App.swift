@@ -69,9 +69,7 @@ final class App: NSObject, NSApplicationDelegate {
   }()
 
   private lazy var copyAllItem: NSMenuItem = {
-    let item = NSMenuItem(title: Localized.menuTitleCopyAll)
     let menu = NSMenu()
-
     menu.addItem(withTitle: Localized.menuTitleJoinDirectly) {
       NSPasteboard.general.string = self.currentResult?.directlyJoined
     }
@@ -84,12 +82,12 @@ final class App: NSObject, NSApplicationDelegate {
       NSPasteboard.general.string = self.currentResult?.spacesJoined
     }
 
+    let item = NSMenuItem(title: Localized.menuTitleCopyAll)
     item.submenu = menu
     return item
   }()
 
-  private let servicesItem: NSMenuItem = {
-    let item = NSMenuItem(title: Localized.menuTitleServices)
+  private lazy var servicesItem: NSMenuItem = {
     let menu = NSMenu()
     menu.addItem(.separator())
 
@@ -101,23 +99,31 @@ final class App: NSObject, NSApplicationDelegate {
       NSWorkspace.shared.safelyOpenURL(string: "\(Links.github)/wiki#connect-to-system-services")
     }
 
+    let item = NSMenuItem(title: Localized.menuTitleServices)
     item.submenu = menu
     return item
   }()
 
-  private let clipboardItem: NSMenuItem = {
-    let item = NSMenuItem(title: Localized.menuTitleClipboard)
+  private lazy var clipboardItem: NSMenuItem = {
     let menu = NSMenu()
-
-    menu.addItem(withTitle: Localized.menuTitleSaveAsFile) {
-      NSPasteboard.general.saveImageAsFile()
-    }
+    menu.autoenablesItems = false
+    menu.addItem(saveImageItem)
 
     menu.addItem(withTitle: Localized.menuTitleClearContents) {
       NSPasteboard.general.clearContents()
     }
 
+    let item = NSMenuItem(title: Localized.menuTitleClipboard)
     item.submenu = menu
+    return item
+  }()
+
+  private let saveImageItem: NSMenuItem = {
+    let item = NSMenuItem(title: Localized.menuTitleSaveAsFile)
+    item.addAction {
+      NSPasteboard.general.saveImageAsFile()
+    }
+
     return item
   }()
 
@@ -203,7 +209,6 @@ private extension App {
     hintItem.title = Localized.menuTitleHintCapture
     howToItem.isHidden = false
     copyAllItem.isHidden = true
-    clipboardItem.isHidden = true
     statusItem.menu?.removeItems { $0 is ResultItem }
   }
 
@@ -213,6 +218,8 @@ private extension App {
     }
 
     pasteboardChangeCount = NSPasteboard.general.changeCount
+    clipboardItem.isHidden = NSPasteboard.general.isEmpty
+    saveImageItem.isEnabled = false
 
     guard let image = NSPasteboard.general.image?.cgImage else {
       return Logger.log(.info, "No image was copied")
@@ -228,7 +235,7 @@ private extension App {
       hintItem.title = resultData.candidates.isEmpty ? Localized.menuTitleHintCapture : Localized.menuTitleHintCopy
       howToItem.isHidden = !resultData.candidates.isEmpty
       copyAllItem.isHidden = resultData.candidates.count < 2
-      clipboardItem.isHidden = false
+      saveImageItem.isEnabled = true
 
       let separator = NSMenuItem.separator()
       menu.insertItem(separator, at: menu.index(of: howToItem) + 1)

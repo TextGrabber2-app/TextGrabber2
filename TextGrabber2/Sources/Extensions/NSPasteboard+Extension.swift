@@ -8,6 +8,10 @@
 import AppKit
 
 extension NSPasteboard {
+  var isEmpty: Bool {
+    pasteboardItems?.isEmpty ?? false
+  }
+
   var string: String? {
     get {
       string(forType: .string)
