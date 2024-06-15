@@ -9,7 +9,7 @@ import AppKit
 
 extension NSAlert {
   static func runModal(message: String, style: Style = .critical) {
-    NSApp.tryToActivate()
+    NSApp.activate()
 
     let alert = Self()
     alert.alertStyle = style
