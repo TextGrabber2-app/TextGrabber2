@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		8737A24A2BBEC27700042E83 /* Services in Resources */ = {isa = PBXBuildFile; fileRef = 8737A2492BBEC27700042E83 /* Services */; };
 		8737A24C2BBECB8800042E83 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8737A24B2BBECB8800042E83 /* Services.swift */; };
-		874D776C2BCF6DF90093662D /* Unchecked.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874D776B2BCF6DF90093662D /* Unchecked.swift */; };
 		875364A42BE1D6FC00611579 /* NSAlert+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875364A32BE1D6FC00611579 /* NSAlert+Extension.swift */; };
-		875364A62BE1D7A000611579 /* NSApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875364A52BE1D7A000611579 /* NSApplication+Extension.swift */; };
 		8772FAE92BAC743D00DBEAA0 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8772FAE82BAC743D00DBEAA0 /* Localizable.xcstrings */; };
 		87E192C32BAADE1200A87A4E /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E192C22BAADE1200A87A4E /* App.swift */; };
 		87E192C72BAADE1300A87A4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87E192C62BAADE1300A87A4E /* Assets.xcassets */; };
@@ -35,9 +33,7 @@
 /* Begin PBXFileReference section */
 		8737A2492BBEC27700042E83 /* Services */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Services; sourceTree = "<group>"; };
 		8737A24B2BBECB8800042E83 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
-		874D776B2BCF6DF90093662D /* Unchecked.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unchecked.swift; sourceTree = "<group>"; };
 		875364A32BE1D6FC00611579 /* NSAlert+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAlert+Extension.swift"; sourceTree = "<group>"; };
-		875364A52BE1D7A000611579 /* NSApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSApplication+Extension.swift"; sourceTree = "<group>"; };
 		8772FAE82BAC743D00DBEAA0 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		87E192BF2BAADE1200A87A4E /* TextGrabber2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextGrabber2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E192C22BAADE1200A87A4E /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -123,7 +119,6 @@
 			children = (
 				87E192D42BAAE12600A87A4E /* Bundle+Extension.swift */,
 				875364A32BE1D6FC00611579 /* NSAlert+Extension.swift */,
-				875364A52BE1D7A000611579 /* NSApplication+Extension.swift */,
 				87E192DC2BAAE38700A87A4E /* NSControl+Extension.swift */,
 				87E192D92BAAE25500A87A4E /* NSImage+Extension.swift */,
 				87E192DD2BAAE38700A87A4E /* NSMenu+Extension.swift */,
@@ -147,7 +142,6 @@
 				87E192F02BABB6EA00A87A4E /* Recognizer.swift */,
 				87E192E82BAAFF0200A87A4E /* Resources.swift */,
 				8737A24B2BBECB8800042E83 /* Services.swift */,
-				874D776B2BCF6DF90093662D /* Unchecked.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -180,7 +174,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					87E192BE2BAADE1200A87A4E = {
 						CreatedOnToolsVersion = 15.3;
@@ -234,7 +228,6 @@
 				87E192FD2BAC1BD600A87A4E /* NSWindow+Extension.swift in Sources */,
 				87E192D52BAAE12600A87A4E /* Bundle+Extension.swift in Sources */,
 				87E192FB2BAC044E00A87A4E /* NSObject+Extension.swift in Sources */,
-				874D776C2BCF6DF90093662D /* Unchecked.swift in Sources */,
 				87E192DE2BAAE38700A87A4E /* NSMenuItem+Extension.swift in Sources */,
 				87E192E52BAAFB1800A87A4E /* NSWorkspace+Extension.swift in Sources */,
 				87E192D82BAAE17200A87A4E /* main.swift in Sources */,
@@ -242,7 +235,6 @@
 				87E192F52BABC8FD00A87A4E /* Detector.swift in Sources */,
 				87E192E02BAAE38700A87A4E /* NSMenu+Extension.swift in Sources */,
 				87E192F72BABD18900A87A4E /* Logger.swift in Sources */,
-				875364A62BE1D7A000611579 /* NSApplication+Extension.swift in Sources */,
 				87E192C32BAADE1200A87A4E /* App.swift in Sources */,
 				87E192E92BAAFF0200A87A4E /* Resources.swift in Sources */,
 			);
@@ -257,6 +249,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -286,6 +279,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -306,7 +300,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -324,6 +318,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -353,6 +348,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -367,7 +363,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -388,6 +384,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "$(inherited)";
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -419,6 +416,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "$(inherited)";
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "$(inherited)";
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
