@@ -12,7 +12,7 @@ import AppKit
  https://developer.apple.com/documentation/vision/recognizing_text_in_images
  */
 enum Recognizer {
-  struct ResultData {
+  struct ResultData: Equatable {
     let candidates: [String]
 
     init(candidates: [String]) {
@@ -37,7 +37,7 @@ enum Recognizer {
     }
   }
 
-  static func detect(image: CGImage) async -> ResultData {
+  static func detect(image: CGImage, level: VNRequestTextRecognitionLevel) async -> ResultData {
     await withCheckedContinuation { continuation in
       let request = VNRecognizeTextRequest { request, error in
         let candidates = request.results?
@@ -49,8 +49,7 @@ enum Recognizer {
         }
       }
 
-      // Prefer accuracy over speed
-      request.recognitionLevel = .accurate
+      request.recognitionLevel = level
       request.usesLanguageCorrection = true
       request.automaticallyDetectsLanguage = true
 

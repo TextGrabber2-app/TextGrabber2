@@ -142,6 +142,15 @@ final class App: NSObject, NSApplicationDelegate {
     item.setOn(SMAppService.mainApp.isEnabled)
     return item
   }()
+
+  func statusItemInfo() -> (rect: CGRect, screen: NSScreen?)? {
+    guard let button = statusItem.button, let window = button.window else {
+      Logger.log(.error, "Missing button or window to provide positioning info")
+      return nil
+    }
+
+    return (window.convertToScreen(button.frame), window.screen ?? .main)
+  }
 }
 
 // MARK: - Life Cycle
@@ -220,6 +229,7 @@ private extension App {
       return Logger.assertFail("Missing menu to proceed")
     }
 
+    currentResult = nil
     pasteboardChangeCount = NSPasteboard.general.changeCount
     clipboardItem.isHidden = NSPasteboard.general.isEmpty
     saveImageItem.isEnabled = false
@@ -232,23 +242,36 @@ private extension App {
     howToItem.isHidden = true
 
     Task {
-      let resultData = await Recognizer.detect(image: image)
-      currentResult = resultData
+      let fastResult = await Recognizer.detect(image: image, level: .fast)
+      showResult(fastResult, in: menu)
 
-      hintItem.title = resultData.candidates.isEmpty ? Localized.menuTitleHintCapture : Localized.menuTitleHintCopy
-      howToItem.isHidden = !resultData.candidates.isEmpty
-      copyAllItem.isHidden = resultData.candidates.count < 2
-      saveImageItem.isEnabled = true
+      let accurateResult = await Recognizer.detect(image: image, level: .accurate)
+      showResult(accurateResult, in: menu)
+    }
+  }
 
-      let separator = NSMenuItem.separator()
-      menu.insertItem(separator, at: menu.index(of: howToItem) + 1)
-      menu.removeItems { $0 is ResultItem }
+  func showResult(_ resultData: Recognizer.ResultData, in menu: NSMenu) {
+    guard currentResult != resultData else {
+      #if DEBUG
+        Logger.log(.debug, "No change in result data")
+      #endif
+      return
+    }
 
-      for text in resultData.candidates.reversed() {
-        let item = ResultItem(title: text)
-        item.addAction { NSPasteboard.general.string = text }
-        menu.insertItem(item, at: menu.index(of: separator) + 1)
-      }
+    currentResult = resultData
+    hintItem.title = resultData.candidates.isEmpty ? Localized.menuTitleHintCapture : Localized.menuTitleHintCopy
+    howToItem.isHidden = !resultData.candidates.isEmpty
+    copyAllItem.isHidden = resultData.candidates.count < 2
+    saveImageItem.isEnabled = true
+
+    let separator = NSMenuItem.separator()
+    menu.insertItem(separator, at: menu.index(of: howToItem) + 1)
+    menu.removeItems { $0 is ResultItem }
+
+    for text in resultData.candidates.reversed() {
+      let item = ResultItem(title: text)
+      item.addAction { NSPasteboard.general.string = text }
+      menu.insertItem(item, at: menu.index(of: separator) + 1)
     }
   }
 }

@@ -28,9 +28,18 @@ extension NSWindow {
       return swizzled_setFrame(originalRect, display: display, animate: animate)
     }
 
+    // Retrieve the positioning info of the status bar item
+    guard let statusItem = (NSApp.delegate as? App)?.statusItemInfo() else {
+      return swizzled_setFrame(originalRect, display: display, animate: animate)
+    }
+
+    // Ensure the window always appears below the status item, within the screen boundaries
     var preferredRect = originalRect
-    preferredRect.origin.x += preferredRect.size.width - Constants.preferredWidth
     preferredRect.size.width = Constants.preferredWidth
+    preferredRect.origin.x = min(
+      max(statusItem.rect.minX - Constants.breathPadding, Constants.breathPadding),
+      (statusItem.screen?.frame.width ?? 1e6) - Constants.preferredWidth - Constants.breathPadding
+    )
 
     swizzled_setFrame(preferredRect, display: display, animate: animate)
   }
@@ -41,5 +50,6 @@ extension NSWindow {
 private extension NSWindow {
   enum Constants {
     static let preferredWidth: Double = 240
+    static let breathPadding: Double = 8
   }
 }
