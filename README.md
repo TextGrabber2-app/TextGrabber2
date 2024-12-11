@@ -16,6 +16,9 @@ It also functions effectively for any form of image copying.
 >
 > Learn more [here](https://github.com/TextGrabber2-app/TextGrabber2/wiki#capture-screen-on-mac).
 
+> [!TIP]
+> Discover our other free and open-source apps at [libremac.github.io](https://libremac.github.io/).
+
 ## Installation
 
 Get `TextGrabber2.dmg` from the <a href="https://github.com/TextGrabber2-app/TextGrabber2/releases/latest" target="_blank">latest release</a>, open it and drag `TextGrabber2.app` to `Applications`.
