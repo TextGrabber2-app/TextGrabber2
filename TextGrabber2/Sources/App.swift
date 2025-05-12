@@ -11,8 +11,6 @@ import ServiceManagement
 @MainActor
 final class App: NSObject, NSApplicationDelegate {
   private var currentResult: Recognizer.ResultData?
-  private var pasteboardObserver: Timer?
-  private var pasteboardChangeCount = 0
 
   private lazy var statusItem: NSStatusItem = {
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -193,31 +191,10 @@ extension App: NSMenuDelegate {
 
       servicesItem.submenu?.insertItem(item, at: 0)
     }
-
-    // For an edge case, we can capture the screen while the menu is shown.
-    let timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
-      guard let self else {
-        return
-      }
-
-      DispatchQueue.main.async {
-        guard NSPasteboard.general.changeCount != self.pasteboardChangeCount else {
-          return
-        }
-
-        self.startDetection()
-      }
-    }
-
-    pasteboardObserver = timer
-    RunLoop.current.add(timer, forMode: .common)
   }
 
   func menuDidClose(_ menu: NSMenu) {
     clearMenuItems()
-
-    pasteboardObserver?.invalidate()
-    pasteboardObserver = nil
   }
 }
 
@@ -240,7 +217,6 @@ private extension App {
     }
 
     currentResult = nil
-    pasteboardChangeCount = NSPasteboard.general.changeCount
     clipboardItem.isHidden = NSPasteboard.general.isEmpty
     saveImageItem.isEnabled = false
 
