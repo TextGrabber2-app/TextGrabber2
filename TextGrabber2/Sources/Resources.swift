@@ -19,7 +19,9 @@ enum Localized {
   static let menuTitleHintCapture = String(localized: "Capture Screen to Detect", comment: "[Menu] Hint for capturing the screen")
   static let menuTitleHintCopy = String(localized: "Click to Copy", comment: "[Menu] Hint for copying text")
   static let menuTitleHintRecognizing = String(localized: "Recognizing...", comment: "[Menu] The recognition is ongoing")
-  static let menuTitleHowTo = String(localized: "How to Capture?", comment: "[Menu] How to use the app")
+  static let menuTitleHintLimitedAccess = String(localized: "Limited Access", comment: "[Menu] Hint for limited access")
+  static let menuTitleHowToCapture = String(localized: "How to Capture?", comment: "[Menu] How to use the app")
+  static let menuTitleHowToSetUp = String(localized: "How to Set Up?", comment: "[Menu] How to set up the app")
   static let menuTitleCopyAll = String(localized: "Copy All", comment: "[Menu] Copy all text at once")
   static let menuTitleJoinDirectly = String(localized: "Join Directly", comment: "[Menu] Join all text directly")
   static let menuTitleJoinWithLineBreaks = String(localized: "Join with Line Breaks", comment: "[Menu] Join all text with line breaks and copy them")
@@ -40,6 +42,7 @@ enum Localized {
 //
 // Note: double check availability and deployment target before adding new icons
 enum Icons {
+  static let handRaisedSlash = "hand.raised.slash"
   static let textViewFinder = "text.viewfinder"
 }
 

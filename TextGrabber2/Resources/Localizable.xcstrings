@@ -188,6 +188,23 @@
         }
       }
     },
+    "How to Set Up?" : {
+      "comment" : "[Menu] How to set up the app",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如何设置？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如何設定？"
+          }
+        }
+      }
+    },
     "Join Directly" : {
       "comment" : "[Menu] Join all text directly",
       "localizations" : {
@@ -252,6 +269,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "登入時啟動"
+          }
+        }
+      }
+    },
+    "Limited Access" : {
+      "comment" : "[Menu] Hint for limited access",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "访问受限"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "訪問受限"
           }
         }
       }

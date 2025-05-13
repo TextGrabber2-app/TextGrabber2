@@ -15,6 +15,8 @@ It also functions effectively for any form of image copying.
 > Note that keyboard shortcuts can be remapped (and it's recommended since pressing 4 keys is a bit clunky). Please check out Apple's [documentation](https://support.apple.com/guide/mac-help/mchlp2271/mac) for details.
 >
 > Learn more [here](https://github.com/TextGrabber2-app/TextGrabber2/wiki#capture-screen-on-mac).
+>
+> For information on pasteboard access issues in macOS 15.4 and later, please refer to our [wiki](https://github.com/TextGrabber2-app/TextGrabber2/wiki#limited-access).
 
 > [!TIP]
 > Discover our other free and open-source apps at [libremac.github.io](https://libremac.github.io/).

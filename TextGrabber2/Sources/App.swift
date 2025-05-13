@@ -56,11 +56,20 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  private let hintItem = NSMenuItem()
+  private let hintItem: NSMenuItem = {
+    let item = NSMenuItem()
+    if NSPasteboard.general.hasLimitedAccess {
+      item.image = NSImage(systemSymbolName: Icons.handRaisedSlash, accessibilityDescription: nil)
+    }
+
+    return item
+  }()
+
   private let howToItem: NSMenuItem = {
-    let item = NSMenuItem(title: Localized.menuTitleHowTo)
+    let item = NSMenuItem(title: NSPasteboard.general.hasLimitedAccess ? Localized.menuTitleHowToSetUp : Localized.menuTitleHowToCapture)
     item.addAction {
-      NSWorkspace.shared.safelyOpenURL(string: "\(Links.github)/wiki#capture-screen-on-mac")
+      let section = NSPasteboard.general.hasLimitedAccess ? "limited-access" : "capture-screen-on-mac"
+      NSWorkspace.shared.safelyOpenURL(string: "\(Links.github)/wiki#\(section)")
     }
 
     return item
@@ -176,7 +185,7 @@ extension App {
 extension App: NSMenuDelegate {
   func menuWillOpen(_ menu: NSMenu) {
     startDetection()
-    
+
     // Update the services menu
     servicesItem.submenu?.removeItems { $0 is ServiceItem }
     for service in Services.items.reversed() {
@@ -205,7 +214,7 @@ private extension App {
   class ServiceItem: NSMenuItem { /* Just a sub-class to be identifiable */ }
 
   func clearMenuItems() {
-    hintItem.title = Localized.menuTitleHintCapture
+    hintItem.title = NSPasteboard.general.hasLimitedAccess ? Localized.menuTitleHintLimitedAccess : Localized.menuTitleHintCapture
     howToItem.isHidden = false
     copyAllItem.isHidden = true
     statusItem.menu?.removeItems { $0 is ResultItem }
@@ -224,8 +233,10 @@ private extension App {
       return Logger.log(.info, "No image was copied")
     }
 
-    hintItem.title = Localized.menuTitleHintRecognizing
-    howToItem.isHidden = true
+    if !NSPasteboard.general.hasLimitedAccess {
+      hintItem.title = Localized.menuTitleHintRecognizing
+      howToItem.isHidden = true
+    }
 
     Task {
       let fastResult = await Recognizer.detect(image: image, level: .fast)
@@ -245,10 +256,16 @@ private extension App {
     }
 
     currentResult = resultData
-    hintItem.title = resultData.candidates.isEmpty ? Localized.menuTitleHintCapture : Localized.menuTitleHintCopy
-    howToItem.isHidden = !resultData.candidates.isEmpty
     copyAllItem.isHidden = resultData.candidates.count < 2
     saveImageItem.isEnabled = true
+
+    if NSPasteboard.general.hasLimitedAccess {
+      hintItem.title = Localized.menuTitleHintLimitedAccess
+      howToItem.isHidden = false
+    } else {
+      hintItem.title = resultData.candidates.isEmpty ? Localized.menuTitleHintCapture : Localized.menuTitleHintCopy
+      howToItem.isHidden = !resultData.candidates.isEmpty
+    }
 
     let separator = NSMenuItem.separator()
     menu.insertItem(separator, at: menu.index(of: howToItem) + 1)

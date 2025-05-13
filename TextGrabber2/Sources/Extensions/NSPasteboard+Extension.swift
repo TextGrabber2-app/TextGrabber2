@@ -43,6 +43,14 @@ extension NSPasteboard {
     return (readObjects(forClasses: [NSImage.self]) as? [NSImage])?.first
   }
 
+  var hasLimitedAccess: Bool {
+    guard #available(macOS 15.4, *) else {
+      return false
+    }
+
+    return accessBehavior != .alwaysAllow
+  }
+
   @MainActor
   func saveImageAsFile() {
     NSApp.activate()
