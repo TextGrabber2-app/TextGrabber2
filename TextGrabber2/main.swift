@@ -7,7 +7,6 @@
 
 import AppKit
 
-NSWindow.swizzleSetFrameDisplayAnimateOnce
 NSMenu.swizzleIsUpdatedExcludingContentTypesOnce
 
 let app = NSApplication.shared

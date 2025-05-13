@@ -27,7 +27,6 @@
 		87E192F52BABC8FD00A87A4E /* Detector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E192F42BABC8FD00A87A4E /* Detector.swift */; };
 		87E192F72BABD18900A87A4E /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E192F62BABD18900A87A4E /* Logger.swift */; };
 		87E192FB2BAC044E00A87A4E /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E192FA2BAC044E00A87A4E /* NSObject+Extension.swift */; };
-		87E192FD2BAC1BD600A87A4E /* NSWindow+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E192FC2BAC1BD600A87A4E /* NSWindow+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +53,6 @@
 		87E192F42BABC8FD00A87A4E /* Detector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detector.swift; sourceTree = "<group>"; };
 		87E192F62BABD18900A87A4E /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		87E192FA2BAC044E00A87A4E /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
-		87E192FC2BAC1BD600A87A4E /* NSWindow+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSWindow+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +123,6 @@
 				87E192DB2BAAE38700A87A4E /* NSMenuItem+Extension.swift */,
 				87E192FA2BAC044E00A87A4E /* NSObject+Extension.swift */,
 				87E192F22BABB71D00A87A4E /* NSPasteboard+Extension.swift */,
-				87E192FC2BAC1BD600A87A4E /* NSWindow+Extension.swift */,
 				87E192E42BAAFB1800A87A4E /* NSWorkspace+Extension.swift */,
 				87E192E62BAAFBC900A87A4E /* SMAppService+Extension.swift */,
 			);
@@ -225,7 +222,6 @@
 				87E192F32BABB71D00A87A4E /* NSPasteboard+Extension.swift in Sources */,
 				87E192E72BAAFBC900A87A4E /* SMAppService+Extension.swift in Sources */,
 				87E192F12BABB6EA00A87A4E /* Recognizer.swift in Sources */,
-				87E192FD2BAC1BD600A87A4E /* NSWindow+Extension.swift in Sources */,
 				87E192D52BAAE12600A87A4E /* Bundle+Extension.swift in Sources */,
 				87E192FB2BAC044E00A87A4E /* NSObject+Extension.swift in Sources */,
 				87E192DE2BAAE38700A87A4E /* NSMenuItem+Extension.swift in Sources */,
