@@ -17,6 +17,15 @@ extension NSWindow {
       swizzledSelector: #selector(swizzled_setFrame(_:display:animate:))
     )
   }()
+}
+
+// MARK: - Private
+
+private extension NSWindow {
+  enum Constants {
+    static let preferredWidth: Double = 240
+    static let breathPadding: Double = 8
+  }
 
   @objc func swizzled_setFrame(_ originalRect: CGRect, display: Bool, animate: Bool) {
     // Only for the first popup menu window
@@ -42,14 +51,5 @@ extension NSWindow {
     )
 
     swizzled_setFrame(preferredRect, display: display, animate: animate)
-  }
-}
-
-// MARK: - Private
-
-private extension NSWindow {
-  enum Constants {
-    static let preferredWidth: Double = 240
-    static let breathPadding: Double = 8
   }
 }
