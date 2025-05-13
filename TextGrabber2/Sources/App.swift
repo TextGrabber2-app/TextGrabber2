@@ -24,7 +24,6 @@ final class App: NSObject, NSApplicationDelegate {
     menu.addItem(hintItem)
     menu.addItem(howToItem)
     menu.addItem(.separator())
-    menu.addItem(copyAllItem)
     menu.addItem(servicesItem)
     menu.addItem(clipboardItem)
     menu.addItem(.separator())
@@ -75,25 +74,6 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  private lazy var copyAllItem: NSMenuItem = {
-    let menu = NSMenu()
-    menu.addItem(withTitle: Localized.menuTitleJoinDirectly) {
-      NSPasteboard.general.string = self.currentResult?.directlyJoined
-    }
-
-    menu.addItem(withTitle: Localized.menuTitleJoinWithLineBreaks) {
-      NSPasteboard.general.string = self.currentResult?.lineBreaksJoined
-    }
-
-    menu.addItem(withTitle: Localized.menuTitleJoinWithSpaces) {
-      NSPasteboard.general.string = self.currentResult?.spacesJoined
-    }
-
-    let item = NSMenuItem(title: Localized.menuTitleCopyAll)
-    item.submenu = menu
-    return item
-  }()
-
   private lazy var servicesItem: NSMenuItem = {
     let menu = NSMenu()
     menu.addItem(.separator())
@@ -114,6 +94,7 @@ final class App: NSObject, NSApplicationDelegate {
   private lazy var clipboardItem: NSMenuItem = {
     let menu = NSMenu()
     menu.autoenablesItems = false
+    menu.addItem(copyAllItem)
     menu.addItem(saveImageItem)
 
     menu.addItem(withTitle: Localized.menuTitleClearContents) {
@@ -121,6 +102,25 @@ final class App: NSObject, NSApplicationDelegate {
     }
 
     let item = NSMenuItem(title: Localized.menuTitleClipboard)
+    item.submenu = menu
+    return item
+  }()
+
+  private lazy var copyAllItem: NSMenuItem = {
+    let menu = NSMenu()
+    menu.addItem(withTitle: Localized.menuTitleJoinDirectly) {
+      NSPasteboard.general.string = self.currentResult?.directlyJoined
+    }
+
+    menu.addItem(withTitle: Localized.menuTitleJoinWithLineBreaks) {
+      NSPasteboard.general.string = self.currentResult?.lineBreaksJoined
+    }
+
+    menu.addItem(withTitle: Localized.menuTitleJoinWithSpaces) {
+      NSPasteboard.general.string = self.currentResult?.spacesJoined
+    }
+
+    let item = NSMenuItem(title: Localized.menuTitleCopyAll)
     item.submenu = menu
     return item
   }()
@@ -215,8 +215,6 @@ private extension App {
 
   func clearMenuItems() {
     hintItem.title = NSPasteboard.general.hasLimitedAccess ? Localized.menuTitleHintLimitedAccess : Localized.menuTitleHintCapture
-    howToItem.isHidden = false
-    copyAllItem.isHidden = true
     statusItem.menu?.removeItems { $0 is ResultItem }
   }
 
@@ -226,7 +224,7 @@ private extension App {
     }
 
     currentResult = nil
-    clipboardItem.isHidden = NSPasteboard.general.isEmpty
+    copyAllItem.isEnabled = false
     saveImageItem.isEnabled = false
 
     guard let image = NSPasteboard.general.image?.cgImage else {
@@ -235,7 +233,6 @@ private extension App {
 
     if !NSPasteboard.general.hasLimitedAccess {
       hintItem.title = Localized.menuTitleHintRecognizing
-      howToItem.isHidden = true
     }
 
     Task {
@@ -256,15 +253,13 @@ private extension App {
     }
 
     currentResult = resultData
-    copyAllItem.isHidden = resultData.candidates.count < 2
+    copyAllItem.isEnabled = resultData.candidates.count > 1
     saveImageItem.isEnabled = true
 
     if NSPasteboard.general.hasLimitedAccess {
       hintItem.title = Localized.menuTitleHintLimitedAccess
-      howToItem.isHidden = false
     } else {
       hintItem.title = resultData.candidates.isEmpty ? Localized.menuTitleHintCapture : Localized.menuTitleHintCopy
-      howToItem.isHidden = !resultData.candidates.isEmpty
     }
 
     let separator = NSMenuItem.separator()
