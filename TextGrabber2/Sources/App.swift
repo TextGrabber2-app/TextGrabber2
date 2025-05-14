@@ -267,7 +267,7 @@ private extension App {
     menu.removeItems { $0 is ResultItem }
 
     for text in resultData.candidates.reversed() {
-      let item = ResultItem(title: text)
+      let item = ResultItem(title: text.truncatedToFit(width: 320, font: .menuFont(ofSize: 0)))
       item.addAction { NSPasteboard.general.string = text }
       menu.insertItem(item, at: menu.index(of: separator) + 1)
     }
