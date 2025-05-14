@@ -50,8 +50,8 @@ enum Recognizer {
       }
 
       request.recognitionLevel = level
-      request.usesLanguageCorrection = true
-      request.automaticallyDetectsLanguage = true
+      request.usesLanguageCorrection = level == .accurate
+      request.automaticallyDetectsLanguage = level == .accurate
 
       DispatchQueue.global(qos: .userInitiated).async {
         do {
