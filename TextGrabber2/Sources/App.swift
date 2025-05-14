@@ -168,8 +168,9 @@ extension App {
     clearMenuItems()
     statusItem.isVisible = true
 
-    // Handle quit action manually since we don't have a menu bar
+    // Handle quit action manually since we don't have a window anymore
     NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
+      // Cmd-Q
       if event.keyCode == 0x0C && event.modifierFlags.intersection(.deviceIndependentFlagsMask) == .command {
         NSApp.terminate(nil)
         return nil
