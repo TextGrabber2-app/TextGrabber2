@@ -27,7 +27,7 @@ Get `TextGrabber2.dmg` from the <a href="https://github.com/TextGrabber2-app/Tex
 
 <img src="./Screenshots/03.png" width="540" alt="Install TextGrabber2">
 
-> TextGrabber2 does NOT check for updates automatically. You will need to check this repository for new releases. However, it's worth noting that updates will likely be infrequent, typically limited to bug fixes.
+> TextGrabber2 checks for updates automatically. However, it's worth noting that updates will likely be infrequent, typically limited to bug fixes.
 
 ## Why TextGrabber2
 

@@ -178,6 +178,20 @@ extension App {
 
       return event
     }
+
+    let silentlyCheckUpdates: @Sendable () -> Void = {
+      Task {
+        await Updater.checkForUpdates()
+      }
+    }
+
+    // Check for updates on launch with a delay
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: silentlyCheckUpdates)
+
+    // Check for updates on a weekly basis, for users who never quit apps
+    Timer.scheduledTimer(withTimeInterval: 7 * 24 * 60 * 60, repeats: true) { _ in
+      silentlyCheckUpdates()
+    }
   }
 }
 
