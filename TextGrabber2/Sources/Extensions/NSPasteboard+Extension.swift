@@ -58,6 +58,7 @@ extension NSPasteboard {
     let savePanel = NSSavePanel()
     savePanel.allowedContentTypes = [.png]
     savePanel.isExtensionHidden = false
+    savePanel.titlebarAppearsTransparent = true
 
     guard let pngData = image?.pngData, savePanel.runModal() == .OK, let url = savePanel.url else {
       return
