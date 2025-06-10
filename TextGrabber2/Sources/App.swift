@@ -237,11 +237,13 @@ private extension App {
     }
 
     Task {
-      let fastResult = await Recognizer.detect(image: image, level: .fast)
-      showResult(fastResult, in: menu)
+      if let fastResult = await Recognizer.detect(image: image, level: .fast) {
+        showResult(fastResult, in: menu)
+      }
 
-      let accurateResult = await Recognizer.detect(image: image, level: .accurate)
-      showResult(accurateResult, in: menu)
+      if let accurateResult = await Recognizer.detect(image: image, level: .accurate) {
+        showResult(accurateResult, in: menu)
+      }
     }
   }
 

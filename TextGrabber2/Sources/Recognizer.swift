@@ -37,7 +37,7 @@ enum Recognizer {
     }
   }
 
-  static func detect(image: CGImage, level: VNRequestTextRecognitionLevel) async -> ResultData {
+  static func detect(image: CGImage, level: VNRequestTextRecognitionLevel) async -> ResultData? {
     await withCheckedContinuation { continuation in
       let request = VNRecognizeTextRequest { request, error in
         let candidates = request.results?
@@ -45,7 +45,11 @@ enum Recognizer {
           .compactMap { $0.topCandidates(1).first?.string }
 
         DispatchQueue.main.async {
-          continuation.resume(returning: ResultData(candidates: candidates ?? []))
+          guard error == nil, let candidates else {
+            return continuation.resume(returning: nil)
+          }
+
+          continuation.resume(returning: ResultData(candidates: candidates))
         }
       }
 
