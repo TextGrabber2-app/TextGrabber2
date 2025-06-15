@@ -16,7 +16,9 @@ final class App: NSObject, NSApplicationDelegate {
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     item.behavior = .terminationOnRemoval
     item.autosaveName = Bundle.main.bundleName
+
     item.button?.image = .with(symbolName: Icons.textViewFinder, pointSize: 15)
+    item.button?.setAccessibilityLabel("TextGrabber2")
 
     let menu = NSMenu()
     menu.delegate = self
