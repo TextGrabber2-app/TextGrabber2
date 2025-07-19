@@ -324,23 +324,6 @@
         }
       }
     },
-    "Recognizing..." : {
-      "comment" : "[Menu] The recognition is ongoing",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "识别中…"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "識別中…"
-          }
-        }
-      }
-    },
     "Remind Me Later" : {
       "comment" : "Title for the \"Remind Me Later\" button",
       "localizations" : {

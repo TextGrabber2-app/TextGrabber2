@@ -18,7 +18,6 @@ enum Localized {
   static let failedToRun = String(localized: "Failed to run \"%@\".", comment: "Error message when a system service failed")
   static let menuTitleHintCapture = String(localized: "Capture Screen to Detect", comment: "[Menu] Hint for capturing the screen")
   static let menuTitleHintCopy = String(localized: "Click to Copy", comment: "[Menu] Hint for copying text")
-  static let menuTitleHintRecognizing = String(localized: "Recognizing...", comment: "[Menu] The recognition is ongoing")
   static let menuTitleHintLimitedAccess = String(localized: "Limited Access", comment: "[Menu] Hint for limited access")
   static let menuTitleHowToCapture = String(localized: "How to Capture?", comment: "[Menu] How to use the app")
   static let menuTitleHowToSetUp = String(localized: "How to Set Up?", comment: "[Menu] How to set up the app")

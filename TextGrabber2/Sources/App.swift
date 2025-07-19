@@ -11,6 +11,7 @@ import ServiceManagement
 @MainActor
 final class App: NSObject, NSApplicationDelegate {
   private var currentResult: Recognizer.ResultData?
+  private var lastDetectionTime: TimeInterval = 0
 
   private lazy var statusItem: NSStatusItem = {
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -181,6 +182,19 @@ extension App {
       return event
     }
 
+    // Handle the case where menuWillOpen is not properly invoked
+    NSEvent.addLocalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
+      guard let button = self?.statusItem.button, let contentView = button.window?.contentView else {
+        return event
+      }
+
+      if contentView.hitTest(button.convert(event.locationInWindow, from: nil)) != nil {
+        self?.startDetection()
+      }
+
+      return event
+    }
+
     let silentlyCheckUpdates: @Sendable () -> Void = {
       Task {
         await Updater.checkForUpdates()
@@ -235,30 +249,50 @@ private extension App {
     statusItem.menu?.removeItems { $0 is ResultItem }
   }
 
-  func startDetection() {
+  func startDetection(retryCount: Int = 0) {
     guard let menu = statusItem.menu else {
       return Logger.assertFail("Missing menu to proceed")
     }
 
+    guard Date.timeIntervalSinceReferenceDate - lastDetectionTime > 0.5 else {
+      return Logger.log(.info, "Just detected, skipping")
+    }
+
+    lastDetectionTime = Date.timeIntervalSinceReferenceDate
     currentResult = nil
     copyAllItem.isEnabled = false
     saveImageItem.isEnabled = false
 
-    guard let image = NSPasteboard.general.image?.cgImage else {
-      return Logger.log(.info, "No image was copied")
+    let retryDetectionLater = {
+      guard retryCount < 3 else {
+        return
+      }
+
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        self.lastDetectionTime = 0
+        self.startDetection(retryCount: retryCount + 1)
+      }
     }
 
-    if !NSPasteboard.general.hasLimitedAccess {
-      hintItem.title = Localized.menuTitleHintRecognizing
+    guard let image = NSPasteboard.general.image?.cgImage else {
+      Logger.log(.info, "No image was copied")
+      return retryDetectionLater()
     }
 
     Task {
-      if let fastResult = await Recognizer.detect(image: image, level: .fast) {
+      let fastResult = await Recognizer.detect(image: image, level: .fast)
+      if let fastResult {
         showResult(fastResult, in: menu)
       }
 
-      if let accurateResult = await Recognizer.detect(image: image, level: .accurate) {
+      let accurateResult = await Recognizer.detect(image: image, level: .accurate)
+      if let accurateResult {
         showResult(accurateResult, in: menu)
+      }
+
+      // Both failed, retrying...
+      if fastResult == nil && accurateResult == nil {
+        retryDetectionLater()
       }
     }
   }
