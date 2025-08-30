@@ -17,11 +17,13 @@ enum Recognizer {
 
     init(candidates: [String]) {
       var seen = Set(candidates)
-      self.candidates = candidates + candidates.flatMap {
+      let aggregated = candidates + candidates.flatMap {
         Detector.matches(in: $0)
       }.filter {
         seen.insert($0).inserted
       }
+
+      self.candidates = aggregated.filter { !$0.isEmpty }
     }
 
     var directlyJoined: String {
@@ -37,8 +39,12 @@ enum Recognizer {
     }
   }
 
-  static func detect(image: CGImage, level: VNRequestTextRecognitionLevel) async -> ResultData? {
-    await withCheckedContinuation { continuation in
+  static func detect(image: CGImage?, level: VNRequestTextRecognitionLevel) async -> ResultData? {
+    guard let image else {
+      return ResultData(candidates: [])
+    }
+
+    return await withCheckedContinuation { continuation in
       let request = VNRecognizeTextRequest { request, error in
         let candidates = request.results?
           .compactMap { $0 as? VNRecognizedTextObservation }
