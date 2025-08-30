@@ -276,20 +276,23 @@ private extension App {
       }
     }
 
-    guard let image = NSPasteboard.general.image?.cgImage else {
-      Logger.log(.info, "No image was copied")
+    let image = NSPasteboard.general.image?.cgImage
+    let text = NSPasteboard.general.string
+
+    guard image != nil || text != nil else {
+      Logger.log(.info, "No image or text copied")
       return retryDetectionLater()
     }
 
     Task {
       let fastResult = await Recognizer.detect(image: image, level: .fast)
       if let fastResult {
-        showResult(fastResult, in: menu)
+        showResult(fastResult, textCopied: text, in: menu)
       }
 
       let accurateResult = await Recognizer.detect(image: image, level: .accurate)
       if let accurateResult {
-        showResult(accurateResult, in: menu)
+        showResult(accurateResult, textCopied: text, in: menu)
       }
 
       // Both failed, retrying...
@@ -299,17 +302,21 @@ private extension App {
     }
   }
 
-  func showResult(_ resultData: Recognizer.ResultData, in menu: NSMenu) {
-    guard currentResult != resultData else {
+  func showResult(_ imageResult: Recognizer.ResultData, textCopied: String?, in menu: NSMenu) {
+    guard currentResult != imageResult else {
       #if DEBUG
         Logger.log(.debug, "No change in result data")
       #endif
       return
     }
 
+    // Combine recognized items and copied text
+    let allItems = imageResult.candidates + [textCopied].compactMap { $0 }
+    let resultData = type(of: imageResult).init(candidates: allItems)
+
     currentResult = resultData
     copyAllItem.isEnabled = resultData.candidates.hasValue
-    saveImageItem.isEnabled = true
+    saveImageItem.isEnabled = imageResult.candidates.hasValue
 
     if NSPasteboard.general.hasLimitedAccess {
       hintItem.title = Localized.menuTitleHintLimitedAccess
