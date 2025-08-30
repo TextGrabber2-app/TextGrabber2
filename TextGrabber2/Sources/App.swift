@@ -308,7 +308,7 @@ private extension App {
     }
 
     currentResult = resultData
-    copyAllItem.isEnabled = resultData.candidates.count > 1
+    copyAllItem.isEnabled = resultData.candidates.hasValue
     saveImageItem.isEnabled = true
 
     if NSPasteboard.general.hasLimitedAccess {
