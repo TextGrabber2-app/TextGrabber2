@@ -220,12 +220,14 @@ extension App: NSMenuDelegate {
     // Update the services menu
     servicesItem.submenu?.removeItems { $0 is ServiceItem }
     for service in Services.items.reversed() {
-      let item = ServiceItem(title: service.displayName)
+      let serviceName = service.serviceName
+      let displayName = service.displayName ?? serviceName
+      let item = ServiceItem(title: displayName)
       item.addAction {
         NSPasteboard.general.string = self.currentResult?.spacesJoined
         
-        if !NSPerformService(service.serviceName, .general) {
-          NSAlert.runModal(message: String(format: Localized.failedToRun, service.displayName))
+        if !NSPerformService(serviceName, .general) {
+          NSAlert.runModal(message: String(format: Localized.failedToRun, displayName))
         }
       }
 

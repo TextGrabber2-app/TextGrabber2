@@ -15,7 +15,7 @@ import AppKit
 enum Services {
   struct Item: Decodable {
     let serviceName: String
-    let displayName: String
+    let displayName: String?
   }
 
   static var fileURL: URL {
