@@ -47,4 +47,5 @@ enum Icons {
 
 enum Links {
   static let github = "https://github.com/TextGrabber2-app/TextGrabber2"
+  static let releases = "\(github)/releases"
 }

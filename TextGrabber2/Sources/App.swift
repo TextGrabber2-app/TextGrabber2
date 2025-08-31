@@ -32,14 +32,23 @@ final class App: NSObject, NSApplicationDelegate {
     menu.addItem(.separator())
     menu.addItem(launchAtLoginItem)
 
-    menu.addItem(withTitle: Localized.menuTitleGitHub) {
-      NSWorkspace.shared.safelyOpenURL(string: Links.github)
-    }
+    menu.addItem({
+      let item = NSMenuItem(title: Localized.menuTitleGitHub)
+      item.toolTip = Links.github
+      item.addAction {
+        NSWorkspace.shared.safelyOpenURL(string: Links.github)
+      }
+
+      return item
+    }())
 
     menu.addItem(.separator())
     menu.addItem({
       let item = NSMenuItem(title: "\(Localized.menuTitleVersion) \(Bundle.main.shortVersionString)")
-      item.isEnabled = false
+      item.toolTip = Links.releases
+      item.addAction {
+        NSWorkspace.shared.safelyOpenURL(string: Links.releases)
+      }
 
       return item
     }())
