@@ -341,6 +341,10 @@ private extension App {
       let item = ResultItem(title: text.truncatedToFit(width: 320, font: .menuFont(ofSize: 0)))
       item.addAction { NSPasteboard.general.string = text }
       menu.insertItem(item, at: menu.index(of: separator) + 1)
+
+      if item.title != text {
+        item.toolTip = text
+      }
     }
   }
 }
