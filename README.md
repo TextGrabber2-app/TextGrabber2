@@ -2,7 +2,7 @@
 
 # TextGrabber2
 
-[![](https://img.shields.io/badge/Platform-macOS_14.0+-blue?color=007bff)](https://github.com/TextGrabber2-app/TextGrabber2/releases/latest)  [![](https://github.com/TextGrabber2-app/TextGrabber2/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/TextGrabber2-app/TextGrabber2/actions/workflows/build.yml)
+[![](https://img.shields.io/badge/Platform-macOS_15.0+-blue?color=007bff)](https://github.com/TextGrabber2-app/TextGrabber2/releases/latest)  [![](https://github.com/TextGrabber2-app/TextGrabber2/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/TextGrabber2-app/TextGrabber2/actions/workflows/build.yml)
 
 TextGrabber2 is a free and **open-source** macOS menu bar app that efficiently detects text from copied images. This eliminates the need to save images as files and then delete them solely for the purpose of text detection.
 
@@ -28,6 +28,8 @@ Get `TextGrabber2.dmg` from the <a href="https://github.com/TextGrabber2-app/Tex
 <img src="./Screenshots/03.png" width="540" alt="Install TextGrabber2">
 
 > TextGrabber2 checks for updates automatically. However, it's worth noting that updates will likely be infrequent, typically limited to bug fixes.
+>
+> Older builds: [macos-13](https://github.com/TextGrabber2-app/TextGrabber2/releases/tag/macos-13), [macos-14](https://github.com/TextGrabber2-app/TextGrabber2/releases/tag/macos-14).
 
 ## Why TextGrabber2
 
