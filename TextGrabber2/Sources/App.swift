@@ -312,16 +312,16 @@ private extension App {
   }
 
   func showResult(_ imageResult: Recognizer.ResultData, textCopied: String?, in menu: NSMenu) {
-    guard currentResult != imageResult else {
+    // Combine recognized items and copied text
+    let allItems = imageResult.candidates + [textCopied].compactMap { $0 }
+    let resultData = type(of: imageResult).init(candidates: allItems)
+
+    guard currentResult != resultData else {
       #if DEBUG
         Logger.log(.debug, "No change in result data")
       #endif
       return
     }
-
-    // Combine recognized items and copied text
-    let allItems = imageResult.candidates + [textCopied].compactMap { $0 }
-    let resultData = type(of: imageResult).init(candidates: allItems)
 
     currentResult = resultData
     copyAllItem.isEnabled = resultData.candidates.hasValue
