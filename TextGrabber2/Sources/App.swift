@@ -198,7 +198,9 @@ extension App {
       }
 
       if contentView.hitTest(button.convert(event.locationInWindow, from: nil)) != nil {
-        self?.startDetection()
+        if let menu = self?.statusItem.menu {
+          self?.menuWillOpen(menu)
+        }
       }
 
       return event
@@ -224,7 +226,10 @@ extension App {
 
 extension App: NSMenuDelegate {
   func menuWillOpen(_ menu: NSMenu) {
-    startDetection()
+    // Delay the detection to work around an internal race condition in macOS Tahoe
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+      self.startDetection()
+    }
 
     // Update the services menu
     servicesItem.submenu?.removeItems { $0 is ServiceItem }
