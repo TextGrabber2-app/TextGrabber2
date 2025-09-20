@@ -1,4 +1,8 @@
-<img src="./Icon.png" width="96">
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/TextGrabber2-app/TextGrabber2/main/Icon.png" width="96">
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/TextGrabber2-app/TextGrabber2/main/Icon-dark.png" width="96">
+  <img src="./Icon.png" width="96">
+</picture>
 
 # TextGrabber2
 
