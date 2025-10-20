@@ -120,16 +120,16 @@ final class App: NSObject, NSApplicationDelegate {
 
   private lazy var copyAllItem: NSMenuItem = {
     let menu = NSMenu()
-    menu.addItem(withTitle: Localized.menuTitleJoinDirectly) {
-      NSPasteboard.general.string = self.currentResult?.directlyJoined
+    menu.addItem(withTitle: Localized.menuTitleJoinWithSpaces) {
+      NSPasteboard.general.string = self.currentResult?.spacesJoined
     }
 
     menu.addItem(withTitle: Localized.menuTitleJoinWithLineBreaks) {
       NSPasteboard.general.string = self.currentResult?.lineBreaksJoined
     }
 
-    menu.addItem(withTitle: Localized.menuTitleJoinWithSpaces) {
-      NSPasteboard.general.string = self.currentResult?.spacesJoined
+    menu.addItem(withTitle: Localized.menuTitleJoinDirectly) {
+      NSPasteboard.general.string = self.currentResult?.directlyJoined
     }
 
     let item = NSMenuItem(title: Localized.menuTitleCopyAll)
