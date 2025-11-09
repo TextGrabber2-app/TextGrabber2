@@ -37,7 +37,7 @@ struct ExtractIntent: AppIntent {
     let result = await Recognizer.detect(image: image, level: .accurate)
     let candidates = (result?.candidates ?? []) + [text].compactMap { $0 }
 
-    if let first = candidates.first, !first.isEmpty {
+    if let first = candidates.first, !first.isEmpty && image != nil {
       NSPasteboard.general.string = first
     }
 
@@ -45,24 +45,24 @@ struct ExtractIntent: AppIntent {
       ResultEntity(title: $0, subtitle: nil)
     }
 
-    if entities.count == 1 {
-      return .result(value: entities)
+    if entities.count > 1 {
+      return .result(value: entities + [
+        ResultEntity(
+          title: candidates.joined(separator: " "),
+          subtitle: Localized.menuTitleJoinWithSpaces
+        ),
+        ResultEntity(
+          title: candidates.joined(separator: "\n"),
+          subtitle: Localized.menuTitleJoinWithLineBreaks
+        ),
+        ResultEntity(
+          title: candidates.joined(),
+          subtitle: Localized.menuTitleJoinDirectly
+        ),
+      ])
     }
 
-    return .result(value: entities + [
-      ResultEntity(
-        title: candidates.joined(separator: " "),
-        subtitle: Localized.menuTitleJoinWithSpaces
-      ),
-      ResultEntity(
-        title: candidates.joined(separator: "\n"),
-        subtitle: Localized.menuTitleJoinWithLineBreaks
-      ),
-      ResultEntity(
-        title: candidates.joined(),
-        subtitle: Localized.menuTitleJoinDirectly
-      ),
-    ])
+    return .result(value: entities)
   }
 }
 
