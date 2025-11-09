@@ -16,6 +16,8 @@ For example, press `Control-Shift-Command-4` to capture a portion of the screen 
 
 It also functions effectively for any form of image copying.
 
+In macOS Tahoe and later, you can directly extract text from copied images using Spotlight, through the action called `Extract Text from Copied Image`.
+
 > Note that keyboard shortcuts can be remapped (and it's recommended since pressing 4 keys is a bit clunky). Please check out Apple's [documentation](https://support.apple.com/guide/mac-help/mchlp2271/mac) for details.
 >
 > Learn more [here](https://github.com/TextGrabber2-app/TextGrabber2/wiki#capture-screen-on-mac).

@@ -1,6 +1,22 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
+    },
     "Capture Screen to Detect" : {
       "comment" : "[Menu] Hint for capturing the screen",
       "localizations" : {
@@ -133,6 +149,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "zh-Hant"
+          }
+        }
+      }
+    },
+    "Extract Text from Copied Image" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从复制的图片中提取文本"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從拷貝的圖像中提取文字"
+          }
+        }
+      }
+    },
+    "Extract text from copied image using TextGrabber2." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用 TextGrabber2 从复制的图片中提取文本。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用 TextGrabber2 從拷貝的圖像中提取文字。"
           }
         }
       }
@@ -341,6 +389,22 @@
         }
       }
     },
+    "Result" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "结果"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "结果"
+          }
+        }
+      }
+    },
     "Save as File" : {
       "comment" : "[Menu] Save the clipboard as file",
       "localizations" : {
@@ -388,6 +452,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "跳過這個版本"
+          }
+        }
+      }
+    },
+    "TextGrabber2" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TextGrabber2"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "TextGrabber2"
           }
         }
       }
