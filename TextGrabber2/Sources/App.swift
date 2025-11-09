@@ -6,12 +6,16 @@
 //
 
 import AppKit
+import QuickLookUI
 import ServiceManagement
 
 @MainActor
 final class App: NSObject, NSApplicationDelegate {
   private var currentResult: Recognizer.ResultData?
   private var lastDetectionTime: TimeInterval = 0
+  private var previewingFileURL: URL {
+    .previewingDirectory.appendingPathComponent("TextGrabber2.png")
+  }
 
   private lazy var statusItem: NSStatusItem = {
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -107,7 +111,11 @@ final class App: NSObject, NSApplicationDelegate {
     let menu = NSMenu()
     menu.autoenablesItems = false
     menu.addItem(copyAllItem)
+
+    menu.addItem(.separator())
+    menu.addItem(quickLookItem)
     menu.addItem(saveImageItem)
+    menu.addItem(.separator())
 
     menu.addItem(withTitle: Localized.menuTitleClearContents) {
       NSPasteboard.general.clearContents()
@@ -134,6 +142,15 @@ final class App: NSObject, NSApplicationDelegate {
 
     let item = NSMenuItem(title: Localized.menuTitleCopyAll)
     item.submenu = menu
+    return item
+  }()
+
+  private lazy var quickLookItem: NSMenuItem = {
+    let item = NSMenuItem(title: Localized.menuTitleQuickLook)
+    item.addAction { [weak self] in
+      self?.previewCopiedImage()
+    }
+
     return item
   }()
 
@@ -220,6 +237,10 @@ extension App {
       silentlyCheckUpdates()
     }
   }
+
+  func applicationWillTerminate(_ notification: Notification) {
+    try? FileManager.default.removeItem(at: .previewingDirectory)
+  }
 }
 
 // MARK: - NSMenuDelegate
@@ -254,6 +275,32 @@ extension App: NSMenuDelegate {
   }
 }
 
+// MARK: - QLPreviewPanelDataSource
+
+extension App: @preconcurrency QLPreviewPanelDataSource {
+  func numberOfPreviewItems(in panel: QLPreviewPanel?) -> Int {
+    1
+  }
+  
+  func previewPanel(_ panel: QLPreviewPanel?, previewItemAt index: Int) -> (any QLPreviewItem)? {
+    previewingFileURL as NSURL
+  }
+
+  func previewCopiedImage() {
+    guard let pngData = NSPasteboard.general.image?.pngData else {
+      return Logger.log(.info, "No image for preview")
+    }
+
+    NSApp.activate()
+    try? pngData.write(to: self.previewingFileURL)
+
+    let previewPanel = QLPreviewPanel.shared()
+    previewPanel?.dataSource = self
+    previewPanel?.reloadData()
+    previewPanel?.makeKeyAndOrderFront(nil)
+  }
+}
+
 // MARK: - Private
 
 private extension App {
@@ -277,6 +324,7 @@ private extension App {
     lastDetectionTime = Date.timeIntervalSinceReferenceDate
     currentResult = nil
     copyAllItem.isEnabled = false
+    quickLookItem.isEnabled = false
     saveImageItem.isEnabled = false
 
     let retryDetectionLater = {
@@ -330,6 +378,7 @@ private extension App {
 
     currentResult = resultData
     copyAllItem.isEnabled = resultData.candidates.hasValue
+    quickLookItem.isEnabled = imageResult.candidates.hasValue
     saveImageItem.isEnabled = imageResult.candidates.hasValue
 
     if NSPasteboard.general.hasLimitedAccess {
