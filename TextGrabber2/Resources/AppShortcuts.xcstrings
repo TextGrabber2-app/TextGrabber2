@@ -29,6 +29,35 @@
           }
         }
       }
+    },
+    "Preview copied image using ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "Preview copied image using ${applicationName}"
+            ]
+          }
+        },
+        "zh-Hans" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "使用 ${applicationName} 预览复制的图片。"
+            ]
+          }
+        },
+        "zh-Hant" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "使用 ${applicationName} 預覽拷貝的圖像。"
+            ]
+          }
+        }
+      }
     }
   },
   "version" : "1.1"

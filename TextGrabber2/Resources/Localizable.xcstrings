@@ -355,6 +355,55 @@
         }
       }
     },
+    "Preview Copied Image" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "预览复制的图片"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "預覽拷貝的圖像"
+          }
+        }
+      }
+    },
+    "Preview copied image using TextGrabber2." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用 TextGrabber2 预览复制的图片。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用 TextGrabber2 預覽拷貝的圖像。"
+          }
+        }
+      }
+    },
+    "Quick Look" : {
+      "comment" : "[Menu] Open the clipboard in Quick Look",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快速查看"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快速查看"
+          }
+        }
+      }
+    },
     "Quit TextGrabber2" : {
       "comment" : "[Menu] Quit the app",
       "localizations" : {
