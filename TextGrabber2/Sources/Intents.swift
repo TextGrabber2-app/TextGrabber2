@@ -24,6 +24,27 @@ struct IntentProvider: AppShortcutsProvider {
 }
 
 struct ExtractIntent: AppIntent {
+  struct ResultEntity: AppEntity {
+    struct DummyQuery: EntityQuery {
+      func entities(for identifiers: [ResultEntity.ID]) async throws -> [ResultEntity] { [] }
+      func suggestedEntities() async throws -> [ResultEntity] { [] }
+    }
+
+    static let defaultQuery = DummyQuery()
+    static var typeDisplayRepresentation: TypeDisplayRepresentation { "Result" }
+
+    var id: String { title }
+    var title: String
+    var subtitle: String?
+
+    var displayRepresentation: DisplayRepresentation {
+      DisplayRepresentation(
+        title: "\(title)",
+        subtitle: subtitle.map { "\($0)" }
+      )
+    }
+  }
+
   static let title: LocalizedStringResource = "Extract Text from Copied Image"
   static let description = IntentDescription(
     "Extract text from copied image using TextGrabber2.",
@@ -63,26 +84,5 @@ struct ExtractIntent: AppIntent {
     }
 
     return .result(value: entities)
-  }
-}
-
-struct ResultEntity: AppEntity {
-  struct DummyQuery: EntityQuery {
-    func entities(for identifiers: [ResultEntity.ID]) async throws -> [ResultEntity] { [] }
-    func suggestedEntities() async throws -> [ResultEntity] { [] }
-  }
-
-  static let defaultQuery = DummyQuery()
-  static var typeDisplayRepresentation: TypeDisplayRepresentation { "Result" }
-
-  var id: String { title }
-  var title: String
-  var subtitle: String?
-
-  var displayRepresentation: DisplayRepresentation {
-    DisplayRepresentation(
-      title: "\(title)",
-      subtitle: subtitle.map { "\($0)" }
-    )
   }
 }
