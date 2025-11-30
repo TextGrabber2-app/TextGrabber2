@@ -538,6 +538,23 @@
         }
       }
     },
+    "Translate" : {
+      "comment" : "[Menu] Translate text using the system service",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "翻译"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "翻譯"
+          }
+        }
+      }
+    },
     "Version" : {
       "comment" : "[Menu] Version number label",
       "localizations" : {

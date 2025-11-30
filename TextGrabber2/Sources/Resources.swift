@@ -29,6 +29,7 @@ enum Localized {
   static let menuTitleConfigure = String(localized: "Configure", comment: "[Menu] Configure system services")
   static let menuTitleDocumentation = String(localized: "Documentation", comment: "[Menu] Open the wiki for system services")
   static let menuTitleClipboard = String(localized: "Clipboard", comment: "[Menu] Clipboard options")
+  static let menuTitleTranslate = String(localized: "Translate", comment: "[Menu] Translate text using the system service")
   static let menuTitleQuickLook = String(localized: "Quick Look", comment: "[Menu] Open the clipboard in Quick Look")
   static let menuTitleSaveAsFile = String(localized: "Save as File", comment: "[Menu] Save the clipboard as file")
   static let menuTitleClearContents = String(localized: "Clear Contents", comment: "[Menu] Clear the clipboard")
