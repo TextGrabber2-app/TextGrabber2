@@ -113,6 +113,7 @@ final class App: NSObject, NSApplicationDelegate {
     menu.addItem(copyAllItem)
 
     menu.addItem(.separator())
+    menu.addItem(translateItem)
     menu.addItem(quickLookItem)
     menu.addItem(saveImageItem)
     menu.addItem(.separator())
@@ -142,6 +143,15 @@ final class App: NSObject, NSApplicationDelegate {
 
     let item = NSMenuItem(title: Localized.menuTitleCopyAll)
     item.submenu = menu
+    return item
+  }()
+
+  private lazy var translateItem: NSMenuItem = {
+    let item = NSMenuItem(title: Localized.menuTitleTranslate)
+    item.addAction { [weak self] in
+      Translator.showWindow(text: self?.currentResult?.spacesJoined ?? "")
+    }
+
     return item
   }()
 
@@ -199,9 +209,18 @@ extension App {
 
     // Handle quit action manually since we don't have a window anymore
     NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
+      let keyCode = event.keyCode
+      let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
+
       // Cmd-Q
-      if event.keyCode == 0x0C && event.modifierFlags.intersection(.deviceIndependentFlagsMask) == .command {
+      if keyCode == 0x0C && flags == .command {
         NSApp.terminate(nil)
+        return nil
+      }
+
+      // Cmd-W
+      if keyCode == 0x0D && flags == .command {
+        NSApp.keyWindow?.close()
         return nil
       }
 
@@ -323,6 +342,7 @@ private extension App {
     lastDetectionTime = Date.timeIntervalSinceReferenceDate
     currentResult = nil
     copyAllItem.isEnabled = false
+    translateItem.isEnabled = false
     quickLookItem.isEnabled = false
     saveImageItem.isEnabled = false
 
@@ -377,6 +397,7 @@ private extension App {
 
     currentResult = resultData
     copyAllItem.isEnabled = resultData.candidates.hasValue
+    translateItem.isEnabled = resultData.candidates.hasValue
     quickLookItem.isEnabled = imageResult.candidates.hasValue
     saveImageItem.isEnabled = imageResult.candidates.hasValue
 
