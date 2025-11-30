@@ -110,38 +110,18 @@ final class App: NSObject, NSApplicationDelegate {
   private lazy var clipboardItem: NSMenuItem = {
     let menu = NSMenu()
     menu.autoenablesItems = false
-    menu.addItem(copyAllItem)
 
-    menu.addItem(.separator())
     menu.addItem(translateItem)
     menu.addItem(quickLookItem)
     menu.addItem(saveImageItem)
     menu.addItem(.separator())
+    menu.addItem(copyAllItem)
 
     menu.addItem(withTitle: Localized.menuTitleClearContents) {
       NSPasteboard.general.clearContents()
     }
 
     let item = NSMenuItem(title: Localized.menuTitleClipboard)
-    item.submenu = menu
-    return item
-  }()
-
-  private lazy var copyAllItem: NSMenuItem = {
-    let menu = NSMenu()
-    menu.addItem(withTitle: Localized.menuTitleJoinWithSpaces) {
-      NSPasteboard.general.string = self.currentResult?.spacesJoined
-    }
-
-    menu.addItem(withTitle: Localized.menuTitleJoinWithLineBreaks) {
-      NSPasteboard.general.string = self.currentResult?.lineBreaksJoined
-    }
-
-    menu.addItem(withTitle: Localized.menuTitleJoinDirectly) {
-      NSPasteboard.general.string = self.currentResult?.directlyJoined
-    }
-
-    let item = NSMenuItem(title: Localized.menuTitleCopyAll)
     item.submenu = menu
     return item
   }()
@@ -170,6 +150,25 @@ final class App: NSObject, NSApplicationDelegate {
       NSPasteboard.general.saveImageAsFile()
     }
 
+    return item
+  }()
+
+  private lazy var copyAllItem: NSMenuItem = {
+    let menu = NSMenu()
+    menu.addItem(withTitle: Localized.menuTitleJoinWithSpaces) {
+      NSPasteboard.general.string = self.currentResult?.spacesJoined
+    }
+
+    menu.addItem(withTitle: Localized.menuTitleJoinWithLineBreaks) {
+      NSPasteboard.general.string = self.currentResult?.lineBreaksJoined
+    }
+
+    menu.addItem(withTitle: Localized.menuTitleJoinDirectly) {
+      NSPasteboard.general.string = self.currentResult?.directlyJoined
+    }
+
+    let item = NSMenuItem(title: Localized.menuTitleCopyAll)
+    item.submenu = menu
     return item
   }()
 
@@ -341,10 +340,10 @@ private extension App {
 
     lastDetectionTime = Date.timeIntervalSinceReferenceDate
     currentResult = nil
-    copyAllItem.isEnabled = false
     translateItem.isEnabled = false
     quickLookItem.isEnabled = false
     saveImageItem.isEnabled = false
+    copyAllItem.isEnabled = false
 
     let retryDetectionLater = {
       guard retryCount < 3 else {
@@ -396,10 +395,10 @@ private extension App {
     }
 
     currentResult = resultData
-    copyAllItem.isEnabled = resultData.candidates.hasValue
     translateItem.isEnabled = resultData.candidates.hasValue
     quickLookItem.isEnabled = imageResult.candidates.hasValue
     saveImageItem.isEnabled = imageResult.candidates.hasValue
+    copyAllItem.isEnabled = resultData.candidates.hasValue
 
     if NSPasteboard.general.hasLimitedAccess {
       hintItem.title = Localized.menuTitleHintLimitedAccess
