@@ -187,15 +187,6 @@ final class App: NSObject, NSApplicationDelegate {
     item.setOn(SMAppService.mainApp.isEnabled)
     return item
   }()
-
-  func statusItemInfo() -> (rect: CGRect, screen: NSScreen?)? {
-    guard let button = statusItem.button, let window = button.window else {
-      Logger.log(.error, "Missing button or window to provide positioning info")
-      return nil
-    }
-
-    return (window.convertToScreen(button.frame), window.screen ?? .main)
-  }
 }
 
 // MARK: - Life Cycle
@@ -299,6 +290,7 @@ extension App: @preconcurrency QLPreviewPanelDataSource {
   func numberOfPreviewItems(in panel: QLPreviewPanel?) -> Int {
     1
   }
+
   func previewPanel(_ panel: QLPreviewPanel?, previewItemAt index: Int) -> (any QLPreviewItem)? {
     previewingFileURL as NSURL
   }

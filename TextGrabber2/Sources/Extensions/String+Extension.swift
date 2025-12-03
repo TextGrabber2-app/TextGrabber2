@@ -11,7 +11,7 @@ extension String {
   /**
    Returns a truncated string that fits the desired drawing width, with specified font.
    */
-  func truncatedToFit(width: CGFloat, font: NSFont) -> String {
+  func truncatedToFit(width: Double, font: NSFont) -> String {
     // Early return if it already fits
     if self.width(using: font) <= width {
       return self
@@ -45,7 +45,7 @@ private extension String {
     static let suffix = "\u{2009}\u{2026}"
   }
 
-  func width(using font: NSFont) -> CGFloat {
+  func width(using font: NSFont) -> Double {
     NSAttributedString(
       string: self,
       attributes: [NSAttributedString.Key.font: font]
