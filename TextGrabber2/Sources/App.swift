@@ -116,10 +116,7 @@ final class App: NSObject, NSApplicationDelegate {
     menu.addItem(saveImageItem)
     menu.addItem(.separator())
     menu.addItem(copyAllItem)
-
-    menu.addItem(withTitle: Localized.menuTitleClearContents) {
-      NSPasteboard.general.clearContents()
-    }
+    menu.addItem(clearContentsItem)
 
     let item = NSMenuItem(title: Localized.menuTitleClipboard)
     item.submenu = menu
@@ -169,6 +166,15 @@ final class App: NSObject, NSApplicationDelegate {
 
     let item = NSMenuItem(title: Localized.menuTitleCopyAll)
     item.submenu = menu
+    return item
+  }()
+
+  private let clearContentsItem: NSMenuItem = {
+    let item = NSMenuItem(title: Localized.menuTitleClearContents)
+    item.addAction {
+      NSPasteboard.general.clearContents()
+    }
+
     return item
   }()
 
@@ -336,6 +342,7 @@ private extension App {
     quickLookItem.isEnabled = false
     saveImageItem.isEnabled = false
     copyAllItem.isEnabled = false
+    clearContentsItem.isEnabled = !NSPasteboard.general.isEmpty
 
     let retryDetectionLater = {
       guard retryCount < 3 else {
