@@ -12,9 +12,15 @@ import ServiceManagement
 @MainActor
 final class App: NSObject, NSApplicationDelegate {
   private var currentResult: Recognizer.ResultData?
-  private var lastDetectionTime: TimeInterval = 0
+
   private var previewingFileURL: URL {
     .previewingDirectory.appendingPathComponent("TextGrabber2.png")
+  }
+
+  private var isMenuVisible = false {
+    didSet {
+      statusItem.button?.highlight(isMenuVisible)
+    }
   }
 
   private lazy var statusItem: NSStatusItem = {
@@ -25,6 +31,10 @@ final class App: NSObject, NSApplicationDelegate {
     item.button?.image = .with(symbolName: Icons.textViewFinder, pointSize: 15)
     item.button?.setAccessibilityLabel("TextGrabber2")
 
+    return item
+  }()
+
+  private lazy var mainMenu: NSMenu = {
     let menu = NSMenu()
     menu.delegate = self
 
@@ -67,8 +77,7 @@ final class App: NSObject, NSApplicationDelegate {
       return item
     }())
 
-    item.menu = menu
-    return item
+    return menu
   }()
 
   private let hintItem: NSMenuItem = {
@@ -200,7 +209,6 @@ final class App: NSObject, NSApplicationDelegate {
 extension App {
   func applicationDidFinishLaunching(_ notification: Notification) {
     Services.initialize()
-    clearMenuItems()
     statusItem.isVisible = true
 
     // Handle quit action manually since we don't have a window anymore
@@ -223,19 +231,30 @@ extension App {
       return event
     }
 
-    // Handle the case where menuWillOpen is not properly invoked
+    // Observe clicks on the status item
     NSEvent.addLocalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
-      guard let button = self?.statusItem.button, let contentView = button.window?.contentView else {
+      guard event.window == self?.statusItem.button?.window else {
+        // The click was outside the status window
         return event
       }
 
-      if contentView.hitTest(button.convert(event.locationInWindow, from: nil)) != nil {
-        if let menu = self?.statusItem.menu {
-          self?.menuWillOpen(menu)
-        }
+      guard !event.modifierFlags.contains(.command) else {
+        // Holding the command key usually means the icon is being dragged
+        return event
       }
 
-      return event
+      self?.statusItemClicked()
+      return nil
+    }
+
+    // Observe clicks outside the app
+    NSEvent.addGlobalMonitorForEvents(matching: .leftMouseDown) { [weak self] _ in
+      guard self?.isMenuVisible == true, let menu = self?.mainMenu else {
+        return
+      }
+
+      // This is needed because menuDidClose isn't reliably called
+      self?.menuDidClose(menu)
     }
 
     let silentlyCheckUpdates: @Sendable () -> Void = {
@@ -261,11 +280,10 @@ extension App {
 // MARK: - NSMenuDelegate
 
 extension App: NSMenuDelegate {
-  func menuWillOpen(_ menu: NSMenu) {
-    // Delay the detection to work around an internal race condition in macOS Tahoe
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-      self.startDetection()
-    }
+  func statusItemClicked() {
+    // Rely on this instead of mutating items in menuWillOpen
+    isMenuVisible = true
+    startDetection()
 
     // Update the services menu
     servicesItem.submenu?.removeItems { $0 is ServiceItem }
@@ -275,7 +293,7 @@ extension App: NSMenuDelegate {
       let item = ServiceItem(title: displayName)
       item.addAction {
         NSPasteboard.general.string = self.currentResult?.spacesJoined
-        
+
         if !NSPerformService(serviceName, .general) {
           NSAlert.runModal(message: String(format: Localized.failedToRun, displayName))
         }
@@ -286,7 +304,7 @@ extension App: NSMenuDelegate {
   }
 
   func menuDidClose(_ menu: NSMenu) {
-    clearMenuItems()
+    isMenuVisible = false
   }
 }
 
@@ -324,64 +342,34 @@ private extension App {
 
   func clearMenuItems() {
     hintItem.title = NSPasteboard.general.hasLimitedAccess ? Localized.menuTitleHintLimitedAccess : Localized.menuTitleHintCapture
-    statusItem.menu?.removeItems { $0 is ResultItem }
+    mainMenu.removeItems { $0 is ResultItem }
   }
 
-  func startDetection(retryCount: Int = 0) {
-    guard let menu = statusItem.menu else {
-      return Logger.assertFail("Missing menu to proceed")
-    }
-
-    guard Date.timeIntervalSinceReferenceDate - lastDetectionTime > 0.5 else {
-      return Logger.log(.info, "Just detected, skipping")
-    }
-
-    lastDetectionTime = Date.timeIntervalSinceReferenceDate
+  func startDetection() {
     currentResult = nil
+    clearMenuItems()
+
     translateItem.isEnabled = false
     quickLookItem.isEnabled = false
     saveImageItem.isEnabled = false
     copyAllItem.isEnabled = false
     clearContentsItem.isEnabled = !NSPasteboard.general.isEmpty
 
-    let retryDetectionLater = {
-      guard retryCount < 3 else {
-        return
-      }
-
-      DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-        self.lastDetectionTime = 0
-        self.startDetection(retryCount: retryCount + 1)
-      }
-    }
-
     let image = NSPasteboard.general.image?.cgImage
     let text = NSPasteboard.general.string
 
-    guard image != nil || text != nil else {
-      Logger.log(.info, "No image or text copied")
-      return retryDetectionLater()
-    }
-
     Task {
-      let fastResult = await Recognizer.detect(image: image, level: .fast)
-      if let fastResult {
-        showResult(fastResult, textCopied: text, in: menu)
+      if let result = await Recognizer.detect(image: image, level: .accurate) {
+        updateResult(result, textCopied: text, in: mainMenu)
+      } else {
+        Logger.log(.error, "Failed to detect text from image")
       }
 
-      let accurateResult = await Recognizer.detect(image: image, level: .accurate)
-      if let accurateResult {
-        showResult(accurateResult, textCopied: text, in: menu)
-      }
-
-      // Both failed, retrying...
-      if fastResult == nil && accurateResult == nil {
-        retryDetectionLater()
-      }
+      mainMenu.popUp(positioning: nil, at: .zero, in: statusItem.button)
     }
   }
 
-  func showResult(_ imageResult: Recognizer.ResultData, textCopied: String?, in menu: NSMenu) {
+  func updateResult(_ imageResult: Recognizer.ResultData, textCopied: String?, in menu: NSMenu) {
     // Combine recognized items and copied text
     let allItems = imageResult.candidates + [textCopied].compactMap { $0 }
     let resultData = type(of: imageResult).init(candidates: allItems)
@@ -407,7 +395,6 @@ private extension App {
 
     let separator = NSMenuItem.separator()
     menu.insertItem(separator, at: menu.index(of: howToItem) + 1)
-    menu.removeItems { $0 is ResultItem }
 
     for text in resultData.candidates.reversed() {
       let item = ResultItem(title: text.truncatedToFit(width: 320, font: .menuFont(ofSize: 0)))
