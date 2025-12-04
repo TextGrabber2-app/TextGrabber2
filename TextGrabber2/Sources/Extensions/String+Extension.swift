@@ -9,6 +9,13 @@ import AppKit
 
 extension String {
   /**
+   Returns a single-line version of the string by replacing newlines with spaces.
+   */
+  var singleLine: String {
+    components(separatedBy: .newlines).joined(separator: " ")
+  }
+
+  /**
    Returns a truncated string that fits the desired drawing width, with specified font.
    */
   func truncatedToFit(width: Double, font: NSFont) -> String {
