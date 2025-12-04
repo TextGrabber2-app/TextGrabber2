@@ -8,6 +8,10 @@
 import AppKit
 
 extension String {
+  var singleLine: String {
+    components(separatedBy: .newlines).joined(separator: " ")
+  }
+
   /**
    Returns a truncated string that fits the desired drawing width, with specified font.
    */
