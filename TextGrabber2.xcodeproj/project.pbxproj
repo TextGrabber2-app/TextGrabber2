@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		870826EE2EDBFF16004D7899 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870826ED2EDBFF14004D7899 /* Translator.swift */; };
 		871AFFF62E633B5C007BE57D /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871AFFF52E633B59007BE57D /* Array+Extension.swift */; };
+		8730CD062EE459B40058CDCF /* CopyObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8730CD052EE459B40058CDCF /* CopyObserver.swift */; };
 		8737A24A2BBEC27700042E83 /* Services in Resources */ = {isa = PBXBuildFile; fileRef = 8737A2492BBEC27700042E83 /* Services */; };
 		8737A24C2BBECB8800042E83 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8737A24B2BBECB8800042E83 /* Services.swift */; };
 		874C0E692DF80959006AB61C /* Updater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C0E662DF80959006AB61C /* Updater.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		870826ED2EDBFF14004D7899 /* Translator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator.swift; sourceTree = "<group>"; };
 		871AFFF52E633B59007BE57D /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		8730CD052EE459B40058CDCF /* CopyObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyObserver.swift; sourceTree = "<group>"; };
 		8737A2492BBEC27700042E83 /* Services */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Services; sourceTree = "<group>"; };
 		8737A24B2BBECB8800042E83 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		874C0E662DF80959006AB61C /* Updater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Updater.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				87E192C22BAADE1200A87A4E /* App.swift */,
 				87E192F42BABC8FD00A87A4E /* Detector.swift */,
 				87E192F62BABD18900A87A4E /* Logger.swift */,
+				8730CD052EE459B40058CDCF /* CopyObserver.swift */,
 				87E192F02BABB6EA00A87A4E /* Recognizer.swift */,
 				87E192E82BAAFF0200A87A4E /* Resources.swift */,
 				8737A24B2BBECB8800042E83 /* Services.swift */,
@@ -249,6 +252,7 @@
 				8775E08B2EB3138F0036B9BA /* Intents.swift in Sources */,
 				87E192DF2BAAE38700A87A4E /* NSControl+Extension.swift in Sources */,
 				875364A42BE1D6FC00611579 /* NSAlert+Extension.swift in Sources */,
+				8730CD062EE459B40058CDCF /* CopyObserver.swift in Sources */,
 				87E192F32BABB71D00A87A4E /* NSPasteboard+Extension.swift in Sources */,
 				87E192E72BAAFBC900A87A4E /* SMAppService+Extension.swift in Sources */,
 				87E192F12BABB6EA00A87A4E /* Recognizer.swift in Sources */,
