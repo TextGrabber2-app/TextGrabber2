@@ -12,6 +12,7 @@ import ServiceManagement
 @MainActor
 final class App: NSObject, NSApplicationDelegate {
   private var currentResult: Recognizer.ResultData?
+  private var silentDetectCount = 0
 
   private var previewingFileURL: URL {
     .previewingDirectory.appendingPathComponent("TextGrabber2.png")
@@ -211,6 +212,17 @@ extension App {
     Services.initialize()
     statusItem.isVisible = true
 
+    // Observe pasteboard changes to detect silently
+    if NSPasteboard.general.hasFullAccess {
+      Task { @MainActor in
+        for await _ in CopyObserver.default.changes() {
+          startDetection()
+        }
+      }
+
+      startDetection()
+    }
+
     // Handle quit action manually since we don't have a window anymore
     NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
       let keyCode = event.keyCode
@@ -283,7 +295,7 @@ extension App: NSMenuDelegate {
   func statusItemClicked() {
     // Rely on this instead of mutating items in menuWillOpen
     isMenuVisible = true
-    startDetection()
+    startDetection(userInitiated: true)
 
     // Update the services menu
     servicesItem.submenu?.removeItems { $0 is ServiceItem }
@@ -345,7 +357,13 @@ private extension App {
     mainMenu.removeItems { $0 is ResultItem }
   }
 
-  func startDetection() {
+  func startDetection(userInitiated: Bool = false) {
+    let newCount = NSPasteboard.general.changeCount
+    if userInitiated && silentDetectCount == newCount {
+      Logger.log(.debug, "Presenting previously detected results")
+      return presentMainMenu()
+    }
+
     currentResult = nil
     clearMenuItems()
 
@@ -365,7 +383,13 @@ private extension App {
         Logger.log(.error, "Failed to detect text from image")
       }
 
-      mainMenu.popUp(positioning: nil, at: .zero, in: statusItem.button)
+      if userInitiated {
+        Logger.log(.debug, "Presenting newly detected results")
+        presentMainMenu()
+      } else {
+        Logger.log(.debug, "Silently detected and cached")
+        silentDetectCount = newCount
+      }
     }
   }
 
@@ -405,5 +429,9 @@ private extension App {
         item.toolTip = text
       }
     }
+  }
+
+  func presentMainMenu() {
+    mainMenu.popUp(positioning: nil, at: .zero, in: statusItem.button)
   }
 }

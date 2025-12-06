@@ -51,6 +51,10 @@ extension NSPasteboard {
     return accessBehavior != .alwaysAllow
   }
 
+  var hasFullAccess: Bool {
+    !hasLimitedAccess
+  }
+
   @MainActor
   func saveImageAsFile() {
     NSApp.activate()
