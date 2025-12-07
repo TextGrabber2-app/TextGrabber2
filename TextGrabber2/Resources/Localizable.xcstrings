@@ -355,6 +355,23 @@
         }
       }
     },
+    "Observe Changes" : {
+      "comment" : "[Menu] Observe changes to the clipboard",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "监听剪贴板变化"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "監聽剪貼簿變化"
+          }
+        }
+      }
+    },
     "Preview Copied Image" : {
       "localizations" : {
         "zh-Hans" : {

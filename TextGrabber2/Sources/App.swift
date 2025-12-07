@@ -11,6 +11,7 @@ import ServiceManagement
 
 @MainActor
 final class App: NSObject, NSApplicationDelegate {
+  private var copyObserver: Task<Void, Never>?
   private var currentResult: Recognizer.ResultData?
   private var silentDetectCount = 0
 
@@ -128,6 +129,11 @@ final class App: NSObject, NSApplicationDelegate {
     menu.addItem(copyAllItem)
     menu.addItem(clearContentsItem)
 
+    if NSPasteboard.general.hasFullAccess {
+      menu.addItem(.separator())
+      menu.addItem(observeChangesItem)
+    }
+
     let item = NSMenuItem(title: Localized.menuTitleClipboard)
     item.submenu = menu
     return item
@@ -188,6 +194,23 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
+  private lazy var observeChangesItem: NSMenuItem = {
+    let cacheKey = "pasteboard.observe-changes"
+    UserDefaults.standard.register(defaults: [cacheKey: true])
+
+    let item = NSMenuItem(title: Localized.menuTitleObserveChanges)
+    item.addAction { [weak self, weak item] in
+      let isOn = item?.state == .off
+      UserDefaults.standard.set(isOn, forKey: cacheKey)
+
+      item?.setOn(isOn)
+      self?.updateObserver(isEnabled: isOn)
+    }
+
+    item.setOn(UserDefaults.standard.bool(forKey: cacheKey))
+    return item
+  }()
+
   private let launchAtLoginItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleLaunchAtLogin)
     item.addAction { [weak item] in
@@ -213,14 +236,8 @@ extension App {
     statusItem.isVisible = true
 
     // Observe pasteboard changes to detect silently
-    if NSPasteboard.general.hasFullAccess {
-      Task { @MainActor in
-        for await _ in CopyObserver.default.changes() {
-          startDetection()
-        }
-      }
-
-      startDetection()
+    if NSPasteboard.general.hasFullAccess && observeChangesItem.state == .on {
+      updateObserver(isEnabled: true)
     }
 
     // Handle quit action manually since we don't have a window anymore
@@ -390,6 +407,20 @@ private extension App {
         Logger.log(.debug, "Silently detected and cached")
         silentDetectCount = newCount
       }
+    }
+  }
+
+  func updateObserver(isEnabled: Bool) {
+    copyObserver?.cancel()
+
+    if isEnabled {
+      copyObserver = Task { @MainActor in
+        for await _ in CopyObserver.default.changes() {
+          startDetection()
+        }
+      }
+
+      startDetection()
     }
   }
 
