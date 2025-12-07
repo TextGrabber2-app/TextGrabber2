@@ -9,7 +9,7 @@ import AppKit
 
 extension NSPasteboard {
   var isEmpty: Bool {
-    pasteboardItems?.isEmpty ?? false
+    pasteboardItems?.isEmpty ?? true
   }
 
   var string: String? {
