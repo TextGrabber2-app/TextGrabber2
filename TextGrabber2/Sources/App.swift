@@ -463,6 +463,18 @@ private extension App {
   }
 
   func presentMainMenu() {
-    mainMenu.popUp(positioning: nil, at: .zero, in: statusItem.button)
+    let location: CGPoint = {
+      if #available(macOS 26.0, *) {
+        return CGPoint(x: -8, y: 0)
+      }
+
+      return CGPoint(x: -8, y: (statusItem.button?.frame.height ?? 0) + 4)
+    }()
+
+    mainMenu.popUp(
+      positioning: nil,
+      at: location,
+      in: statusItem.button
+    )
   }
 }
