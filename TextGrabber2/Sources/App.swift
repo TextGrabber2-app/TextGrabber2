@@ -471,10 +471,7 @@ private extension App {
       return CGPoint(x: -8, y: (statusItem.button?.frame.height ?? 0) + 4)
     }()
 
-    mainMenu.popUp(
-      positioning: nil,
-      at: location,
-      in: statusItem.button
-    )
+    mainMenu.appearance = NSApp.effectiveAppearance
+    mainMenu.popUp(positioning: nil, at: location, in: statusItem.button)
   }
 }
