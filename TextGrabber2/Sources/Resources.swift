@@ -33,6 +33,7 @@ enum Localized {
   static let menuTitleJoinWithLineBreaks = String(localized: "Join with Line Breaks", comment: "[Menu] Join all text with line breaks and copy them")
   static let menuTitleJoinDirectly = String(localized: "Join Directly", comment: "[Menu] Join all text directly")
   static let menuTitleClearContents = String(localized: "Clear Contents", comment: "[Menu] Clear the clipboard")
+  static let menuTitleObserveChanges = String(localized: "Observe Changes", comment: "[Menu] Observe changes to the clipboard")
   static let menuTitleGitHub = String(localized: "GitHub", comment: "[Menu] Open the TextGrabber2 repository on GitHub")
   static let menuTitleLaunchAtLogin = String(localized: "Launch at Login", comment: "[Menu] Automatically start the app at login")
   static let menuTitleVersion = String(localized: "Version", comment: "[Menu] Version number label")
