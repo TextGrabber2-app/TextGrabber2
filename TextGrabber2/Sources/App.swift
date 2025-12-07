@@ -201,7 +201,7 @@ final class App: NSObject, NSApplicationDelegate {
     let item = NSMenuItem(title: Localized.menuTitleObserveChanges)
     item.addAction { [weak self, weak item] in
       let isOn = item?.state == .off
-      UserDefaults.standard.setValue(isOn, forKey: cacheKey)
+      UserDefaults.standard.set(isOn, forKey: cacheKey)
 
       item?.setOn(isOn)
       self?.updateObserver(isEnabled: isOn)
