@@ -325,10 +325,6 @@ extension App: NSMenuDelegate {
       howToItem.isHidden = true
     }
 
-    // Rely on this instead of mutating items in menuWillOpen
-    isMenuVisible = true
-    startDetection(userInitiated: true)
-
     // Update the services menu
     servicesItem.submenu?.removeItems { $0 is ServiceItem }
     for service in Services.items.reversed() {
@@ -345,6 +341,10 @@ extension App: NSMenuDelegate {
 
       servicesItem.submenu?.insertItem(item, at: 0)
     }
+
+    // Rely on this instead of mutating items in menuWillOpen
+    isMenuVisible = true
+    startDetection(userInitiated: true)
   }
 
   func menuDidClose(_ menu: NSMenu) {
