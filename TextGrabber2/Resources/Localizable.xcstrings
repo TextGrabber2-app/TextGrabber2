@@ -17,6 +17,23 @@
         }
       }
     },
+    "🎉 Version %@ is out" : {
+      "comment" : "[Menu] Title format for a new version",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🎉 版本 %@ 已发布"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🎉 版本 %@ 已釋出"
+          }
+        }
+      }
+    },
     "Capture Screen to Detect" : {
       "comment" : "[Menu] Hint for capturing the screen",
       "localizations" : {
@@ -321,23 +338,6 @@
         }
       }
     },
-    "Learn More" : {
-      "comment" : "Title for the \"Learn More\" button",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "了解更多"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "瞭解更多"
-          }
-        }
-      }
-    },
     "Limited Access" : {
       "comment" : "[Menu] Hint for limited access",
       "localizations" : {
@@ -438,23 +438,6 @@
         }
       }
     },
-    "Remind Me Later" : {
-      "comment" : "Title for the \"Remind Me Later\" button",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "稍后提醒我"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "稍後提醒我"
-          }
-        }
-      }
-    },
     "Result" : {
       "localizations" : {
         "zh-Hans" : {
@@ -505,23 +488,6 @@
         }
       }
     },
-    "Skip This Version" : {
-      "comment" : "Title for the \"Skip This Version\" button",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "跳过这个版本"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "跳過這個版本"
-          }
-        }
-      }
-    },
     "TextGrabber2" : {
       "localizations" : {
         "zh-Hans" : {
@@ -534,23 +500,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "TextGrabber2"
-          }
-        }
-      }
-    },
-    "TextGrabber2 %@ is available!" : {
-      "comment" : "Title for new version available",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "TextGrabber2 %@ 已发布！"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "TextGrabber2 %@ 已釋出！"
           }
         }
       }

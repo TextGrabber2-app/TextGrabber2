@@ -54,50 +54,10 @@ enum Updater {
 @MainActor
 private extension Updater {
   static func presentUpdate(newVersion: Version) {
-    let currentVersion = Bundle.main.shortVersionString
-
-    // Check if the new version was skipped
-    guard !Preferences.Updater.skippedVersions.contains(newVersion.name) else {
+    guard newVersion.name != Bundle.main.shortVersionString else {
       return
     }
 
-    // Check if the version is different
-    guard newVersion.name != currentVersion else {
-      return
-    }
-
-    let alert = NSAlert()
-    alert.messageText = String(format: Localized.Updater.newVersionAvailableTitle, newVersion.name)
-    alert.markdownBody = newVersion.body
-    alert.addButton(withTitle: Localized.Updater.learnMore)
-    alert.addButton(withTitle: Localized.Updater.remindMeLater)
-    alert.addButton(withTitle: Localized.Updater.skipThisVersion)
-
-    switch alert.runModal() {
-    case .alertFirstButtonReturn: // Learn More
-      NSWorkspace.shared.safelyOpenURL(string: newVersion.htmlUrl)
-    case .alertThirdButtonReturn: // Skip This Version
-      Preferences.Updater.skippedVersions.insert(newVersion.name)
-    default:
-      break
-    }
-  }
-}
-
-// MARK: - Private
-
-private extension Localized {
-  enum Updater {
-    static let newVersionAvailableTitle = String(localized: "TextGrabber2 %@ is available!", comment: "Title for new version available")
-    static let learnMore = String(localized: "Learn More", comment: "Title for the \"Learn More\" button")
-    static let remindMeLater = String(localized: "Remind Me Later", comment: "Title for the \"Remind Me Later\" button")
-    static let skipThisVersion = String(localized: "Skip This Version", comment: "Title for the \"Skip This Version\" button")
-  }
-}
-
-private extension Preferences {
-  enum Updater {
-    @Storage(key: "updater.skipped-versions", defaultValue: Set())
-    static var skippedVersions: Set<String>
+    (NSApp.delegate as? App)?.showAppUpdate(name: newVersion.name, url: newVersion.htmlUrl)
   }
 }

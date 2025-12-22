@@ -37,6 +37,7 @@ enum Localized {
   static let menuTitleGitHub = String(localized: "GitHub", comment: "[Menu] Open the TextGrabber2 repository on GitHub")
   static let menuTitleLaunchAtLogin = String(localized: "Launch at Login", comment: "[Menu] Automatically start the app at login")
   static let menuTitleVersion = String(localized: "Version", comment: "[Menu] Version number label")
+  static let menuTitleNewVersionOut = String(localized: "🎉 Version %@ is out", comment: "[Menu] Title format for a new version")
   static let menuTitleQuitTextGrabber2 = String(localized: "Quit TextGrabber2", comment: "[Menu] Quit the app")
 }
 

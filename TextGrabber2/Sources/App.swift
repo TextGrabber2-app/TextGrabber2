@@ -27,10 +27,10 @@ final class App: NSObject, NSApplicationDelegate {
 
   private var userClickCount: Int {
     get {
-      UserDefaults.standard.integer(forKey: DefaultKeys.userClickCount)
+      UserDefaults.standard.integer(forKey: Keys.userClickCount)
     }
     set {
-      UserDefaults.standard.set(newValue, forKey: DefaultKeys.userClickCount)
+      UserDefaults.standard.set(newValue, forKey: Keys.userClickCount)
     }
   }
 
@@ -68,15 +68,7 @@ final class App: NSObject, NSApplicationDelegate {
     }())
 
     menu.addItem(.separator())
-    menu.addItem({
-      let item = NSMenuItem(title: "\(Localized.menuTitleVersion) \(Bundle.main.shortVersionString)")
-      item.toolTip = Links.releases
-      item.addAction {
-        NSWorkspace.shared.safelyOpenURL(string: Links.releases)
-      }
-
-      return item
-    }())
+    menu.addItem(appVersionItem)
 
     menu.addItem({
       let item = NSMenuItem(title: Localized.menuTitleQuitTextGrabber2, action: nil, keyEquivalent: "q")
@@ -205,7 +197,7 @@ final class App: NSObject, NSApplicationDelegate {
   }()
 
   private lazy var observeChangesItem: NSMenuItem = {
-    let cacheKey = DefaultKeys.observeChanges
+    let cacheKey = Keys.observeChanges
     UserDefaults.standard.register(defaults: [cacheKey: true])
 
     let item = NSMenuItem(title: Localized.menuTitleObserveChanges)
@@ -236,6 +228,24 @@ final class App: NSObject, NSApplicationDelegate {
     item.setOn(SMAppService.mainApp.isEnabled)
     return item
   }()
+
+  private let appVersionItem: NSMenuItem = {
+    let item = NSMenuItem(title: "\(Localized.menuTitleVersion) \(Bundle.main.shortVersionString)")
+    item.toolTip = Links.releases
+    item.addAction(Keys.appVersionAction) {
+      NSWorkspace.shared.safelyOpenURL(string: Links.releases)
+    }
+
+    return item
+  }()
+
+  func showAppUpdate(name: String, url: String) {
+    appVersionItem.title = String(format: Localized.menuTitleNewVersionOut, name)
+    appVersionItem.toolTip = url
+    appVersionItem.addAction(Keys.appVersionAction) {
+      NSWorkspace.shared.safelyOpenURL(string: url)
+    }
+  }
 }
 
 // MARK: - Life Cycle
@@ -384,9 +394,10 @@ private extension App {
   class ResultItem: NSMenuItem { /* Just a sub-class to be identifiable */ }
   class ServiceItem: NSMenuItem { /* Just a sub-class to be identifiable */ }
 
-  enum DefaultKeys {
+  enum Keys {
     static let userClickCount = "general.user-click-count"
     static let observeChanges = "pasteboard.observe-changes"
+    static let appVersionAction = "app.textgrabber2.app-version"
   }
 
   func clearMenuItems() {
