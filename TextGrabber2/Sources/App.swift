@@ -25,6 +25,15 @@ final class App: NSObject, NSApplicationDelegate {
     }
   }
 
+  private var userClickCount: Int {
+    get {
+      UserDefaults.standard.integer(forKey: DefaultKeys.userClickCount)
+    }
+    set {
+      UserDefaults.standard.set(newValue, forKey: DefaultKeys.userClickCount)
+    }
+  }
+
   private lazy var statusItem: NSStatusItem = {
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     item.behavior = .terminationOnRemoval
@@ -91,11 +100,12 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  private let howToItem: NSMenuItem = {
+  private lazy var howToItem: NSMenuItem = {
     let item = NSMenuItem(title: NSPasteboard.general.hasLimitedAccess ? Localized.menuTitleHowToSetUp : Localized.menuTitleHowToCapture)
-    item.addAction {
+    item.addAction { [weak self] in
       let section = NSPasteboard.general.hasLimitedAccess ? "limited-access" : "capture-screen-on-mac"
       NSWorkspace.shared.safelyOpenURL(string: "\(Links.github)/wiki#\(section)")
+      self?.increaseUserClickCount()
     }
 
     return item
@@ -195,7 +205,7 @@ final class App: NSObject, NSApplicationDelegate {
   }()
 
   private lazy var observeChangesItem: NSMenuItem = {
-    let cacheKey = "pasteboard.observe-changes"
+    let cacheKey = DefaultKeys.observeChanges
     UserDefaults.standard.register(defaults: [cacheKey: true])
 
     let item = NSMenuItem(title: Localized.menuTitleObserveChanges)
@@ -310,6 +320,11 @@ extension App {
 
 extension App: NSMenuDelegate {
   func statusItemClicked() {
+    // Hide the user guide after the user becomes familiar
+    if userClickCount > 3 {
+      howToItem.isHidden = true
+    }
+
     // Rely on this instead of mutating items in menuWillOpen
     isMenuVisible = true
     startDetection(userInitiated: true)
@@ -368,6 +383,11 @@ extension App: @preconcurrency QLPreviewPanelDataSource {
 private extension App {
   class ResultItem: NSMenuItem { /* Just a sub-class to be identifiable */ }
   class ServiceItem: NSMenuItem { /* Just a sub-class to be identifiable */ }
+
+  enum DefaultKeys {
+    static let userClickCount = "general.user-click-count"
+    static let observeChanges = "pasteboard.observe-changes"
+  }
 
   func clearMenuItems() {
     hintItem.title = NSPasteboard.general.hasLimitedAccess ? Localized.menuTitleHintLimitedAccess : Localized.menuTitleHintCapture
@@ -453,8 +473,12 @@ private extension App {
 
     for text in resultData.candidates.reversed() {
       let item = ResultItem(title: text.singleLine.truncatedToFit(width: 320, font: .menuFont(ofSize: 0)))
-      item.addAction { NSPasteboard.general.string = text }
       menu.insertItem(item, at: menu.index(of: separator) + 1)
+
+      item.addAction { [weak self] in
+        NSPasteboard.general.string = text
+        self?.increaseUserClickCount()
+      }
 
       if item.title != text {
         item.toolTip = text
@@ -473,5 +497,9 @@ private extension App {
 
     mainMenu.appearance = NSApp.effectiveAppearance
     mainMenu.popUp(positioning: nil, at: location, in: statusItem.button)
+  }
+
+  func increaseUserClickCount() {
+    userClickCount += 1
   }
 }
