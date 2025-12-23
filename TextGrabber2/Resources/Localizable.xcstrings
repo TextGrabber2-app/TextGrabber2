@@ -420,7 +420,7 @@
         }
       }
     },
-    "Settings..." : {
+    "Settings…" : {
       "comment" : "[Menu] Configure system services",
       "localizations" : {
         "zh-Hans" : {
