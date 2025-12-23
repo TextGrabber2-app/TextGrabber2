@@ -331,7 +331,7 @@ extension App {
 extension App: NSMenuDelegate {
   func statusItemClicked() {
     // Hide the user guide after the user becomes familiar
-    if userClickCount > 3 {
+    if userClickCount > 3 && !NSPasteboard.general.hasLimitedAccess {
       howToItem.isHidden = true
     }
 
