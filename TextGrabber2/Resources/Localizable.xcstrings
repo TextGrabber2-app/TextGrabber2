@@ -102,6 +102,23 @@
         }
       }
     },
+    "Concatenate" : {
+      "comment" : "[Menu] Join all text directly and copy them",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "直接合并"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "直接合併"
+          }
+        }
+      }
+    },
     "Copy All" : {
       "comment" : "[Menu] Copy all text at once",
       "localizations" : {
@@ -232,57 +249,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "如何設定？"
-          }
-        }
-      }
-    },
-    "Join Directly" : {
-      "comment" : "[Menu] Join all text directly",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "直接合并"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "直接合併"
-          }
-        }
-      }
-    },
-    "Join with Line Breaks" : {
-      "comment" : "[Menu] Join all text with line breaks and copy them",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用换行合并"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用換行合併"
-          }
-        }
-      }
-    },
-    "Join with Spaces" : {
-      "comment" : "[Menu] Join all text with spaces and copy them",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用空格合并"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用空格合併"
           }
         }
       }
@@ -534,6 +500,40 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "版本"
+          }
+        }
+      }
+    },
+    "With Newlines" : {
+      "comment" : "[Menu] Join all text with line breaks and copy them",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用换行合并"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用換行合併"
+          }
+        }
+      }
+    },
+    "With Spaces" : {
+      "comment" : "[Menu] Join all text with spaces and copy them",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用空格合并"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用空格合併"
           }
         }
       }
