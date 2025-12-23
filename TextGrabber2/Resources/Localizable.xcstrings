@@ -102,23 +102,6 @@
         }
       }
     },
-    "Configure" : {
-      "comment" : "[Menu] Configure system services",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "配置"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "配置"
-          }
-        }
-      }
-    },
     "Copy All" : {
       "comment" : "[Menu] Copy all text at once",
       "localizations" : {
@@ -132,23 +115,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拷貝全部"
-          }
-        }
-      }
-    },
-    "Documentation" : {
-      "comment" : "[Menu] Open the wiki for system services",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文档"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "文檔"
           }
         }
       }
@@ -488,6 +454,23 @@
         }
       }
     },
+    "Settings..." : {
+      "comment" : "[Menu] Configure system services",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置…"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定…"
+          }
+        }
+      }
+    },
     "TextGrabber2" : {
       "localizations" : {
         "zh-Hans" : {
@@ -517,6 +500,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "翻譯"
+          }
+        }
+      }
+    },
+    "User Manual" : {
+      "comment" : "[Menu] Open the wiki for system services",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用手册"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "使用手冊"
           }
         }
       }
