@@ -469,8 +469,8 @@ private extension App {
         guard let self else { return }
         
         let currentChangeCount = pasteboard.changeCount
-        guard currentChangeCount != self.lastProcessedChangeCount else {
-          Logger.log(.debug, "Skipping duplicate changeCount: \(currentChangeCount)")
+        guard currentChangeCount > self.lastProcessedChangeCount else {
+          Logger.log(.debug, "Skipping duplicate or old changeCount: \(currentChangeCount)")
           return
         }
         
