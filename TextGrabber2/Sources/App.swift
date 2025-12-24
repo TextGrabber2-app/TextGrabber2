@@ -14,7 +14,6 @@ final class App: NSObject, NSApplicationDelegate {
   private var copyObserver: Task<Void, Never>?
   private var currentResult: Recognizer.ResultData?
   private var silentDetectCount = 0
-  private var lastProcessedChangeCount = -1
 
   private var previewingFileURL: URL {
     .previewingDirectory.appendingPathComponent("TextGrabber2.png")
@@ -466,17 +465,8 @@ private extension App {
     if isEnabled {
       let pasteboard = NSPasteboard.general
       let handleChanges = { [weak self] in
-        guard let self else { return }
-        
-        let currentChangeCount = pasteboard.changeCount
-        guard currentChangeCount > self.lastProcessedChangeCount else {
-          Logger.log(.debug, "Skipping duplicate or old changeCount: \(currentChangeCount)")
-          return
-        }
-        
         ContentFilters.processRules(for: pasteboard)
-        self.startDetection()
-        self.lastProcessedChangeCount = currentChangeCount
+        self?.startDetection()
       }
 
       copyObserver = Task { @MainActor in
