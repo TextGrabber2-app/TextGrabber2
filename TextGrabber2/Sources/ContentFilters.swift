@@ -6,6 +6,7 @@
 //
 
 import AppKit
+import UniformTypeIdentifiers
 
 enum ContentFilters {
   static var fileURL: URL {
@@ -33,7 +34,7 @@ enum ContentFilters {
 
   static func processRules(for pasteboard: NSPasteboard) {
     pasteboard.types?.forEach {
-      for rule in rules where rule.type == $0.rawValue {
+      for rule in rules where rule.canHandle(pboardType: $0) {
         rule.handle(pasteboard: pasteboard, type: $0)
       }
     }
@@ -47,6 +48,18 @@ private extension ContentFilters {
     let type: String
     let match: String?
     let service: String
+
+    func canHandle(pboardType: NSPasteboard.PasteboardType) -> Bool {
+      if type == pboardType.rawValue {
+        return true
+      }
+
+      if let type1 = UTType(type), let type2 = UTType(pboardType.rawValue) {
+        return type2.conforms(to: type1)
+      }
+
+      return false
+    }
 
     func handle(pasteboard: NSPasteboard, type: NSPasteboard.PasteboardType) {
       let shouldHandle: Bool = {
