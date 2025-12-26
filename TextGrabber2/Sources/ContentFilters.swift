@@ -8,12 +8,16 @@
 import AppKit
 
 enum ContentFilters {
-  static let fileURL: URL = {
+  static var fileURL: URL {
     URL.documentsDirectory.appending(
       path: Constants.fileName,
       directoryHint: .notDirectory
     )
-  }()
+  }
+
+  static var hasRules: Bool {
+    !rules.isEmpty
+  }
 
   static func initialize() {
     guard !FileManager.default.fileExists(atPath: fileURL.path()) else {

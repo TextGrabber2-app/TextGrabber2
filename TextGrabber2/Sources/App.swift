@@ -464,13 +464,15 @@ private extension App {
 
     if isEnabled {
       let pasteboard = NSPasteboard.general
+      let interval: Duration = .seconds(ContentFilters.hasRules ? 0.5 : 1.0)
+
       let handleChanges = { [weak self] in
         ContentFilters.processRules(for: pasteboard)
         self?.startDetection()
       }
 
       copyObserver = Task { @MainActor in
-        for await _ in CopyObserver.default.changes(pasteboard: pasteboard) {
+        for await _ in CopyObserver.default.changes(pasteboard: pasteboard, interval: interval) {
           handleChanges()
         }
       }
