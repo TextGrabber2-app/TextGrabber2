@@ -16,6 +16,7 @@
 		875364A42BE1D6FC00611579 /* NSAlert+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875364A32BE1D6FC00611579 /* NSAlert+Extension.swift */; };
 		8772FAE92BAC743D00DBEAA0 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8772FAE82BAC743D00DBEAA0 /* Localizable.xcstrings */; };
 		8775E08B2EB3138F0036B9BA /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8775E08A2EB3138E0036B9BA /* Intents.swift */; };
+		8779BE1D2EFB7627002286BB /* ContentFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8779BE1C2EFB761D002286BB /* ContentFilters.swift */; };
 		87A7715E2E704F3800E9EE72 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 87A7715D2E704F3800E9EE72 /* AppIcon.icon */; };
 		87AEC3F92EC065A900C6CD12 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 87AEC3F82EC065A900C6CD12 /* AppShortcuts.xcstrings */; };
 		87AEC5802EC07C2600C6CD12 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AEC57F2EC07C2600C6CD12 /* URL+Extension.swift */; };
@@ -48,6 +49,7 @@
 		875364A32BE1D6FC00611579 /* NSAlert+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAlert+Extension.swift"; sourceTree = "<group>"; };
 		8772FAE82BAC743D00DBEAA0 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		8775E08A2EB3138E0036B9BA /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
+		8779BE1C2EFB761D002286BB /* ContentFilters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFilters.swift; sourceTree = "<group>"; };
 		87A7715D2E704F3800E9EE72 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		87AEC3F82EC065A900C6CD12 /* AppShortcuts.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AppShortcuts.xcstrings; sourceTree = "<group>"; };
 		87AEC57F2EC07C2600C6CD12 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				87E192F02BABB6EA00A87A4E /* Recognizer.swift */,
 				87E192E82BAAFF0200A87A4E /* Resources.swift */,
 				8737A24B2BBECB8800042E83 /* Services.swift */,
+				8779BE1C2EFB761D002286BB /* ContentFilters.swift */,
 				870826ED2EDBFF14004D7899 /* Translator.swift */,
 				8775E08A2EB3138E0036B9BA /* Intents.swift */,
 				874C0E662DF80959006AB61C /* Updater.swift */,
@@ -266,6 +269,7 @@
 				87E192E02BAAE38700A87A4E /* NSMenu+Extension.swift in Sources */,
 				87E192F72BABD18900A87A4E /* Logger.swift in Sources */,
 				871AFFF62E633B5C007BE57D /* Array+Extension.swift in Sources */,
+				8779BE1D2EFB7627002286BB /* ContentFilters.swift in Sources */,
 				87E192C32BAADE1200A87A4E /* App.swift in Sources */,
 				87AEC5802EC07C2600C6CD12 /* URL+Extension.swift in Sources */,
 				87E192E92BAAFF0200A87A4E /* Resources.swift in Sources */,

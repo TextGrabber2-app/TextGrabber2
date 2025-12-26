@@ -134,6 +134,7 @@ final class App: NSObject, NSApplicationDelegate {
     if NSPasteboard.general.hasFullAccess {
       menu.addItem(.separator())
       menu.addItem(observeChangesItem)
+      menu.addItem(contentFiltersItem)
     }
 
     let item = NSMenuItem(title: Localized.menuTitleClipboard)
@@ -213,6 +214,21 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
+  private let contentFiltersItem: NSMenuItem = {
+    let menu = NSMenu()
+    menu.addItem(withTitle: Localized.menuTitleConfigure) {
+      NSWorkspace.shared.open(ContentFilters.fileURL)
+    }
+
+    menu.addItem(withTitle: Localized.menuTitleDocumentation) {
+      NSWorkspace.shared.safelyOpenURL(string: "\(Links.github)/wiki#content-filters")
+    }
+
+    let item = NSMenuItem(title: Localized.menuTitleContentFilters)
+    item.submenu = menu
+    return item
+  }()
+
   private let launchAtLoginItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleLaunchAtLogin)
     item.addAction { [weak item] in
@@ -253,6 +269,7 @@ final class App: NSObject, NSApplicationDelegate {
 extension App {
   func applicationDidFinishLaunching(_ notification: Notification) {
     Services.initialize()
+    ContentFilters.initialize()
     statusItem.isVisible = true
 
     // Observe pasteboard changes to detect silently
@@ -443,15 +460,22 @@ private extension App {
 
   func updateObserver(isEnabled: Bool) {
     copyObserver?.cancel()
+    contentFiltersItem.isEnabled = isEnabled
 
     if isEnabled {
+      let pasteboard = NSPasteboard.general
+      let handleChanges = { [weak self] in
+        ContentFilters.processRules(for: pasteboard)
+        self?.startDetection()
+      }
+
       copyObserver = Task { @MainActor in
-        for await _ in CopyObserver.default.changes() {
-          startDetection()
+        for await _ in CopyObserver.default.changes(pasteboard: pasteboard) {
+          handleChanges()
         }
       }
 
-      startDetection()
+      handleChanges()
     }
   }
 

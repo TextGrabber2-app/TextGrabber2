@@ -8,13 +8,13 @@
 
 [![](https://img.shields.io/badge/Platform-macOS_15.0+-blue?color=007bff)](https://github.com/TextGrabber2-app/TextGrabber2/releases/latest)  [![](https://github.com/TextGrabber2-app/TextGrabber2/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/TextGrabber2-app/TextGrabber2/actions/workflows/build.yml)
 
-TextGrabber2 is a free and **open-source** macOS menu bar app that efficiently detects text from copied images. This eliminates the need to save images as files and then delete them solely for the purpose of text detection.
+TextGrabber2 is a free and **open-source** macOS menu bar app that efficiently detects text from copied images, and runs actions based on it. This eliminates the need to save images as files and then delete them solely for the purpose of text detection.
 
 <img src="./Screenshots/01.png" width="360" alt="Screenshot 01"> <img src="./Screenshots/02.png" width="360" alt="Screenshot 02">
 
-For example, press `Control-Shift-Command-4` to capture a portion of the screen and then open TextGrabber2 from the menu bar.
+For example, press `Control-Shift-Command-4` to capture a portion of the screen and then open TextGrabber2 from the menu bar. It also functions effectively for any form of image copying.
 
-It also functions effectively for any form of image copying.
+You can also use TextGrabber2 to automatically prune your pasteboard data. See [Content Filters](https://github.com/TextGrabber2-app/TextGrabber2/wiki#content-filters) for more details.
 
 In macOS Tahoe and later, you can directly extract text from copied images using Spotlight, through the action called `Extract Text from Copied Image`.
 

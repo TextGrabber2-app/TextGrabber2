@@ -119,6 +119,23 @@
         }
       }
     },
+    "Content Filters" : {
+      "comment" : "[Menu] Filter content based on rules",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内容过滤器"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "內容過濾器"
+          }
+        }
+      }
+    },
     "Copy All" : {
       "comment" : "[Menu] Copy all text at once",
       "localizations" : {

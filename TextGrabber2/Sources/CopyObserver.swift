@@ -11,13 +11,13 @@ import AppKit
 final class CopyObserver {
   static let `default` = CopyObserver()
 
-  func changes(interval: Duration = .seconds(1.0)) -> AsyncStream<Void> {
+  func changes(pasteboard: NSPasteboard = .general, interval: Duration = .seconds(1.0)) -> AsyncStream<Void> {
     AsyncStream { continuation in
-      var lastCount = NSPasteboard.general.changeCount
+      var lastCount = pasteboard.changeCount
       let mainTask = Task { @MainActor in
         while !Task.isCancelled {
           try await Task.sleep(for: interval)
-          let newCount = NSPasteboard.general.changeCount
+          let newCount = pasteboard.changeCount
           if newCount != lastCount {
             lastCount = newCount
             continuation.yield()
