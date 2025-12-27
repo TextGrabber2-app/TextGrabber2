@@ -17,11 +17,9 @@ enum Recognizer {
 
     init(candidates: [String]) {
       var seen = Set(candidates)
-      let aggregated = candidates + candidates.flatMap {
-        Detector.matches(in: $0)
-      }.filter {
-        seen.insert($0).inserted
-      }
+      let aggregated = candidates + candidates
+        .flatMap { Detector.matches(in: $0) }
+        .filter { seen.insert($0).inserted }
 
       self.candidates = aggregated.filter { !$0.isEmpty }
     }
