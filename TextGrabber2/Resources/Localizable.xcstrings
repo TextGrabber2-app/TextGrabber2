@@ -761,7 +761,7 @@
         }
       }
     },
-    "When enabled, this does not affect other content types." : {
+    "When enabled, this action does not affect other content types." : {
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {

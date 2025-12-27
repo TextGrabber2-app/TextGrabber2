@@ -24,7 +24,7 @@ struct SetClipboardDataIntent: AppIntent {
   @Parameter(title: "File")
   var file: IntentFile
 
-  @Parameter(title: "Keep Other Types", description: "When enabled, this does not affect other content types.", default: true)
+  @Parameter(title: "Keep Other Types", description: "When enabled, this action does not affect other content types.", default: true)
   var keepOthers: Bool
 
   @MainActor
