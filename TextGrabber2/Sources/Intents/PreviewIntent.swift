@@ -11,7 +11,7 @@ import AppIntents
 struct PreviewIntent: AppIntent {
   static let title: LocalizedStringResource = "Preview Copied Image"
   static let description = IntentDescription(
-    "Preview copied image using TextGrabber2.",
+    "Previews copied image using TextGrabber2.",
     searchKeywords: ["TextGrabber2"],
   )
 

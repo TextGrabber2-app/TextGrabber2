@@ -32,7 +32,7 @@ struct ExtractIntent: AppIntent {
 
   static let title: LocalizedStringResource = "Extract Text from Copied Image"
   static let description = IntentDescription(
-    "Extract text from copied image using TextGrabber2.",
+    "Extracts text from copied image using TextGrabber2.",
     searchKeywords: ["TextGrabber2"],
   )
 
