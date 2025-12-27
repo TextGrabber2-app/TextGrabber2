@@ -13,7 +13,9 @@ struct SetClipboardDataIntent: AppIntent {
   static let description = IntentDescription("Sets data in the clipboard for a specific content type.")
 
   static var parameterSummary: some ParameterSummary {
-    Summary("Set Clipboard Data for \(\.$type) with \(\.$file)")
+    Summary("Set Clipboard Data for \(\.$type) with \(\.$file)") {
+      \.$keepOthers
+    }
   }
 
   @Parameter(title: "Content Type", default: "public.utf8-plain-text", inputOptions: .init(capitalizationType: .none, autocorrect: false, smartQuotes: false, smartDashes: false))
@@ -22,13 +24,18 @@ struct SetClipboardDataIntent: AppIntent {
   @Parameter(title: "File")
   var file: IntentFile
 
+  @Parameter(title: "Keep Other Types", description: "When enabled, this does not affect other content types.", default: true)
+  var keepOthers: Bool
+
   @MainActor
   func perform() async throws -> some IntentResult {
     let pasteboard = NSPasteboard.general
     let pboardType = NSPasteboard.PasteboardType(type)
-    pasteboard.declareTypes([pboardType], owner: nil)
 
-    guard pasteboard.setData(file.data, forType: pboardType) else {
+    var items: [NSPasteboard.PasteboardType: Data] = keepOthers ? pasteboard.getDataItems() : [:]
+    items[pboardType] = file.data
+
+    guard pasteboard.setDataItems(items) else {
       throw IntentError.setDataFailed(type: type)
     }
 

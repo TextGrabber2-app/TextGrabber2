@@ -446,6 +446,22 @@
         }
       }
     },
+    "Keep Other Types" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保留其他类型"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保留其他型別"
+          }
+        }
+      }
+    },
     "Launch at Login" : {
       "comment" : "[Menu] Automatically start the app at login",
       "localizations" : {
@@ -741,6 +757,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "版本"
+          }
+        }
+      }
+    },
+    "When enabled, this does not affect other content types." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "开启时，此操作不会影响其他内容类型。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "開啟時，此操作不會影響其他內容型別。"
           }
         }
       }

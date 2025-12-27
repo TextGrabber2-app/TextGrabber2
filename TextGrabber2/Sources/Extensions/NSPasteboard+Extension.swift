@@ -55,6 +55,23 @@ extension NSPasteboard {
     !hasLimitedAccess
   }
 
+  func getDataItems() -> [NSPasteboard.PasteboardType: Data] {
+    (types ?? []).reduce(into: [NSPasteboard.PasteboardType: Data]()) { items, type in
+      items[type] = data(forType: type)
+    }
+  }
+
+  func setDataItems(_ items: [NSPasteboard.PasteboardType: Data]) -> Bool {
+    var result = true
+    declareTypes(Array(items.keys), owner: nil)
+
+    for (type, data) in items {
+      result = result && setData(data, forType: type)
+    }
+
+    return result
+  }
+
   @MainActor
   func saveImageAsFile() {
     NSApp.activate()
