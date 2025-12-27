@@ -8,7 +8,7 @@
 
 [![](https://img.shields.io/badge/Platform-macOS_15.0+-blue?color=007bff)](https://github.com/TextGrabber2-app/TextGrabber2/releases/latest)  [![](https://github.com/TextGrabber2-app/TextGrabber2/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/TextGrabber2-app/TextGrabber2/actions/workflows/build.yml)
 
-TextGrabber2 is a free and **open-source** macOS menu bar app that efficiently detects text from copied images, and runs actions based on it. This eliminates the need to save images as files and then delete them solely for the purpose of text detection.
+TextGrabber2 is a free and **open-source** macOS menu bar app that efficiently [detects text](https://github.com/TextGrabber2-app/TextGrabber2/wiki#capture-screen-on-mac) from copied images, and [runs actions](https://github.com/TextGrabber2-app/TextGrabber2/wiki#connect-to-system-services) based on it. This eliminates the need to save images as files and then delete them solely for the purpose of text detection.
 
 <img src="./Screenshots/01.png" width="360" alt="Screenshot 01"> <img src="./Screenshots/02.png" width="360" alt="Screenshot 02">
 
