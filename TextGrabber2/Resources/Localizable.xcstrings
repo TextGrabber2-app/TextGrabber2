@@ -186,7 +186,7 @@
         }
       }
     },
-    "Extract text from copied image using TextGrabber2." : {
+    "Extracts text from copied image using TextGrabber2." : {
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -337,7 +337,7 @@
         }
       }
     },
-    "Preview copied image using TextGrabber2." : {
+    "Previews copied image using TextGrabber2." : {
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
