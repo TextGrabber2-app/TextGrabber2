@@ -48,6 +48,7 @@
 		870826ED2EDBFF14004D7899 /* Translator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator.swift; sourceTree = "<group>"; };
 		871AFFF52E633B59007BE57D /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		871F03BF2EFFC727009AD0E2 /* GetClipboardTypesIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetClipboardTypesIntent.swift; sourceTree = "<group>"; };
+		8720344B2F00230B00E35EDD /* BuildTools */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BuildTools; sourceTree = "<group>"; };
 		8730CD052EE459B40058CDCF /* CopyObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyObserver.swift; sourceTree = "<group>"; };
 		8737A2492BBEC27700042E83 /* Services */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Services; sourceTree = "<group>"; };
 		8737A24B2BBECB8800042E83 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
@@ -123,6 +124,7 @@
 		87E192B62BAADE1200A87A4E = {
 			isa = PBXGroup;
 			children = (
+				8720344B2F00230B00E35EDD /* BuildTools */,
 				87E192C12BAADE1200A87A4E /* TextGrabber2 */,
 				87E192C02BAADE1200A87A4E /* Products */,
 				87E192D12BAADEFE00A87A4E /* Build.xcconfig */,
@@ -210,6 +212,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8720344F2F00234900E35EDD /* PBXTargetDependency */,
 			);
 			name = TextGrabber2;
 			productName = TextGrabber2;
@@ -305,6 +308,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8720344F2F00234900E35EDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 8720344E2F00234900E35EDD /* SwiftLint */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		87E192CC2BAADE1400A87A4E /* Debug */ = {
@@ -525,6 +535,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8720344E2F00234900E35EDD /* SwiftLint */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = "plugin:SwiftLint";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 87E192B72BAADE1200A87A4E /* Project object */;
 }
