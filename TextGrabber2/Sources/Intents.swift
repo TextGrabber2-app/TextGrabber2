@@ -27,6 +27,30 @@ struct IntentProvider: AppShortcutsProvider {
         shortTitle: "\(PreviewIntent.title)",
         systemImageName: "eye"
       ),
+      AppShortcut(
+        intent: GetClipboardTypesIntent(),
+        phrases: [
+          "Get clipboard types using \(.applicationName)",
+        ],
+        shortTitle: "\(GetClipboardTypesIntent.title)",
+        systemImageName: "list.bullet.clipboard"
+      ),
+      AppShortcut(
+        intent: GetClipboardDataIntent(),
+        phrases: [
+          "Get clipboard data using \(.applicationName)",
+        ],
+        shortTitle: "\(GetClipboardDataIntent.title)",
+        systemImageName: "list.clipboard"
+      ),
+      AppShortcut(
+        intent: SetClipboardDataIntent(),
+        phrases: [
+          "Set clipboard data using \(.applicationName)",
+        ],
+        shortTitle: "\(SetClipboardDataIntent.title)",
+        systemImageName: "pencil.and.list.clipboard"
+      ),
     ]
   }
 }

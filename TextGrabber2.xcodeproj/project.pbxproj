@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		870826EE2EDBFF16004D7899 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870826ED2EDBFF14004D7899 /* Translator.swift */; };
 		871AFFF62E633B5C007BE57D /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871AFFF52E633B59007BE57D /* Array+Extension.swift */; };
+		871F03C02EFFC730009AD0E2 /* GetClipboardTypesIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871F03BF2EFFC727009AD0E2 /* GetClipboardTypesIntent.swift */; };
 		8730CD062EE459B40058CDCF /* CopyObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8730CD052EE459B40058CDCF /* CopyObserver.swift */; };
 		8737A24A2BBEC27700042E83 /* Services in Resources */ = {isa = PBXBuildFile; fileRef = 8737A2492BBEC27700042E83 /* Services */; };
 		8737A24C2BBECB8800042E83 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8737A24B2BBECB8800042E83 /* Services.swift */; };
@@ -23,6 +24,8 @@
 		87BB08C22DD417EC0016D061 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BB08C12DD417E70016D061 /* String+Extension.swift */; };
 		87D1F4692EFF6136008F4AD4 /* ExtractIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1F4682EFF6136008F4AD4 /* ExtractIntent.swift */; };
 		87D1F46B2EFF6156008F4AD4 /* PreviewIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1F46A2EFF6153008F4AD4 /* PreviewIntent.swift */; };
+		87D1F52F2EFF6744008F4AD4 /* GetClipboardDataIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1F52E2EFF673F008F4AD4 /* GetClipboardDataIntent.swift */; };
+		87D1F53D2EFF6D9C008F4AD4 /* SetClipboardDataIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1F53C2EFF6D98008F4AD4 /* SetClipboardDataIntent.swift */; };
 		87E192C32BAADE1200A87A4E /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E192C22BAADE1200A87A4E /* App.swift */; };
 		87E192C72BAADE1300A87A4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87E192C62BAADE1300A87A4E /* Assets.xcassets */; };
 		87E192D52BAAE12600A87A4E /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E192D42BAAE12600A87A4E /* Bundle+Extension.swift */; };
@@ -44,6 +47,7 @@
 /* Begin PBXFileReference section */
 		870826ED2EDBFF14004D7899 /* Translator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator.swift; sourceTree = "<group>"; };
 		871AFFF52E633B59007BE57D /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
+		871F03BF2EFFC727009AD0E2 /* GetClipboardTypesIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetClipboardTypesIntent.swift; sourceTree = "<group>"; };
 		8730CD052EE459B40058CDCF /* CopyObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyObserver.swift; sourceTree = "<group>"; };
 		8737A2492BBEC27700042E83 /* Services */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Services; sourceTree = "<group>"; };
 		8737A24B2BBECB8800042E83 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
@@ -58,6 +62,8 @@
 		87BB08C12DD417E70016D061 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		87D1F4682EFF6136008F4AD4 /* ExtractIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractIntent.swift; sourceTree = "<group>"; };
 		87D1F46A2EFF6153008F4AD4 /* PreviewIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewIntent.swift; sourceTree = "<group>"; };
+		87D1F52E2EFF673F008F4AD4 /* GetClipboardDataIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetClipboardDataIntent.swift; sourceTree = "<group>"; };
+		87D1F53C2EFF6D98008F4AD4 /* SetClipboardDataIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetClipboardDataIntent.swift; sourceTree = "<group>"; };
 		87E192BF2BAADE1200A87A4E /* TextGrabber2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextGrabber2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E192C22BAADE1200A87A4E /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		87E192C62BAADE1300A87A4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -107,6 +113,9 @@
 			children = (
 				87D1F4682EFF6136008F4AD4 /* ExtractIntent.swift */,
 				87D1F46A2EFF6153008F4AD4 /* PreviewIntent.swift */,
+				871F03BF2EFFC727009AD0E2 /* GetClipboardTypesIntent.swift */,
+				87D1F52E2EFF673F008F4AD4 /* GetClipboardDataIntent.swift */,
+				87D1F53C2EFF6D98008F4AD4 /* SetClipboardDataIntent.swift */,
 			);
 			path = Intents;
 			sourceTree = "<group>";
@@ -263,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8737A24C2BBECB8800042E83 /* Services.swift in Sources */,
+				871F03C02EFFC730009AD0E2 /* GetClipboardTypesIntent.swift in Sources */,
 				8775E08B2EB3138F0036B9BA /* Intents.swift in Sources */,
 				87E192DF2BAAE38700A87A4E /* NSControl+Extension.swift in Sources */,
 				875364A42BE1D6FC00611579 /* NSAlert+Extension.swift in Sources */,
@@ -277,6 +287,7 @@
 				87BB08C22DD417EC0016D061 /* String+Extension.swift in Sources */,
 				870826EE2EDBFF16004D7899 /* Translator.swift in Sources */,
 				87E192D82BAAE17200A87A4E /* main.swift in Sources */,
+				87D1F52F2EFF6744008F4AD4 /* GetClipboardDataIntent.swift in Sources */,
 				87D1F46B2EFF6156008F4AD4 /* PreviewIntent.swift in Sources */,
 				87E192DA2BAAE25500A87A4E /* NSImage+Extension.swift in Sources */,
 				87E192F52BABC8FD00A87A4E /* Detector.swift in Sources */,
@@ -287,6 +298,7 @@
 				871AFFF62E633B5C007BE57D /* Array+Extension.swift in Sources */,
 				8779BE1D2EFB7627002286BB /* ContentFilters.swift in Sources */,
 				87E192C32BAADE1200A87A4E /* App.swift in Sources */,
+				87D1F53D2EFF6D9C008F4AD4 /* SetClipboardDataIntent.swift in Sources */,
 				87AEC5802EC07C2600C6CD12 /* URL+Extension.swift in Sources */,
 				87E192E92BAAFF0200A87A4E /* Resources.swift in Sources */,
 			);

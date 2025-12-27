@@ -30,6 +30,64 @@
         }
       }
     },
+    "Get clipboard data using ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "Get clipboard data using ${applicationName}"
+            ]
+          }
+        },
+        "zh-Hans" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "使用 ${applicationName} 获取剪贴板数据。"
+            ]
+          }
+        },
+        "zh-Hant" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "使用 ${applicationName} 獲取剪貼簿資料。"
+            ]
+          }
+        }
+      }
+    },
+    "Get clipboard types using ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "Get clipboard types using ${applicationName}"
+            ]
+          }
+        },
+        "zh-Hans" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "使用 ${applicationName} 获取可用的剪贴板数据类型。"
+            ]
+          }
+        },
+        "zh-Hant" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "使用 ${applicationName} 獲取可用的剪貼簿資料型別。"
+            ]
+          }
+        }
+      }
+    },
     "Preview copied image using ${applicationName}" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -54,6 +112,35 @@
             "state" : "translated",
             "values" : [
               "使用 ${applicationName} 預覽拷貝的圖像。"
+            ]
+          }
+        }
+      }
+    },
+    "Set clipboard data using ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "Set clipboard data using ${applicationName}"
+            ]
+          }
+        },
+        "zh-Hans" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "使用 ${applicationName} 设置剪贴板数据。"
+            ]
+          }
+        },
+        "zh-Hant" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "使用 ${applicationName} 設定剪貼簿資料。"
             ]
           }
         }
