@@ -1,5 +1,5 @@
 //
-//  PreviewIntent.swift
+//  PreviewImageIntent.swift
 //  TextGrabber2
 //
 //  Created by cyan on 2025/12/27.
@@ -8,7 +8,7 @@
 import AppKit
 import AppIntents
 
-struct PreviewIntent: AppIntent {
+struct PreviewImageIntent: AppIntent {
   static let title: LocalizedStringResource = "Preview Copied Image"
   static let description = IntentDescription(
     "Previews copied image using TextGrabber2.",

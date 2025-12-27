@@ -12,19 +12,19 @@ struct IntentProvider: AppShortcutsProvider {
   static var appShortcuts: [AppShortcut] {
     return [
       AppShortcut(
-        intent: ExtractIntent(),
+        intent: ExtractTextIntent(),
         phrases: [
           "Extract text from copied image using \(.applicationName)",
         ],
-        shortTitle: "\(ExtractIntent.title)",
+        shortTitle: "\(ExtractTextIntent.title)",
         systemImageName: "text.viewfinder"
       ),
       AppShortcut(
-        intent: PreviewIntent(),
+        intent: PreviewImageIntent(),
         phrases: [
           "Preview copied image using \(.applicationName)",
         ],
-        shortTitle: "\(PreviewIntent.title)",
+        shortTitle: "\(PreviewImageIntent.title)",
         systemImageName: "eye"
       ),
       AppShortcut(

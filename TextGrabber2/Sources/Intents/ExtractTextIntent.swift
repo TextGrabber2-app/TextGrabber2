@@ -1,5 +1,5 @@
 //
-//  ExtractIntent.swift
+//  ExtractTextIntent.swift
 //  TextGrabber2
 //
 //  Created by cyan on 2025/12/27.
@@ -8,7 +8,7 @@
 import AppKit
 import AppIntents
 
-struct ExtractIntent: AppIntent {
+struct ExtractTextIntent: AppIntent {
   struct ResultEntity: AppEntity {
     struct DummyQuery: EntityQuery {
       func entities(for identifiers: [ResultEntity.ID]) async throws -> [ResultEntity] { [] }

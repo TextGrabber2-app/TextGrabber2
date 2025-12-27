@@ -22,8 +22,8 @@
 		87AEC3F92EC065A900C6CD12 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 87AEC3F82EC065A900C6CD12 /* AppShortcuts.xcstrings */; };
 		87AEC5802EC07C2600C6CD12 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AEC57F2EC07C2600C6CD12 /* URL+Extension.swift */; };
 		87BB08C22DD417EC0016D061 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BB08C12DD417E70016D061 /* String+Extension.swift */; };
-		87D1F4692EFF6136008F4AD4 /* ExtractIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1F4682EFF6136008F4AD4 /* ExtractIntent.swift */; };
-		87D1F46B2EFF6156008F4AD4 /* PreviewIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1F46A2EFF6153008F4AD4 /* PreviewIntent.swift */; };
+		87D1F4692EFF6136008F4AD4 /* ExtractTextIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1F4682EFF6136008F4AD4 /* ExtractTextIntent.swift */; };
+		87D1F46B2EFF6156008F4AD4 /* PreviewImageIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1F46A2EFF6153008F4AD4 /* PreviewImageIntent.swift */; };
 		87D1F52F2EFF6744008F4AD4 /* GetClipboardDataIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1F52E2EFF673F008F4AD4 /* GetClipboardDataIntent.swift */; };
 		87D1F53D2EFF6D9C008F4AD4 /* SetClipboardDataIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D1F53C2EFF6D98008F4AD4 /* SetClipboardDataIntent.swift */; };
 		87E192C32BAADE1200A87A4E /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E192C22BAADE1200A87A4E /* App.swift */; };
@@ -60,8 +60,8 @@
 		87AEC3F82EC065A900C6CD12 /* AppShortcuts.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AppShortcuts.xcstrings; sourceTree = "<group>"; };
 		87AEC57F2EC07C2600C6CD12 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		87BB08C12DD417E70016D061 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		87D1F4682EFF6136008F4AD4 /* ExtractIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractIntent.swift; sourceTree = "<group>"; };
-		87D1F46A2EFF6153008F4AD4 /* PreviewIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewIntent.swift; sourceTree = "<group>"; };
+		87D1F4682EFF6136008F4AD4 /* ExtractTextIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractTextIntent.swift; sourceTree = "<group>"; };
+		87D1F46A2EFF6153008F4AD4 /* PreviewImageIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewImageIntent.swift; sourceTree = "<group>"; };
 		87D1F52E2EFF673F008F4AD4 /* GetClipboardDataIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetClipboardDataIntent.swift; sourceTree = "<group>"; };
 		87D1F53C2EFF6D98008F4AD4 /* SetClipboardDataIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetClipboardDataIntent.swift; sourceTree = "<group>"; };
 		87E192BF2BAADE1200A87A4E /* TextGrabber2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextGrabber2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,8 +111,8 @@
 		87D1F4672EFF612A008F4AD4 /* Intents */ = {
 			isa = PBXGroup;
 			children = (
-				87D1F4682EFF6136008F4AD4 /* ExtractIntent.swift */,
-				87D1F46A2EFF6153008F4AD4 /* PreviewIntent.swift */,
+				87D1F4682EFF6136008F4AD4 /* ExtractTextIntent.swift */,
+				87D1F46A2EFF6153008F4AD4 /* PreviewImageIntent.swift */,
 				871F03BF2EFFC727009AD0E2 /* GetClipboardTypesIntent.swift */,
 				87D1F52E2EFF673F008F4AD4 /* GetClipboardDataIntent.swift */,
 				87D1F53C2EFF6D98008F4AD4 /* SetClipboardDataIntent.swift */,
@@ -288,12 +288,12 @@
 				870826EE2EDBFF16004D7899 /* Translator.swift in Sources */,
 				87E192D82BAAE17200A87A4E /* main.swift in Sources */,
 				87D1F52F2EFF6744008F4AD4 /* GetClipboardDataIntent.swift in Sources */,
-				87D1F46B2EFF6156008F4AD4 /* PreviewIntent.swift in Sources */,
+				87D1F46B2EFF6156008F4AD4 /* PreviewImageIntent.swift in Sources */,
 				87E192DA2BAAE25500A87A4E /* NSImage+Extension.swift in Sources */,
 				87E192F52BABC8FD00A87A4E /* Detector.swift in Sources */,
 				874C0E692DF80959006AB61C /* Updater.swift in Sources */,
 				87E192E02BAAE38700A87A4E /* NSMenu+Extension.swift in Sources */,
-				87D1F4692EFF6136008F4AD4 /* ExtractIntent.swift in Sources */,
+				87D1F4692EFF6136008F4AD4 /* ExtractTextIntent.swift in Sources */,
 				87E192F72BABD18900A87A4E /* Logger.swift in Sources */,
 				871AFFF62E633B5C007BE57D /* Array+Extension.swift in Sources */,
 				8779BE1D2EFB7627002286BB /* ContentFilters.swift in Sources */,
