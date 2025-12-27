@@ -39,13 +39,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法从剪贴板中获取到任何可用的数据类型。"
+            "value" : "无法从剪贴板中获取到任何可用的内容类型。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法從剪貼簿中獲取到任何可用的資料型別。"
+            "value" : "無法從剪貼簿中獲取到任何可用的內容型別。"
           }
         }
       }
@@ -368,13 +368,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "从剪贴板获取可用的数据类型。"
+            "value" : "从剪贴板获取可用的内容类型。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "從剪貼簿獲取可用的資料型別。"
+            "value" : "從剪貼簿獲取可用的內容型別。"
           }
         }
       }
