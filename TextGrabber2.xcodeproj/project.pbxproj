@@ -94,10 +94,10 @@
 			isa = PBXGroup;
 			children = (
 				8737A2492BBEC27700042E83 /* Services */,
-				87E192C62BAADE1300A87A4E /* Assets.xcassets */,
 				87A7715D2E704F3800E9EE72 /* AppIcon.icon */,
-				8772FAE82BAC743D00DBEAA0 /* Localizable.xcstrings */,
+				87E192C62BAADE1300A87A4E /* Assets.xcassets */,
 				87AEC3F82EC065A900C6CD12 /* AppShortcuts.xcstrings */,
+				8772FAE82BAC743D00DBEAA0 /* Localizable.xcstrings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -152,7 +152,6 @@
 			children = (
 				871AFFF52E633B59007BE57D /* Array+Extension.swift */,
 				87E192D42BAAE12600A87A4E /* Bundle+Extension.swift */,
-				87AEC57F2EC07C2600C6CD12 /* URL+Extension.swift */,
 				875364A32BE1D6FC00611579 /* NSAlert+Extension.swift */,
 				87E192DC2BAAE38700A87A4E /* NSControl+Extension.swift */,
 				87E192D92BAAE25500A87A4E /* NSImage+Extension.swift */,
@@ -163,6 +162,7 @@
 				87E192E42BAAFB1800A87A4E /* NSWorkspace+Extension.swift */,
 				87E192E62BAAFBC900A87A4E /* SMAppService+Extension.swift */,
 				87BB08C12DD417E70016D061 /* String+Extension.swift */,
+				87AEC57F2EC07C2600C6CD12 /* URL+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -173,15 +173,15 @@
 				87D1F4672EFF612A008F4AD4 /* Intents */,
 				87E192D32BAAE11500A87A4E /* Extensions */,
 				87E192C22BAADE1200A87A4E /* App.swift */,
-				87E192F42BABC8FD00A87A4E /* Detector.swift */,
-				87E192F62BABD18900A87A4E /* Logger.swift */,
+				8779BE1C2EFB761D002286BB /* ContentFilters.swift */,
 				8730CD052EE459B40058CDCF /* CopyObserver.swift */,
+				87E192F42BABC8FD00A87A4E /* Detector.swift */,
+				8775E08A2EB3138E0036B9BA /* Intents.swift */,
+				87E192F62BABD18900A87A4E /* Logger.swift */,
 				87E192F02BABB6EA00A87A4E /* Recognizer.swift */,
 				87E192E82BAAFF0200A87A4E /* Resources.swift */,
 				8737A24B2BBECB8800042E83 /* Services.swift */,
-				8779BE1C2EFB761D002286BB /* ContentFilters.swift */,
 				870826ED2EDBFF14004D7899 /* Translator.swift */,
-				8775E08A2EB3138E0036B9BA /* Intents.swift */,
 				874C0E662DF80959006AB61C /* Updater.swift */,
 			);
 			path = Sources;
