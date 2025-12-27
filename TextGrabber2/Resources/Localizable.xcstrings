@@ -34,6 +34,54 @@
         }
       }
     },
+    "Cannot get any content types from the clipboard." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法从剪贴板中获取到任何可用的数据类型。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法從剪貼簿中獲取到任何可用的資料型別。"
+          }
+        }
+      }
+    },
+    "Cannot get data for type “%@”." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法从剪贴板中获得“%@”的数据。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法從剪貼簿中獲得“%@”的資料。"
+          }
+        }
+      }
+    },
+    "Cannot set data for type “%@”." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法设置剪贴板“%@”的数据。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法設定剪貼簿“%@”的資料。"
+          }
+        }
+      }
+    },
     "Capture Screen to Detect" : {
       "comment" : "[Menu] Hint for capturing the screen",
       "localizations" : {
@@ -102,6 +150,22 @@
         }
       }
     },
+    "Clipboard (TextGrabber2)" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪贴板内容 (TextGrabber2)"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪貼簿內容 (TextGrabber2)"
+          }
+        }
+      }
+    },
     "Concatenate" : {
       "comment" : "[Menu] Join all text directly and copy them",
       "localizations" : {
@@ -132,6 +196,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "內容過濾器"
+          }
+        }
+      }
+    },
+    "Content Type" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内容类型"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "內容型別"
           }
         }
       }
@@ -215,6 +295,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "“%@”執行失敗。"
+          }
+        }
+      }
+    },
+    "File" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文件"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檔案"
+          }
+        }
+      }
+    },
+    "Get Clipboard Data" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "获取剪贴板数据"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "獲取剪貼簿資料"
+          }
+        }
+      }
+    },
+    "Get Clipboard Data for ${type}" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从剪贴板获取 ${type} 的数据"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從剪貼簿獲取 ${type} 的資料"
+          }
+        }
+      }
+    },
+    "Get Clipboard Types" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "获取剪贴板数据类型"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "獲取剪貼簿資料型別"
+          }
+        }
+      }
+    },
+    "Gets available content types from the clipboard." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从剪贴板获取可用的数据类型。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從剪貼簿獲取可用的資料型別。"
+          }
+        }
+      }
+    },
+    "Gets data from the clipboard for a specific content type." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从剪贴板获取指定类型的数据。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "從剪貼簿獲取指定型別的資料。"
           }
         }
       }
@@ -433,6 +609,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "服務"
+          }
+        }
+      }
+    },
+    "Set Clipboard Data" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置剪贴板数据"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定剪貼簿資料"
+          }
+        }
+      }
+    },
+    "Set Clipboard Data for ${type} with ${file}" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置剪贴板 ${type} 的数据为 ${file}"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定剪貼簿 ${type} 的資料為 ${file}"
+          }
+        }
+      }
+    },
+    "Sets data in the clipboard for a specific content type." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置指定类型的数据到剪贴板。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "設定指定型別的資料到剪貼簿。"
           }
         }
       }
