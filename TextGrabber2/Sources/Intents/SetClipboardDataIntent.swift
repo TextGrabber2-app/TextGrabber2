@@ -24,7 +24,7 @@ struct SetClipboardDataIntent: AppIntent {
   @Parameter(title: "File")
   var file: IntentFile
 
-  @Parameter(title: "Clear Other Items", description: "When enabled, this action clears all other items.", default: false)
+  @Parameter(title: "Clear Other Items", description: "When enabled, this action clears all other items.", default: true)
   var clearOthers: Bool
 
   @MainActor
