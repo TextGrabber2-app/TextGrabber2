@@ -47,7 +47,8 @@ private extension ContentFilters {
   struct Rule: Decodable {
     let type: String
     let match: String?
-    let service: String
+    let runService: String?
+    let replaceWith: String?
 
     func canHandle(pboardType: NSPasteboard.PasteboardType) -> Bool {
       if type == pboardType.rawValue {
@@ -62,21 +63,37 @@ private extension ContentFilters {
     }
 
     func handle(pasteboard: NSPasteboard, type: NSPasteboard.PasteboardType) {
-      let shouldHandle: Bool = {
-        guard let match else {
-          return true
-        }
+      let text = pasteboard.string(forType: type)
+      let shouldHandle: Bool
 
-        guard let text = pasteboard.string(forType: type) else {
-          return false
-        }
+      if let match {
+        shouldHandle = text?.matches(regex: match) ?? false
+      } else {
+        shouldHandle = true
+      }
 
-        return text.matches(regex: match)
-      }()
+      guard shouldHandle else {
+        return Logger.log(.debug, "The rule does not apply to the text")
+      }
 
-      if shouldHandle {
+      // "runService"
+      if let service = runService {
         let result = NSPerformService(service, pasteboard)
         Logger.log(.debug, "Result of running \(service): \(result)")
+      }
+
+      // "replaceWith"
+      if let text, let match, let replacement = replaceWith {
+        let data = text
+          .replacingOccurrences(
+            of: match,
+            with: replacement,
+            options: .regularExpression
+          )
+          .data(using: .utf8)
+
+        pasteboard.declareTypes([type], owner: nil)
+        pasteboard.setData(data, forType: type)
       }
     }
   }
