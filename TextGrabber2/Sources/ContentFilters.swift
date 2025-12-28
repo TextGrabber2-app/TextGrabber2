@@ -21,7 +21,7 @@ enum ContentFilters {
   }
 
   static func initialize() {
-    guard !FileManager.default.fileExists(atPath: fileURL.path()) else {
+    guard !FileManager.default.fileExists(atPath: fileURL.path(percentEncoded: false)) else {
       return Logger.log(.info, "\(Constants.fileName) was created before")
     }
 
