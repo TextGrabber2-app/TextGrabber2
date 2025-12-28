@@ -282,6 +282,8 @@ extension App {
   func applicationDidFinishLaunching(_ notification: Notification) {
     Services.initialize()
     ContentFilters.initialize()
+
+    updateServices()
     statusItem.isVisible = true
 
     // Observe pasteboard changes to detect silently
@@ -365,21 +367,7 @@ extension App: NSMenuDelegate {
     }
 
     // Update the services menu
-    servicesItem.submenu?.removeItems { $0 is ServiceItem }
-    for service in Services.items.reversed() {
-      let serviceName = service.serviceName
-      let displayName = service.displayName ?? serviceName
-      let item = ServiceItem(title: displayName)
-      item.addAction {
-        NSPasteboard.general.string = self.currentResult?.spacesJoined
-
-        if !NSPerformService(serviceName, .general) {
-          NSAlert.runModal(message: String(format: Localized.failedToRun, displayName))
-        }
-      }
-
-      servicesItem.submenu?.insertItem(item, at: 0)
-    }
+    updateServices()
 
     // Rely on this instead of mutating items in menuWillOpen
     isMenuVisible = true
@@ -434,6 +422,27 @@ private extension App {
   func clearMenuItems() {
     hintItem.title = NSPasteboard.general.hasLimitedAccess ? Localized.menuTitleHintLimitedAccess : Localized.menuTitleHintCapture
     mainMenu.removeItems { $0 is ResultItem }
+  }
+
+  func updateServices() {
+    servicesItem.submenu?.removeItems {
+      $0 is ServiceItem
+    }
+
+    for service in Services.items.reversed() {
+      let serviceName = service.serviceName
+      let displayName = service.displayName ?? serviceName
+      let item = ServiceItem(title: displayName)
+      item.addAction {
+        NSPasteboard.general.string = self.currentResult?.spacesJoined
+
+        if !NSPerformService(serviceName, .general) {
+          NSAlert.runModal(message: String(format: Localized.failedToRun, displayName))
+        }
+      }
+
+      servicesItem.submenu?.insertItem(item, at: 0)
+    }
   }
 
   func startDetection(userInitiated: Bool = false) async {
