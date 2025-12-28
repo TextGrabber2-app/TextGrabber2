@@ -54,12 +54,12 @@ struct ExtractTextIntent: AppIntent {
     if entities.count > 1 {
       return .result(value: entities + [
         ResultEntity(
-          title: candidates.joined(separator: " "),
-          subtitle: Localized.menuTitleJoinWithSpaces
-        ),
-        ResultEntity(
           title: candidates.joined(separator: "\n"),
           subtitle: Localized.menuTitleJoinWithLineBreaks
+        ),
+        ResultEntity(
+          title: candidates.joined(separator: " "),
+          subtitle: Localized.menuTitleJoinWithSpaces
         ),
         ResultEntity(
           title: candidates.joined(),
