@@ -24,12 +24,12 @@ enum Recognizer {
       self.candidates = aggregated.filter { !$0.isEmpty }
     }
 
-    var spacesJoined: String {
-      candidates.joined(separator: " ")
-    }
-
     var lineBreaksJoined: String {
       candidates.joined(separator: "\n")
+    }
+
+    var spacesJoined: String {
+      candidates.joined(separator: " ")
     }
 
     var directlyJoined: String {
