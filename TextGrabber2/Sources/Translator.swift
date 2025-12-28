@@ -10,10 +10,13 @@ import AppKit
 @MainActor
 enum Translator {
   static func showWindow(text: String) {
-    NSApp.activate(ignoringOtherApps: true)
+    NSApp.activate()
     contentVC?.setValue(NSAttributedString(string: text), forKey: "text")
-    windowController.window?.center()
     windowController.showWindow(nil)
+
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
+      windowController.window?.center()
+    }
   }
 
   // MARK: - Private
