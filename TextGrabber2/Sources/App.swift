@@ -14,6 +14,7 @@ final class App: NSObject, NSApplicationDelegate {
   private var copyObserver: Task<Void, Never>?
   private var currentResult: Recognizer.ResultData?
   private var silentDetectCount = 0
+  private var contentProcessedTime: TimeInterval = 0
 
   private var previewingFileURL: URL {
     .previewingDirectory.appendingPathComponent("TextGrabber2.png")
@@ -467,7 +468,12 @@ private extension App {
       let interval: Duration = .seconds(ContentFilters.hasRules ? 0.5 : 1.0)
 
       let handleChanges = { [weak self] in
-        ContentFilters.processRules(for: pasteboard)
+        // Prevent infinite loops caused by pasteboard modifications
+        if let self, Date.timeIntervalSinceReferenceDate - self.contentProcessedTime > 2 {
+          ContentFilters.processRules(for: pasteboard)
+          self.contentProcessedTime = Date.timeIntervalSinceReferenceDate
+        }
+
         self?.startDetection()
       }
 
