@@ -383,7 +383,9 @@ extension App: NSMenuDelegate {
 
     // Rely on this instead of mutating items in menuWillOpen
     isMenuVisible = true
-    startDetection(userInitiated: true)
+    Task {
+      await startDetection(userInitiated: true)
+    }
   }
 
   func menuDidClose(_ menu: NSMenu) {
@@ -434,11 +436,15 @@ private extension App {
     mainMenu.removeItems { $0 is ResultItem }
   }
 
-  func startDetection(userInitiated: Bool = false) {
+  func startDetection(userInitiated: Bool = false) async {
     let newCount = NSPasteboard.general.changeCount
-    if userInitiated && silentDetectCount == newCount {
-      Logger.log(.debug, "Presenting previously detected results")
-      return presentMainMenu()
+    if silentDetectCount == newCount {
+      if userInitiated {
+        Logger.log(.debug, "Presenting previously detected results")
+        presentMainMenu()
+      }
+
+      return
     }
 
     currentResult = nil
@@ -455,20 +461,18 @@ private extension App {
     let image = NSPasteboard.general.image?.cgImage
     let text = NSPasteboard.general.string
 
-    Task {
-      if let result = await Recognizer.detect(image: image, level: .accurate) {
-        updateResult(result, textCopied: text, in: mainMenu)
-      } else {
-        Logger.log(.error, "Failed to detect text from image")
-      }
+    if let result = await Recognizer.detect(image: image, level: .accurate) {
+      updateResult(result, textCopied: text, in: mainMenu)
+    } else {
+      Logger.log(.error, "Failed to detect text from image")
+    }
 
-      if userInitiated {
-        Logger.log(.debug, "Presenting newly detected results")
-        presentMainMenu()
-      } else {
-        Logger.log(.debug, "Silently detected and cached")
-        silentDetectCount = newCount
-      }
+    if userInitiated {
+      Logger.log(.debug, "Presenting newly detected results")
+      presentMainMenu()
+    } else {
+      Logger.log(.debug, "Silently detected and cached")
+      silentDetectCount = newCount
     }
   }
 
@@ -487,7 +491,9 @@ private extension App {
           self.contentProcessedTime = Date.timeIntervalSinceReferenceDate
         }
 
-        self?.startDetection()
+        Task {
+          await self?.startDetection()
+        }
       }
 
       copyObserver = Task { @MainActor in
