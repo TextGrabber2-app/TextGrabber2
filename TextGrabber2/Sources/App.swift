@@ -53,6 +53,8 @@ final class App: NSObject, NSApplicationDelegate {
     menu.addItem(hintItem)
     menu.addItem(howToItem)
     menu.addItem(.separator())
+    menu.addItem(copyAllQuickItem)
+    menu.addItem(.separator())
     menu.addItem(servicesItem)
     menu.addItem(clipboardItem)
     menu.addItem(.separator())
@@ -104,6 +106,15 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
+  private lazy var copyAllQuickItem: NSMenuItem = {
+    let item = NSMenuItem(title: Localized.menuTitleCopyAll)
+    item.addAction {
+      NSPasteboard.general.string = self.currentResult?.lineBreaksJoined
+    }
+
+    return item
+  }()
+
   private lazy var servicesItem: NSMenuItem = {
     let menu = NSMenu()
     menu.addItem(.separator())
@@ -129,7 +140,7 @@ final class App: NSObject, NSApplicationDelegate {
     menu.addItem(quickLookItem)
     menu.addItem(saveImageItem)
     menu.addItem(.separator())
-    menu.addItem(copyAllItem)
+    menu.addItem(copyAllMenuItem)
     menu.addItem(clearContentsItem)
 
     if NSPasteboard.general.hasFullAccess {
@@ -170,7 +181,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  private lazy var copyAllItem: NSMenuItem = {
+  private lazy var copyAllMenuItem: NSMenuItem = {
     let menu = NSMenu()
     menu.addItem(withTitle: Localized.menuTitleJoinWithLineBreaks) {
       NSPasteboard.general.string = self.currentResult?.lineBreaksJoined
@@ -436,8 +447,10 @@ private extension App {
     translateItem.isEnabled = false
     quickLookItem.isEnabled = false
     saveImageItem.isEnabled = false
-    copyAllItem.isEnabled = false
     clearContentsItem.isEnabled = !NSPasteboard.general.isEmpty
+
+    copyAllQuickItem.isHidden = true
+    copyAllMenuItem.isEnabled = false
 
     let image = NSPasteboard.general.image?.cgImage
     let text = NSPasteboard.general.string
@@ -503,7 +516,9 @@ private extension App {
     translateItem.isEnabled = resultData.candidates.hasValue
     quickLookItem.isEnabled = imageResult.candidates.hasValue
     saveImageItem.isEnabled = imageResult.candidates.hasValue
-    copyAllItem.isEnabled = resultData.candidates.hasValue
+
+    copyAllQuickItem.isHidden = resultData.candidates.count < 2
+    copyAllMenuItem.isEnabled = resultData.candidates.hasValue
 
     if NSPasteboard.general.hasLimitedAccess {
       hintItem.title = Localized.menuTitleHintLimitedAccess
