@@ -14,7 +14,7 @@ struct SetClipboardDataIntent: AppIntent {
 
   static var parameterSummary: some ParameterSummary {
     Summary("Set Clipboard Data for \(\.$type) with \(\.$file)") {
-      \.$keepOthers
+      \.$clearOthers
     }
   }
 
@@ -24,15 +24,15 @@ struct SetClipboardDataIntent: AppIntent {
   @Parameter(title: "File")
   var file: IntentFile
 
-  @Parameter(title: "Keep Other Types", description: "When enabled, this action does not affect other content types.", default: true)
-  var keepOthers: Bool
+  @Parameter(title: "Clear Other Items", description: "When enabled, this action clears all other items.", default: false)
+  var clearOthers: Bool
 
   @MainActor
   func perform() async throws -> some IntentResult {
     let pasteboard = NSPasteboard.general
     let pboardType = NSPasteboard.PasteboardType(type)
 
-    var items: [NSPasteboard.PasteboardType: Data] = keepOthers ? pasteboard.getDataItems() : [:]
+    var items: [NSPasteboard.PasteboardType: Data] = clearOthers ? [:] : pasteboard.getDataItems()
     items[pboardType] = file.data
 
     guard pasteboard.setDataItems(items) else {
