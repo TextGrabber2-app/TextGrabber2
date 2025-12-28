@@ -116,6 +116,22 @@
         }
       }
     },
+    "Clear Other Items" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除其他项目"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "清除其他項目"
+          }
+        }
+      }
+    },
     "Click to Copy" : {
       "comment" : "[Menu] Hint for copying text",
       "localizations" : {
@@ -446,22 +462,6 @@
         }
       }
     },
-    "Keep Other Types" : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "保留其他类型"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "保留其他型別"
-          }
-        }
-      }
-    },
     "Launch at Login" : {
       "comment" : "[Menu] Automatically start the app at login",
       "localizations" : {
@@ -761,18 +761,18 @@
         }
       }
     },
-    "When enabled, this action does not affect other content types." : {
+    "When enabled, this action clears all other items." : {
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "开启时，此操作不会影响其他内容类型。"
+            "value" : "开启时，此操作将删除所有其他项目。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "開啟時，此操作不會影響其他內容型別。"
+            "value" : "開啟時，此操作將刪除所有其他項目。"
           }
         }
       }
