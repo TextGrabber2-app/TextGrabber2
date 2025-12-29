@@ -10,6 +10,8 @@
 		870826EE2EDBFF16004D7899 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870826ED2EDBFF14004D7899 /* Translator.swift */; };
 		871AFFF62E633B5C007BE57D /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871AFFF52E633B59007BE57D /* Array+Extension.swift */; };
 		871F03C02EFFC730009AD0E2 /* GetClipboardTypesIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871F03BF2EFFC727009AD0E2 /* GetClipboardTypesIntent.swift */; };
+		872035182F01513500E35EDD /* HotKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872035162F01513200E35EDD /* HotKeys.swift */; };
+		872035A72F0169F300E35EDD /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872035A52F0169F100E35EDD /* KeyCodes.swift */; };
 		872036A32F020F3700E35EDD /* NSApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872036A12F020F3100E35EDD /* NSApplication+Extension.swift */; };
 		8730CD062EE459B40058CDCF /* CopyObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8730CD052EE459B40058CDCF /* CopyObserver.swift */; };
 		8737A24A2BBEC27700042E83 /* Services in Resources */ = {isa = PBXBuildFile; fileRef = 8737A2492BBEC27700042E83 /* Services */; };
@@ -50,6 +52,8 @@
 		871AFFF52E633B59007BE57D /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		871F03BF2EFFC727009AD0E2 /* GetClipboardTypesIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetClipboardTypesIntent.swift; sourceTree = "<group>"; };
 		8720344B2F00230B00E35EDD /* BuildTools */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BuildTools; sourceTree = "<group>"; };
+		872035162F01513200E35EDD /* HotKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeys.swift; sourceTree = "<group>"; };
+		872035A52F0169F100E35EDD /* KeyCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodes.swift; sourceTree = "<group>"; };
 		872036A12F020F3100E35EDD /* NSApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSApplication+Extension.swift"; sourceTree = "<group>"; };
 		8730CD052EE459B40058CDCF /* CopyObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyObserver.swift; sourceTree = "<group>"; };
 		8737A2492BBEC27700042E83 /* Services */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Services; sourceTree = "<group>"; };
@@ -190,7 +194,9 @@
 				8779BE1C2EFB761D002286BB /* ContentFilters.swift */,
 				8730CD052EE459B40058CDCF /* CopyObserver.swift */,
 				87E192F42BABC8FD00A87A4E /* Detector.swift */,
+				872035162F01513200E35EDD /* HotKeys.swift */,
 				8775E08A2EB3138E0036B9BA /* Intents.swift */,
+				872035A52F0169F100E35EDD /* KeyCodes.swift */,
 				87E192F62BABD18900A87A4E /* Logger.swift */,
 				87E192F02BABB6EA00A87A4E /* Recognizer.swift */,
 				87E192E82BAAFF0200A87A4E /* Resources.swift */,
@@ -277,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				872035A72F0169F300E35EDD /* KeyCodes.swift in Sources */,
 				8737A24C2BBECB8800042E83 /* Services.swift in Sources */,
 				871F03C02EFFC730009AD0E2 /* GetClipboardTypesIntent.swift in Sources */,
 				8775E08B2EB3138F0036B9BA /* Intents.swift in Sources */,
@@ -293,6 +300,7 @@
 				87E192E52BAAFB1800A87A4E /* NSWorkspace+Extension.swift in Sources */,
 				87BB08C22DD417EC0016D061 /* String+Extension.swift in Sources */,
 				870826EE2EDBFF16004D7899 /* Translator.swift in Sources */,
+				872035182F01513500E35EDD /* HotKeys.swift in Sources */,
 				87E192D82BAAE17200A87A4E /* main.swift in Sources */,
 				87D1F52F2EFF6744008F4AD4 /* GetClipboardDataIntent.swift in Sources */,
 				87D1F46B2EFF6156008F4AD4 /* PreviewImageIntent.swift in Sources */,
