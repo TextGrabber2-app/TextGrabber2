@@ -397,7 +397,7 @@ extension App: @preconcurrency QLPreviewPanelDataSource {
       return Logger.log(.info, "No image for preview")
     }
 
-    NSApp.activate()
+    NSApp.bringToFront()
     try? pngData.write(to: self.previewingFileURL)
 
     let previewPanel = QLPreviewPanel.shared()

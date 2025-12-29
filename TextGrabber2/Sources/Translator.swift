@@ -10,7 +10,7 @@ import AppKit
 @MainActor
 enum Translator {
   static func showWindow(text: String) {
-    NSApp.activate()
+    NSApp.bringToFront()
     contentVC?.setValue(NSAttributedString(string: text), forKey: "text")
 
     windowController.window?.alphaValue = 0

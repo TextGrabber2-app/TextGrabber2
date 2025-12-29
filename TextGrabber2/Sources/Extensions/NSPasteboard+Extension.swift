@@ -74,7 +74,7 @@ extension NSPasteboard {
 
   @MainActor
   func saveImageAsFile() {
-    NSApp.activate()
+    NSApp.bringToFront()
 
     let savePanel = NSSavePanel()
     savePanel.allowedContentTypes = [.png]
