@@ -286,19 +286,18 @@ extension App {
     // Register all global key bindings
     for item in KeyBindings.items {
       HotKeys.register(keyEquivalent: item.key, modifiers: item.modifiers) { [weak self] in
-        Task {
-          await self?.startDetection()
+        let actionName = item.actionName
+        let opensApp = actionName == "TextGrabber2" // Special handling
 
-          let actionName = item.actionName
-          let opensApp = actionName == "TextGrabber2" // Special handling
-
-          if opensApp {
-            self?.presentMainMenu()
-          } else if let action = self?.mainMenu.firstActionNamed(actionName) {
+        if opensApp {
+          self?.statusItemClicked()
+        } else if let action = self?.mainMenu.firstActionNamed(actionName) {
+          Task {
+            await self?.startDetection()
             action.performAction()
-          } else {
-            Logger.log(.error, "Invalid configuration: \(item)")
           }
+        } else {
+          Logger.log(.error, "Invalid configuration: \(item)")
         }
       }
     }
