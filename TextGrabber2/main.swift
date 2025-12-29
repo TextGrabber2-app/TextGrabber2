@@ -8,6 +8,9 @@
 import AppKit
 
 NSMenu.swizzleIsUpdatedExcludingContentTypesOnce
+Services.initialize()
+ContentFilters.initialize()
+KeyBindings.initialize()
 
 let app = NSApplication.shared
 let delegate = App()

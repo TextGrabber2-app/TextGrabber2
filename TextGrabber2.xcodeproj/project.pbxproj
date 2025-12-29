@@ -13,6 +13,7 @@
 		872035182F01513500E35EDD /* HotKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872035162F01513200E35EDD /* HotKeys.swift */; };
 		872035A72F0169F300E35EDD /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872035A52F0169F100E35EDD /* KeyCodes.swift */; };
 		872036A32F020F3700E35EDD /* NSApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872036A12F020F3100E35EDD /* NSApplication+Extension.swift */; };
+		872038042F02440500E35EDD /* KeyBindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872038022F02440200E35EDD /* KeyBindings.swift */; };
 		8730CD062EE459B40058CDCF /* CopyObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8730CD052EE459B40058CDCF /* CopyObserver.swift */; };
 		8737A24A2BBEC27700042E83 /* Services in Resources */ = {isa = PBXBuildFile; fileRef = 8737A2492BBEC27700042E83 /* Services */; };
 		8737A24C2BBECB8800042E83 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8737A24B2BBECB8800042E83 /* Services.swift */; };
@@ -55,6 +56,7 @@
 		872035162F01513200E35EDD /* HotKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeys.swift; sourceTree = "<group>"; };
 		872035A52F0169F100E35EDD /* KeyCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodes.swift; sourceTree = "<group>"; };
 		872036A12F020F3100E35EDD /* NSApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSApplication+Extension.swift"; sourceTree = "<group>"; };
+		872038022F02440200E35EDD /* KeyBindings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyBindings.swift; sourceTree = "<group>"; };
 		8730CD052EE459B40058CDCF /* CopyObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyObserver.swift; sourceTree = "<group>"; };
 		8737A2492BBEC27700042E83 /* Services */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Services; sourceTree = "<group>"; };
 		8737A24B2BBECB8800042E83 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				87E192F42BABC8FD00A87A4E /* Detector.swift */,
 				872035162F01513200E35EDD /* HotKeys.swift */,
 				8775E08A2EB3138E0036B9BA /* Intents.swift */,
+				872038022F02440200E35EDD /* KeyBindings.swift */,
 				872035A52F0169F100E35EDD /* KeyCodes.swift */,
 				87E192F62BABD18900A87A4E /* Logger.swift */,
 				87E192F02BABB6EA00A87A4E /* Recognizer.swift */,
@@ -304,6 +307,7 @@
 				87E192D82BAAE17200A87A4E /* main.swift in Sources */,
 				87D1F52F2EFF6744008F4AD4 /* GetClipboardDataIntent.swift in Sources */,
 				87D1F46B2EFF6156008F4AD4 /* PreviewImageIntent.swift in Sources */,
+				872038042F02440500E35EDD /* KeyBindings.swift in Sources */,
 				87E192DA2BAAE25500A87A4E /* NSImage+Extension.swift in Sources */,
 				87E192F52BABC8FD00A87A4E /* Detector.swift in Sources */,
 				874C0E692DF80959006AB61C /* Updater.swift in Sources */,
