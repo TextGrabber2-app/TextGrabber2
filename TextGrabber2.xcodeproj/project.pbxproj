@@ -10,6 +10,7 @@
 		870826EE2EDBFF16004D7899 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870826ED2EDBFF14004D7899 /* Translator.swift */; };
 		871AFFF62E633B5C007BE57D /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871AFFF52E633B59007BE57D /* Array+Extension.swift */; };
 		871F03C02EFFC730009AD0E2 /* GetClipboardTypesIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871F03BF2EFFC727009AD0E2 /* GetClipboardTypesIntent.swift */; };
+		872036A32F020F3700E35EDD /* NSApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872036A12F020F3100E35EDD /* NSApplication+Extension.swift */; };
 		8730CD062EE459B40058CDCF /* CopyObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8730CD052EE459B40058CDCF /* CopyObserver.swift */; };
 		8737A24A2BBEC27700042E83 /* Services in Resources */ = {isa = PBXBuildFile; fileRef = 8737A2492BBEC27700042E83 /* Services */; };
 		8737A24C2BBECB8800042E83 /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8737A24B2BBECB8800042E83 /* Services.swift */; };
@@ -49,6 +50,7 @@
 		871AFFF52E633B59007BE57D /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		871F03BF2EFFC727009AD0E2 /* GetClipboardTypesIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetClipboardTypesIntent.swift; sourceTree = "<group>"; };
 		8720344B2F00230B00E35EDD /* BuildTools */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = BuildTools; sourceTree = "<group>"; };
+		872036A12F020F3100E35EDD /* NSApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSApplication+Extension.swift"; sourceTree = "<group>"; };
 		8730CD052EE459B40058CDCF /* CopyObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyObserver.swift; sourceTree = "<group>"; };
 		8737A2492BBEC27700042E83 /* Services */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Services; sourceTree = "<group>"; };
 		8737A24B2BBECB8800042E83 /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				871AFFF52E633B59007BE57D /* Array+Extension.swift */,
 				87E192D42BAAE12600A87A4E /* Bundle+Extension.swift */,
 				875364A32BE1D6FC00611579 /* NSAlert+Extension.swift */,
+				872036A12F020F3100E35EDD /* NSApplication+Extension.swift */,
 				87E192DC2BAAE38700A87A4E /* NSControl+Extension.swift */,
 				87E192D92BAAE25500A87A4E /* NSImage+Extension.swift */,
 				87E192DD2BAAE38700A87A4E /* NSMenu+Extension.swift */,
@@ -284,6 +287,7 @@
 				87E192E72BAAFBC900A87A4E /* SMAppService+Extension.swift in Sources */,
 				87E192F12BABB6EA00A87A4E /* Recognizer.swift in Sources */,
 				87E192D52BAAE12600A87A4E /* Bundle+Extension.swift in Sources */,
+				872036A32F020F3700E35EDD /* NSApplication+Extension.swift in Sources */,
 				87E192FB2BAC044E00A87A4E /* NSObject+Extension.swift in Sources */,
 				87E192DE2BAAE38700A87A4E /* NSMenuItem+Extension.swift in Sources */,
 				87E192E52BAAFB1800A87A4E /* NSWorkspace+Extension.swift in Sources */,
