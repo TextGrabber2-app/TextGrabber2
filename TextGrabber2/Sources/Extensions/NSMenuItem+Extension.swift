@@ -19,4 +19,13 @@ extension NSMenuItem {
   func toggle() {
     state = state == .on ? .off : .on
   }
+
+  @MainActor
+  func performAction() {
+    guard let action else {
+      return
+    }
+
+    NSApp.sendAction(action, to: target, from: self)
+  }
 }

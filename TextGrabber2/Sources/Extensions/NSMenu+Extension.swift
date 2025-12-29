@@ -35,6 +35,26 @@ extension NSMenu {
       removeItem($0)
     }
   }
+
+  func firstActionNamed(_ title: String) -> NSMenuItem? {
+    firstDescendant {
+      $0.title == title && $0.action != nil
+    }
+  }
+
+  func firstDescendant(matches predicate: (NSMenuItem) -> Bool) -> NSMenuItem? {
+    for item in items {
+      if predicate(item) {
+        return item
+      }
+
+      if let descendant = item.submenu?.firstDescendant(matches: predicate) {
+        return descendant
+      }
+    }
+
+    return nil
+  }
 }
 
 // MARK: - Private
