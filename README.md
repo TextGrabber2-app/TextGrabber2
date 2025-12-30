@@ -12,20 +12,24 @@ TextGrabber2 is a free and **open-source** macOS menu bar app that efficiently [
 
 <img src="./Screenshots/01.png" width="360" alt="Screenshot 01"> <img src="./Screenshots/02.png" width="360" alt="Screenshot 02">
 
+> [!TIP]
+> Discover our other free and open-source apps at [libremac.github.io](https://libremac.github.io/).
+
 For example, press `Control-Shift-Command-4` to capture a portion of the screen and then open TextGrabber2 from the menu bar. It also functions effectively for any form of image copying.
 
 You can also use TextGrabber2 to automatically prune your pasteboard data. See [Content Filters](https://github.com/TextGrabber2-app/TextGrabber2/wiki#content-filters) for more details.
 
 In macOS Tahoe and later, you can directly extract text from copied images using Spotlight, through the action called `Extract Text from Copied Image`.
 
+See the [wiki](https://github.com/TextGrabber2-app/TextGrabber2/wiki) for more details and usage examples.
+
+> [!NOTE]
+>
 > Note that keyboard shortcuts can be remapped (and it's recommended since pressing 4 keys is a bit clunky). Please check out Apple's [documentation](https://support.apple.com/guide/mac-help/mchlp2271/mac) for details.
 >
 > Learn more [here](https://github.com/TextGrabber2-app/TextGrabber2/wiki#capture-screen-on-mac).
 >
 > For information on pasteboard access issues in macOS 15.4 and later, please refer to our [wiki](https://github.com/TextGrabber2-app/TextGrabber2/wiki#limited-access).
-
-> [!TIP]
-> Discover our other free and open-source apps at [libremac.github.io](https://libremac.github.io/).
 
 ## Installation
 
