@@ -312,26 +312,6 @@ extension App {
       updateObserver(isEnabled: true)
     }
 
-    // Handle quit action manually since we don't have a window anymore
-    NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
-      let keyCode = event.keyCode
-      let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
-
-      // Cmd-Q
-      if keyCode == 0x0C && flags == .command {
-        NSApp.terminate(nil)
-        return nil
-      }
-
-      // Cmd-W
-      if keyCode == 0x0D && flags == .command {
-        NSApp.keyWindow?.close()
-        return nil
-      }
-
-      return event
-    }
-
     // Observe clicks on the status item
     NSEvent.addLocalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
       guard event.window == self?.statusItem.button?.window else {
