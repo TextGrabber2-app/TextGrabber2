@@ -258,7 +258,7 @@ final class App: NSObject, NSApplicationDelegate {
   }()
 
   private let appVersionItem: NSMenuItem = {
-    let item = NSMenuItem(title: "\(Localized.menuTitleVersion) \(Bundle.main.shortVersionString)")
+    let item = NSMenuItem(title: Bundle.main.humanReadableVersion)
     item.toolTip = Links.releases
     item.addAction(Keys.appVersionAction) {
       NSWorkspace.shared.safelyOpenURL(string: Links.releases)
@@ -270,8 +270,10 @@ final class App: NSObject, NSApplicationDelegate {
   func showAppUpdate(name: String, url: String) {
     appVersionItem.title = String(format: Localized.menuTitleNewVersionOut, name)
     appVersionItem.toolTip = url
-    appVersionItem.addAction(Keys.appVersionAction) {
+
+    appVersionItem.addAction(Keys.appVersionAction) { [weak self] in
       NSWorkspace.shared.safelyOpenURL(string: url)
+      self?.appVersionItem.title = Bundle.main.humanReadableVersion
     }
   }
 }
