@@ -282,6 +282,9 @@ final class App: NSObject, NSApplicationDelegate {
 
 extension App {
   func applicationDidFinishLaunching(_ notification: Notification) {
+    // LSUIElement = YES does not work reliably; keyboard events are sometimes not handled.
+    NSApp.setActivationPolicy(.accessory)
+
     updateServices()
     statusItem.isVisible = true
 
