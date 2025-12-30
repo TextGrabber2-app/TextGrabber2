@@ -20,4 +20,8 @@ extension Bundle {
 
     return version
   }
+
+  var humanReadableVersion: String {
+    "\(Localized.menuTitleVersion) \(shortVersionString)"
+  }
 }
