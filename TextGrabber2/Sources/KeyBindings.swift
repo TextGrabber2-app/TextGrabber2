@@ -41,6 +41,14 @@ enum KeyBindings {
   }()
 }
 
+extension NSMenuItem {
+  func setKeyBinding(with item: KeyBindings.Item) {
+    keyEquivalent = item.key.lowercased()
+    keyEquivalentModifierMask = item.modifierFlags
+    allowsKeyEquivalentWhenHidden = true
+  }
+}
+
 // MARK: - Private
 
 private extension KeyBindings {
@@ -54,4 +62,28 @@ private extension KeyBindings {
       directoryHint: .notDirectory
     )
   }()
+}
+
+private extension KeyBindings.Item {
+  var modifierFlags: NSEvent.ModifierFlags {
+    var flags: NSEvent.ModifierFlags = []
+
+    if modifiers.contains("Shift") {
+      flags.insert(.shift)
+    }
+
+    if modifiers.contains("Control") {
+      flags.insert(.control)
+    }
+
+    if modifiers.contains("Option") {
+      flags.insert(.option)
+    }
+
+    if modifiers.contains("Command") {
+      flags.insert(.command)
+    }
+
+    return flags
+  }
 }

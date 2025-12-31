@@ -365,6 +365,18 @@ extension App: NSMenuDelegate {
     }
   }
 
+  func menuNeedsUpdate(_ menu: NSMenu) {
+    guard KeyBindings.items.hasValue else {
+      return
+    }
+
+    menu.enumerateDescendants { item in
+      if let keyBinding = (KeyBindings.items.first { $0.actionName == item.title }) {
+        item.setKeyBinding(with: keyBinding)
+      }
+    }
+  }
+
   func menuDidClose(_ menu: NSMenu) {
     isMenuVisible = false
   }
