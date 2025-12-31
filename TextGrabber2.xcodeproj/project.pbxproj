@@ -10,6 +10,7 @@
 		53CE52FD1FB4301C39A0AA76 /* App+KeyBindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC8B658041C1AE6E6CBC8D4 /* App+KeyBindings.swift */; };
 		6CC5DF32F1F9EBDC473AD859 /* App+Detection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51527384DF93E0DACD5565E4 /* App+Detection.swift */; };
 		7835AA5BBBB85AFABED8AB92 /* App+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D845DEAECB2648154BF77C8 /* App+Menu.swift */; };
+		82792D20F7E9AACBA7117D22 /* App+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E330434D1ABC8428CCF608 /* App+Event.swift */; };
 		870826EE2EDBFF16004D7899 /* Translator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870826ED2EDBFF14004D7899 /* Translator.swift */; };
 		871AFFF62E633B5C007BE57D /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871AFFF52E633B59007BE57D /* Array+Extension.swift */; };
 		871F03C02EFFC730009AD0E2 /* GetClipboardTypesIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871F03BF2EFFC727009AD0E2 /* GetClipboardTypesIntent.swift */; };
@@ -58,6 +59,7 @@
 		2D845DEAECB2648154BF77C8 /* App+Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Menu.swift"; sourceTree = "<group>"; };
 		51527384DF93E0DACD5565E4 /* App+Detection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Detection.swift"; sourceTree = "<group>"; };
 		7FC8B658041C1AE6E6CBC8D4 /* App+KeyBindings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+KeyBindings.swift"; sourceTree = "<group>"; };
+		95E330434D1ABC8428CCF608 /* App+Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Event.swift"; sourceTree = "<group>"; };
 		870826ED2EDBFF14004D7899 /* Translator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator.swift; sourceTree = "<group>"; };
 		871AFFF52E633B59007BE57D /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		871F03BF2EFFC727009AD0E2 /* GetClipboardTypesIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetClipboardTypesIntent.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			children = (
 				87E192C22BAADE1200A87A4E /* App.swift */,
 				51527384DF93E0DACD5565E4 /* App+Detection.swift */,
+				95E330434D1ABC8428CCF608 /* App+Event.swift */,
 				7FC8B658041C1AE6E6CBC8D4 /* App+KeyBindings.swift */,
 				2D845DEAECB2648154BF77C8 /* App+Menu.swift */,
 				F25D5335B04BC5BF4A511EF7 /* App+Observer.swift */,
@@ -344,6 +347,7 @@
 				8779BE1D2EFB7627002286BB /* ContentFilters.swift in Sources */,
 				87E192C32BAADE1200A87A4E /* App.swift in Sources */,
 				6CC5DF32F1F9EBDC473AD859 /* App+Detection.swift in Sources */,
+				82792D20F7E9AACBA7117D22 /* App+Event.swift in Sources */,
 				53CE52FD1FB4301C39A0AA76 /* App+KeyBindings.swift in Sources */,
 				7835AA5BBBB85AFABED8AB92 /* App+Menu.swift in Sources */,
 				8E8D7D00D9549F24156523CE /* App+Observer.swift in Sources */,
