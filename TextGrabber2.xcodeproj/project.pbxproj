@@ -59,7 +59,6 @@
 		2D845DEAECB2648154BF77C8 /* App+Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Menu.swift"; sourceTree = "<group>"; };
 		51527384DF93E0DACD5565E4 /* App+Detection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Detection.swift"; sourceTree = "<group>"; };
 		7FC8B658041C1AE6E6CBC8D4 /* App+KeyBindings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+KeyBindings.swift"; sourceTree = "<group>"; };
-		95E330434D1ABC8428CCF608 /* App+Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Event.swift"; sourceTree = "<group>"; };
 		870826ED2EDBFF14004D7899 /* Translator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translator.swift; sourceTree = "<group>"; };
 		871AFFF52E633B59007BE57D /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		871F03BF2EFFC727009AD0E2 /* GetClipboardTypesIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetClipboardTypesIntent.swift; sourceTree = "<group>"; };
@@ -103,6 +102,7 @@
 		87E192F42BABC8FD00A87A4E /* Detector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Detector.swift; sourceTree = "<group>"; };
 		87E192F62BABD18900A87A4E /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		87E192FA2BAC044E00A87A4E /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
+		95E330434D1ABC8428CCF608 /* App+Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Event.swift"; sourceTree = "<group>"; };
 		AE696A4479EDD7479FABFE01 /* App+Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Services.swift"; sourceTree = "<group>"; };
 		BB84B5FD1ADFBE93457BF3E9 /* App+QuickLook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+QuickLook.swift"; sourceTree = "<group>"; };
 		F25D5335B04BC5BF4A511EF7 /* App+Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Observer.swift"; sourceTree = "<group>"; };

@@ -276,7 +276,9 @@ final class App: NSObject, NSApplicationDelegate {
 // MARK: - Helper Types
 
 extension App {
-  class ResultItem: NSMenuItem { /* Just a sub-class to be identifiable */ }
+  class ResultItem: NSMenuItem {
+    /* Just a sub-class to be identifiable */
+  }
 
   enum Keys {
     static let userClickCount = "general.user-click-count"

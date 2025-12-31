@@ -10,7 +10,9 @@ import AppKit
 // MARK: - System Services
 
 extension App {
-  class ServiceItem: NSMenuItem { /* Just a sub-class to be identifiable */ }
+  class ServiceItem: NSMenuItem {
+    /* Just a sub-class to be identifiable */
+  }
 
   func updateServices() {
     servicesItem.submenu?.removeItems {
