@@ -21,9 +21,9 @@ struct GetClipboardDataIntent: AppIntent {
   var type: String
 
   @MainActor
-  func perform() async throws -> some ReturnsValue<IntentFile> {
+  func perform() async throws -> some ReturnsValue<IntentFile?> {
     guard let fileData = NSPasteboard.general.data(forType: NSPasteboard.PasteboardType(type)) else {
-      throw IntentError.getDataFailed(type: type)
+      return .result(value: nil)
     }
 
     let fileExtension = UTType(type)?.preferredFilenameExtension ?? {
@@ -38,17 +38,5 @@ struct GetClipboardDataIntent: AppIntent {
     let resultFile = IntentFile(data: fileData, filename: resultName)
 
     return .result(value: resultFile)
-  }
-}
-
-// MARK: - Private
-
-private enum IntentError: Error, CustomLocalizedStringResourceConvertible {
-  case getDataFailed(type: String)
-
-  var localizedStringResource: LocalizedStringResource {
-    switch self {
-    case .getDataFailed(let type): return "Cannot get data for type “\(type)”."
-    }
   }
 }

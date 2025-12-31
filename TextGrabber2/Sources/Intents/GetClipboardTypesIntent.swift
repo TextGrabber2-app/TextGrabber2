@@ -13,22 +13,7 @@ struct GetClipboardTypesIntent: AppIntent {
   static let description = IntentDescription("Gets available content types from the clipboard.")
 
   func perform() async throws -> some ReturnsValue<[String]> {
-    guard let types = NSPasteboard.general.types else {
-      throw IntentError.getTypesFailed
-    }
-
+    let types = NSPasteboard.general.types ?? []
     return .result(value: types.map(\.rawValue))
-  }
-}
-
-// MARK: - Private
-
-private enum IntentError: Error, CustomLocalizedStringResourceConvertible {
-  case getTypesFailed
-
-  var localizedStringResource: LocalizedStringResource {
-    switch self {
-    case .getTypesFailed: return "Cannot get any content types from the clipboard."
-    }
   }
 }

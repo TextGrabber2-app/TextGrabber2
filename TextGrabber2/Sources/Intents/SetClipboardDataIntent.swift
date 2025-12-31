@@ -28,29 +28,13 @@ struct SetClipboardDataIntent: AppIntent {
   var clearOthers: Bool
 
   @MainActor
-  func perform() async throws -> some IntentResult {
+  func perform() async throws -> some ReturnsValue<Bool> {
     let pasteboard = NSPasteboard.general
     let pboardType = NSPasteboard.PasteboardType(type)
 
     var items: [NSPasteboard.PasteboardType: Data] = clearOthers ? [:] : pasteboard.getDataItems()
     items[pboardType] = file.data
 
-    guard pasteboard.setDataItems(items) else {
-      throw IntentError.setDataFailed(type: type)
-    }
-
-    return .result()
-  }
-}
-
-// MARK: - Private
-
-private enum IntentError: Error, CustomLocalizedStringResourceConvertible {
-  case setDataFailed(type: String)
-
-  var localizedStringResource: LocalizedStringResource {
-    switch self {
-    case .setDataFailed(let type): return "Cannot set data for type “\(type)”."
-    }
+    return .result(value: pasteboard.setDataItems(items))
   }
 }
