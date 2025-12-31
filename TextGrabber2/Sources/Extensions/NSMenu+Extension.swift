@@ -55,6 +55,13 @@ extension NSMenu {
 
     return nil
   }
+
+  func enumerateDescendants(handler: (NSMenuItem) -> Void) {
+    items.forEach {
+      handler($0)
+      $0.submenu?.enumerateDescendants(handler: handler)
+    }
+  }
 }
 
 // MARK: - Private
