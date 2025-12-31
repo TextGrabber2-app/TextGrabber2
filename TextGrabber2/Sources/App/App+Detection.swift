@@ -21,7 +21,7 @@ extension App {
       return
     }
 
-    setCurrentResult(nil)
+    currentResult = nil
     clearMenuItems()
 
     translateItem.isEnabled = false
@@ -46,7 +46,7 @@ extension App {
       presentMainMenu()
     } else {
       Logger.log(.debug, "Silently detected and cached")
-      setSilentDetectCount(newCount)
+      silentDetectCount = newCount
     }
   }
 
@@ -62,7 +62,7 @@ extension App {
       return
     }
 
-    setCurrentResult(resultData)
+    currentResult = resultData
     translateItem.isEnabled = resultData.candidates.hasValue
     quickLookItem.isEnabled = imageResult.candidates.hasValue
     saveImageItem.isEnabled = imageResult.candidates.hasValue

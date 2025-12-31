@@ -10,30 +10,11 @@ import ServiceManagement
 
 @MainActor
 final class App: NSObject, NSApplicationDelegate {
-  // MARK: - Internal State
-  private(set) var copyObserver: Task<Void, Never>?
-  private(set) var currentResult: Recognizer.ResultData?
-  private(set) var silentDetectCount = 0
-  private(set) var contentProcessedTime: TimeInterval = 0
+  var copyObserver: Task<Void, Never>?
+  var currentResult: Recognizer.ResultData?
+  var silentDetectCount = 0
+  var contentProcessedTime: TimeInterval = 0
 
-  // Internal setters for extensions
-  func setCopyObserver(_ observer: Task<Void, Never>?) {
-    copyObserver = observer
-  }
-
-  func setCurrentResult(_ result: Recognizer.ResultData?) {
-    currentResult = result
-  }
-
-  func setSilentDetectCount(_ count: Int) {
-    silentDetectCount = count
-  }
-
-  func setContentProcessedTime(_ time: TimeInterval) {
-    contentProcessedTime = time
-  }
-
-  // MARK: - Menu Items Storage
   lazy var statusItem: NSStatusItem = {
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     item.behavior = .terminationOnRemoval
@@ -258,7 +239,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  private var isMenuVisible = false {
+  var isMenuVisible = false {
     didSet {
       statusItem.button?.highlight(isMenuVisible)
 
@@ -270,7 +251,7 @@ final class App: NSObject, NSApplicationDelegate {
     }
   }
 
-  private var userClickCount: Int {
+  var userClickCount: Int {
     get {
       UserDefaults.standard.integer(forKey: Keys.userClickCount)
     }
@@ -375,41 +356,5 @@ extension App {
 
   func applicationWillTerminate(_ notification: Notification) {
     try? FileManager.default.removeItem(at: .previewingDirectory)
-  }
-}
-
-// MARK: - NSMenuDelegate
-
-extension App: NSMenuDelegate {
-  func statusItemClicked() {
-    // Hide the user guide after the user becomes familiar
-    if userClickCount > 3 && !NSPasteboard.general.hasLimitedAccess {
-      howToItem.isHidden = true
-    }
-
-    // Update the services menu
-    updateServices()
-
-    // Rely on this instead of mutating items in menuWillOpen
-    isMenuVisible = true
-    Task {
-      await startDetection(userInitiated: true)
-    }
-  }
-
-  func menuNeedsUpdate(_ menu: NSMenu) {
-    guard KeyBindings.items.hasValue else {
-      return
-    }
-
-    menu.enumerateDescendants { item in
-      if let keyBinding = (KeyBindings.items.first { $0.actionName == item.title }) {
-        item.setKeyBinding(with: keyBinding)
-      }
-    }
-  }
-
-  func menuDidClose(_ menu: NSMenu) {
-    isMenuVisible = false
   }
 }
