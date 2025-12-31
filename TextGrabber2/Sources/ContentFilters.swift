@@ -17,7 +17,7 @@ enum ContentFilters {
   }
 
   static var hasRules: Bool {
-    !rules.isEmpty
+    rules.hasValue
   }
 
   static func initialize() {
