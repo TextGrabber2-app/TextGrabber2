@@ -11,7 +11,7 @@ import QuickLookUI
 // MARK: - QLPreviewPanelDataSource
 
 extension App: @preconcurrency QLPreviewPanelDataSource {
-  var previewingFileURL: URL {
+  private var previewingFileURL: URL {
     .previewingDirectory.appendingPathComponent("TextGrabber2.png")
   }
 

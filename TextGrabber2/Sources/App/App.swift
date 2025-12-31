@@ -10,12 +10,12 @@ import ServiceManagement
 
 @MainActor
 final class App: NSObject, NSApplicationDelegate {
-  var copyObserver: Task<Void, Never>?
-  var currentResult: Recognizer.ResultData?
-  var silentDetectCount = 0
-  var contentProcessedTime: TimeInterval = 0
+  private var copyObserver: Task<Void, Never>?
+  private var currentResult: Recognizer.ResultData?
+  private var silentDetectCount = 0
+  private var contentProcessedTime: TimeInterval = 0
 
-  lazy var statusItem: NSStatusItem = {
+  private lazy var statusItem: NSStatusItem = {
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     item.behavior = .terminationOnRemoval
     item.autosaveName = Bundle.main.bundleName
@@ -26,7 +26,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  lazy var mainMenu: NSMenu = {
+  private lazy var mainMenu: NSMenu = {
     let menu = NSMenu()
     menu.delegate = self
 
@@ -66,7 +66,7 @@ final class App: NSObject, NSApplicationDelegate {
     return menu
   }()
 
-  lazy var hintItem: NSMenuItem = {
+  private let hintItem: NSMenuItem = {
     let item = NSMenuItem()
     if NSPasteboard.general.hasLimitedAccess {
       item.image = NSImage(systemSymbolName: Icons.handRaisedSlash, accessibilityDescription: nil)
@@ -75,7 +75,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  lazy var howToItem: NSMenuItem = {
+  private lazy var howToItem: NSMenuItem = {
     let item = NSMenuItem(title: NSPasteboard.general.hasLimitedAccess ? Localized.menuTitleHowToSetUp : Localized.menuTitleHowToCapture)
     item.addAction { [weak self] in
       let section = NSPasteboard.general.hasLimitedAccess ? "limited-access" : "capture-screen-on-mac"
@@ -86,7 +86,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  lazy var copyAllQuickItem: NSMenuItem = {
+  private lazy var copyAllQuickItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleCopyAll)
     item.addAction {
       NSPasteboard.general.string = self.currentResult?.lineBreaksJoined
@@ -95,7 +95,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  lazy var servicesItem: NSMenuItem = {
+  private lazy var servicesItem: NSMenuItem = {
     let menu = NSMenu()
     menu.addItem(.separator())
 
@@ -112,7 +112,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  lazy var clipboardItem: NSMenuItem = {
+  private lazy var clipboardItem: NSMenuItem = {
     let menu = NSMenu()
     menu.autoenablesItems = false
 
@@ -134,7 +134,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  lazy var translateItem: NSMenuItem = {
+  private lazy var translateItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleTranslate)
     item.addAction { [weak self] in
       Translator.showWindow(text: self?.currentResult?.spacesJoined ?? "")
@@ -143,7 +143,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  lazy var quickLookItem: NSMenuItem = {
+  private lazy var quickLookItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleQuickLook)
     item.addAction { [weak self] in
       self?.previewCopiedImage()
@@ -152,7 +152,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  lazy var saveImageItem: NSMenuItem = {
+  private let saveImageItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleSaveAsFile)
     item.addAction {
       NSPasteboard.general.saveImageAsFile()
@@ -161,7 +161,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  lazy var copyAllMenuItem: NSMenuItem = {
+  private lazy var copyAllMenuItem: NSMenuItem = {
     let menu = NSMenu()
     menu.addItem(withTitle: Localized.menuTitleJoinWithLineBreaks) {
       NSPasteboard.general.string = self.currentResult?.lineBreaksJoined
@@ -180,7 +180,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  lazy var clearContentsItem: NSMenuItem = {
+  private let clearContentsItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleClearContents)
     item.addAction {
       NSPasteboard.general.clearContents()
@@ -189,7 +189,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  lazy var observeChangesItem: NSMenuItem = {
+  private lazy var observeChangesItem: NSMenuItem = {
     let cacheKey = Keys.observeChanges
     UserDefaults.standard.register(defaults: [cacheKey: true])
 
@@ -206,7 +206,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  lazy var contentFiltersItem: NSMenuItem = {
+  private let contentFiltersItem: NSMenuItem = {
     let menu = NSMenu()
     menu.addItem(withTitle: Localized.menuTitleConfigure) {
       NSWorkspace.shared.open(ContentFilters.fileURL)
@@ -221,7 +221,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  lazy var launchAtLoginItem: NSMenuItem = {
+  private let launchAtLoginItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleLaunchAtLogin)
     item.addAction { [weak item] in
       do {
@@ -237,7 +237,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  lazy var appVersionItem: NSMenuItem = {
+  private let appVersionItem: NSMenuItem = {
     let item = NSMenuItem(title: Bundle.main.humanReadableVersion)
     item.toolTip = Links.releases
     item.addAction(Keys.appVersionAction) {
@@ -247,7 +247,7 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  var isMenuVisible = false {
+  private var isMenuVisible = false {
     didSet {
       statusItem.button?.highlight(isMenuVisible)
 
@@ -259,7 +259,7 @@ final class App: NSObject, NSApplicationDelegate {
     }
   }
 
-  var userClickCount: Int {
+  private var userClickCount: Int {
     get {
       UserDefaults.standard.integer(forKey: Keys.userClickCount)
     }
