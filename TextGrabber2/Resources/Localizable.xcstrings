@@ -34,54 +34,6 @@
         }
       }
     },
-    "Cannot get any content types from the clipboard." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "无法从剪贴板中获取到任何可用的内容类型。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "無法從剪貼簿中獲取到任何可用的內容型別。"
-          }
-        }
-      }
-    },
-    "Cannot get data for type “%@”." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "无法从剪贴板中获得“%@”的数据。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "無法從剪貼簿中獲得“%@”的資料。"
-          }
-        }
-      }
-    },
-    "Cannot set data for type “%@”." : {
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "无法设置剪贴板“%@”的数据。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "無法設定剪貼簿“%@”的資料。"
-          }
-        }
-      }
-    },
     "Capture Screen to Detect" : {
       "comment" : "[Menu] Hint for capturing the screen",
       "localizations" : {
