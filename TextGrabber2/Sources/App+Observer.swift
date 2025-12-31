@@ -12,6 +12,7 @@ import AppKit
 extension App {
   func updateObserver(isEnabled: Bool) {
     copyObserver?.cancel()
+    setCopyObserver(nil)
     contentFiltersItem.isEnabled = isEnabled
 
     guard isEnabled else {
@@ -25,7 +26,7 @@ extension App {
       // Prevent infinite loops caused by pasteboard modifications
       if let self, Date.timeIntervalSinceReferenceDate - self.contentProcessedTime > 2 {
         ContentFilters.processRules(for: pasteboard)
-        self.contentProcessedTime = Date.timeIntervalSinceReferenceDate
+        self.setContentProcessedTime(Date.timeIntervalSinceReferenceDate)
       }
 
       Task {
@@ -33,12 +34,13 @@ extension App {
       }
     }
 
-    copyObserver = Task { @MainActor in
+    let observer = Task { @MainActor in
       for await _ in CopyObserver.default.changes(pasteboard: pasteboard, interval: interval) {
         handleChanges()
       }
     }
 
+    setCopyObserver(observer)
     handleChanges()
   }
 }

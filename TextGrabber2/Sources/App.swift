@@ -10,28 +10,27 @@ import AppKit
 @MainActor
 final class App: NSObject, NSApplicationDelegate {
   // MARK: - Internal State
-  var copyObserver: Task<Void, Never>?
-  var currentResult: Recognizer.ResultData?
-  var silentDetectCount = 0
-  var contentProcessedTime: TimeInterval = 0
+  private(set) var copyObserver: Task<Void, Never>?
+  private(set) var currentResult: Recognizer.ResultData?
+  private(set) var silentDetectCount = 0
+  private(set) var contentProcessedTime: TimeInterval = 0
 
-  // MARK: - Menu Item Storage
-  var _statusItem: NSStatusItem?
-  var _mainMenu: NSMenu?
-  var _hintItem: NSMenuItem?
-  var _howToItem: NSMenuItem?
-  var _copyAllQuickItem: NSMenuItem?
-  var _servicesItem: NSMenuItem?
-  var _clipboardItem: NSMenuItem?
-  var _translateItem: NSMenuItem?
-  var _quickLookItem: NSMenuItem?
-  var _saveImageItem: NSMenuItem?
-  var _copyAllMenuItem: NSMenuItem?
-  var _clearContentsItem: NSMenuItem?
-  var _observeChangesItem: NSMenuItem?
-  var _contentFiltersItem: NSMenuItem?
-  var _launchAtLoginItem: NSMenuItem?
-  var _appVersionItem: NSMenuItem?
+  // Internal setters for extensions
+  func setCopyObserver(_ observer: Task<Void, Never>?) {
+    copyObserver = observer
+  }
+
+  func setCurrentResult(_ result: Recognizer.ResultData?) {
+    currentResult = result
+  }
+
+  func setSilentDetectCount(_ count: Int) {
+    silentDetectCount = count
+  }
+
+  func setContentProcessedTime(_ time: TimeInterval) {
+    contentProcessedTime = time
+  }
 
   private var isMenuVisible = false {
     didSet {
