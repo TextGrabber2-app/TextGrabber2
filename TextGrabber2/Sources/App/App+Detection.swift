@@ -7,7 +7,7 @@
 
 import AppKit
 
-// MARK: - Text Detection
+// MARK: - Text Detecting
 
 extension App {
   func startDetection(userInitiated: Bool = false) async {
@@ -49,7 +49,11 @@ extension App {
       silentDetectCount = newCount
     }
   }
+}
 
+// MARK: - Private
+
+private extension App {
   func updateResult(_ imageResult: Recognizer.ResultData, textCopied: String?, in menu: NSMenu) {
     // Combine recognized items and copied text
     let allItems = imageResult.candidates + [textCopied].compactMap { $0 }
@@ -92,18 +96,5 @@ extension App {
         item.toolTip = text
       }
     }
-  }
-
-  func presentMainMenu() {
-    let location: CGPoint = {
-      if #available(macOS 26.0, *) {
-        return CGPoint(x: -8, y: 0)
-      }
-
-      return CGPoint(x: -8, y: (statusItem.button?.frame.height ?? 0) + 4)
-    }()
-
-    mainMenu.appearance = NSApp.effectiveAppearance
-    mainMenu.popUp(positioning: nil, at: location, in: statusItem.button)
   }
 }

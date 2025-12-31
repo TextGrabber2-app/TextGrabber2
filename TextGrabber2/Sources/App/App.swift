@@ -71,6 +71,7 @@ final class App: NSObject, NSApplicationDelegate {
     if NSPasteboard.general.hasLimitedAccess {
       item.image = NSImage(systemSymbolName: Icons.handRaisedSlash, accessibilityDescription: nil)
     }
+
     return item
   }()
 
@@ -81,6 +82,7 @@ final class App: NSObject, NSApplicationDelegate {
       NSWorkspace.shared.safelyOpenURL(string: "\(Links.github)/wiki#\(section)")
       self?.increaseUserClickCount()
     }
+
     return item
   }()
 
@@ -89,6 +91,7 @@ final class App: NSObject, NSApplicationDelegate {
     item.addAction {
       NSPasteboard.general.string = self.currentResult?.lineBreaksJoined
     }
+
     return item
   }()
 
@@ -136,6 +139,7 @@ final class App: NSObject, NSApplicationDelegate {
     item.addAction { [weak self] in
       Translator.showWindow(text: self?.currentResult?.spacesJoined ?? "")
     }
+
     return item
   }()
 
@@ -144,6 +148,7 @@ final class App: NSObject, NSApplicationDelegate {
     item.addAction { [weak self] in
       self?.previewCopiedImage()
     }
+
     return item
   }()
 
@@ -152,6 +157,7 @@ final class App: NSObject, NSApplicationDelegate {
     item.addAction {
       NSPasteboard.general.saveImageAsFile()
     }
+
     return item
   }()
 
@@ -179,6 +185,7 @@ final class App: NSObject, NSApplicationDelegate {
     item.addAction {
       NSPasteboard.general.clearContents()
     }
+
     return item
   }()
 
@@ -236,6 +243,7 @@ final class App: NSObject, NSApplicationDelegate {
     item.addAction(Keys.appVersionAction) {
       NSWorkspace.shared.safelyOpenURL(string: Links.releases)
     }
+
     return item
   }()
 
@@ -284,17 +292,17 @@ extension App {
     // LSUIElement = YES does not work reliably; keyboard events are sometimes not handled.
     NSApp.setActivationPolicy(.accessory)
 
-    registerKeyBindings()
     updateServices()
     statusItem.isVisible = true
+
+    // Event handling
+    addEventMonitors()
+    registerKeyBindings()
 
     // Observe pasteboard changes to detect silently
     if NSPasteboard.general.hasFullAccess && observeChangesItem.state == .on {
       updateObserver(isEnabled: true)
     }
-
-    // Setup event monitors
-    setupEventMonitors()
 
     let silentlyCheckUpdates: @Sendable () -> Void = {
       Task {

@@ -8,7 +8,7 @@
 import AppKit
 import QuickLookUI
 
-// MARK: - QuickLook Preview
+// MARK: - QLPreviewPanelDataSource
 
 extension App: @preconcurrency QLPreviewPanelDataSource {
   var previewingFileURL: URL {

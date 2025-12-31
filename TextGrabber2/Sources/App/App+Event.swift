@@ -10,7 +10,7 @@ import AppKit
 // MARK: - Event Monitoring
 
 extension App {
-  func setupEventMonitors() {
+  func addEventMonitors() {
     // Handle in-app keyboard events
     NSEvent.addLocalMonitorForEvents(matching: .keyDown) { event in
       let keyCode = event.keyCode

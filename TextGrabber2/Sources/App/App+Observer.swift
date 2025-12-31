@@ -7,7 +7,7 @@
 
 import AppKit
 
-// MARK: - Pasteboard Observer
+// MARK: - Pasteboard Observing
 
 extension App {
   func updateObserver(isEnabled: Bool) {
