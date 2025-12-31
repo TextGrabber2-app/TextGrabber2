@@ -17,6 +17,16 @@ enum HotKeys {
 
     register(keyCode: keyCode, modifiers: .init(stringValues: modifiers), handler: handler)
   }
+
+  static func unregisterAll() {
+    eventHotKeys.forEach {
+      UnregisterEventHotKey($0)
+    }
+
+    eventHotKeys.removeAll()
+    mappedHandlers.removeAll()
+    hotKeyID = 0
+  }
 }
 
 // MARK: - Private
@@ -67,7 +77,9 @@ private extension HotKeys {
       &eventHotKey
     )
 
-    if registerError != noErr {
+    if let eventHotKey, registerError == noErr {
+      eventHotKeys.append(eventHotKey)
+    } else {
       Logger.log(.error, "Failed to register hotKey: \(keyCode), \(modifiers)")
     }
 
@@ -103,6 +115,7 @@ private extension HotKeys {
   }
 }
 
+@MainActor private var eventHotKeys = [EventHotKeyRef]()
 @MainActor private var eventHandler: EventHandlerRef?
 @MainActor private var hotKeyID = UInt32(0)
 @MainActor private var mappedHandlers = [UInt32: () -> Void]()

@@ -23,6 +23,12 @@ final class App: NSObject, NSApplicationDelegate {
   private var isMenuVisible = false {
     didSet {
       statusItem.button?.highlight(isMenuVisible)
+
+      if isMenuVisible {
+        unregisterKeyBindings()
+      } else {
+        registerKeyBindings()
+      }
     }
   }
 
@@ -285,27 +291,9 @@ extension App {
     // LSUIElement = YES does not work reliably; keyboard events are sometimes not handled.
     NSApp.setActivationPolicy(.accessory)
 
+    registerKeyBindings()
     updateServices()
     statusItem.isVisible = true
-
-    // Register all global key bindings
-    for item in KeyBindings.items {
-      HotKeys.register(keyEquivalent: item.key, modifiers: item.modifiers) { [weak self] in
-        let actionName = item.actionName
-        let opensApp = actionName == "TextGrabber2" // Special handling
-
-        if opensApp {
-          self?.statusItemClicked()
-        } else if let action = self?.mainMenu.firstActionNamed(actionName) {
-          Task {
-            await self?.startDetection()
-            action.performAction()
-          }
-        } else {
-          Logger.log(.error, "Invalid configuration: \(item)")
-        }
-      }
-    }
 
     // Observe pasteboard changes to detect silently
     if NSPasteboard.general.hasFullAccess && observeChangesItem.state == .on {
@@ -418,6 +406,30 @@ private extension App {
     static let userClickCount = "general.user-click-count"
     static let observeChanges = "pasteboard.observe-changes"
     static let appVersionAction = "app.textgrabber2.app-version"
+  }
+
+  func registerKeyBindings() {
+    for item in KeyBindings.items {
+      HotKeys.register(keyEquivalent: item.key, modifiers: item.modifiers) { [weak self] in
+        let actionName = item.actionName
+        let opensApp = actionName == "TextGrabber2" // Special handling
+
+        if opensApp {
+          self?.statusItemClicked()
+        } else if let action = self?.mainMenu.firstActionNamed(actionName) {
+          Task {
+            await self?.startDetection()
+            action.performAction()
+          }
+        } else {
+          Logger.log(.error, "Invalid keybinding: \(item)")
+        }
+      }
+    }
+  }
+
+  func unregisterKeyBindings() {
+    HotKeys.unregisterAll()
   }
 
   func clearMenuItems() {
