@@ -18,14 +18,14 @@ enum Services {
     let displayName: String?
   }
 
-  static var fileURL: URL {
+  static let fileURL: URL = {
     URL.documentsDirectory.appending(
       path: Constants.fileName,
       directoryHint: .notDirectory
     )
-  }
+  }()
 
-  static var items: [Item] {
+  static let items: [Item] = {
     guard let data = try? Data(contentsOf: fileURL) else {
       Logger.log(.error, "Missing \(Constants.fileName)")
       return []
@@ -37,7 +37,7 @@ enum Services {
     }
 
     return items
-  }
+  }()
 
   static func initialize() {
     guard !FileManager.default.fileExists(atPath: fileURL.path(percentEncoded: false)) else {
