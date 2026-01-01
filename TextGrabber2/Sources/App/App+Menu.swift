@@ -16,9 +16,6 @@ extension App {
       howToItem.isHidden = true
     }
 
-    // Update the services menu
-    updateServices()
-
     // Rely on this instead of mutating items in menuWillOpen
     isMenuVisible = true
     Task {
