@@ -23,8 +23,11 @@ extension App {
       let serviceName = service.serviceName
       let displayName = service.displayName ?? serviceName
       let item = ServiceItem(title: displayName)
-      item.addAction {
-        NSPasteboard.general.string = self.currentResult?.spacesJoined
+
+      item.addAction { [weak self] in
+        if NSPasteboard.general.hasImageOnly {
+          NSPasteboard.general.string = self?.currentResult?.spacesJoined
+        }
 
         if !NSPerformService(serviceName, .general) {
           NSAlert.runModal(message: String(format: Localized.failedToRun, displayName))

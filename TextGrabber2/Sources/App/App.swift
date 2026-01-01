@@ -88,8 +88,8 @@ final class App: NSObject, NSApplicationDelegate {
 
   lazy var copyAllQuickItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleCopyAll)
-    item.addAction {
-      NSPasteboard.general.string = self.currentResult?.lineBreaksJoined
+    item.addAction { [weak self] in
+      NSPasteboard.general.string = self?.currentResult?.lineBreaksJoined
     }
 
     return item
