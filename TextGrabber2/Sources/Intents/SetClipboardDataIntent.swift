@@ -22,9 +22,9 @@ struct SetClipboardDataIntent: AppIntent {
   var type: String
 
   @Parameter(title: "File")
-  var file: IntentFile
+  var file: IntentFile?
 
-  @Parameter(title: "Clear Other Items", description: "When enabled, this action clears all other items.", default: true)
+  @Parameter(title: "Clear Other Items", description: "When enabled, this action clears all other items.", default: false)
   var clearOthers: Bool
 
   @MainActor
@@ -33,7 +33,7 @@ struct SetClipboardDataIntent: AppIntent {
     let pboardType = NSPasteboard.PasteboardType(type)
 
     var items: [NSPasteboard.PasteboardType: Data] = clearOthers ? [:] : pasteboard.getDataItems()
-    items[pboardType] = file.data
+    items[pboardType] = file?.data
 
     return .result(value: pasteboard.setDataItems(items))
   }
