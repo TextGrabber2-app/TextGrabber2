@@ -20,7 +20,15 @@ final class App: NSObject, NSApplicationDelegate {
     item.behavior = .terminationOnRemoval
     item.autosaveName = Bundle.main.bundleName
 
-    item.button?.image = .with(symbolName: Icons.textViewFinder, pointSize: 15)
+    if let symbolName = UserDefaults.standard.string(forKey: Keys.statusBarIcon) {
+      item.button?.image = .with(symbolName: symbolName)
+    }
+
+    if item.button?.image == nil {
+      item.button?.image = .with(symbolName: Icons.textViewFinder)
+    }
+
+    Logger.assert(item.button?.image != nil, "Button image should not be nil")
     item.button?.setAccessibilityLabel("TextGrabber2")
 
     return item
@@ -281,8 +289,10 @@ extension App {
   }
 
   enum Keys {
+    static let statusBarIcon = "general.status-bar-icon"
     static let userClickCount = "general.user-click-count"
     static let observeChanges = "pasteboard.observe-changes"
+    static let observeInterval = "pasteboard.observe-interval"
     static let appVersionAction = "app.textgrabber2.app-version"
   }
 }

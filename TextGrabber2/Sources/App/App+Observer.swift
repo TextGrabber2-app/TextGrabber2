@@ -20,7 +20,7 @@ extension App {
     }
 
     let pasteboard = NSPasteboard.general
-    let interval: Duration = .seconds(ContentFilters.hasRules ? 0.5 : 1.0)
+    let interval: Duration = .seconds(observeInterval)
 
     let handleChanges = { [weak self] in
       // Prevent infinite loops caused by pasteboard modifications
@@ -41,5 +41,18 @@ extension App {
     }
 
     handleChanges()
+  }
+}
+
+// MARK: - Private
+
+private extension App {
+  var observeInterval: Double {
+    let userValue = UserDefaults.standard.double(forKey: Keys.observeInterval)
+    if userValue > 0.1 {
+      return userValue
+    }
+
+    return ContentFilters.hasRules ? 0.5 : 1.0
   }
 }

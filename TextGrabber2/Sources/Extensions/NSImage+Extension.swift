@@ -34,18 +34,12 @@ extension NSImage {
 
   static func with(
     symbolName: String,
-    pointSize: Double,
+    pointSize: Double = 15,
     weight: NSFont.Weight = .regular,
     accessibilityLabel: String? = nil
-  ) -> NSImage {
+  ) -> NSImage? {
     let image = NSImage(systemSymbolName: symbolName, accessibilityDescription: accessibilityLabel)
     let config = NSImage.SymbolConfiguration(pointSize: pointSize, weight: weight)
-
-    guard let image = image?.withSymbolConfiguration(config) else {
-      Logger.assertFail("Failed to create image with symbol \"\(symbolName)\"")
-      return NSImage()
-    }
-
-    return image
+    return image?.withSymbolConfiguration(config)
   }
 }
