@@ -20,13 +20,9 @@ struct ExtractTextIntent: AppIntent {
 
     var id: String { title }
     var title: String
-    var subtitle: String?
 
     var displayRepresentation: DisplayRepresentation {
-      DisplayRepresentation(
-        title: "\(title)",
-        subtitle: subtitle.map { "\($0)" }
-      )
+      DisplayRepresentation(title: "\(title)")
     }
   }
 
@@ -38,36 +34,11 @@ struct ExtractTextIntent: AppIntent {
 
   func perform() async throws -> some ReturnsValue<[ResultEntity]> {
     let image = NSPasteboard.general.image?.cgImage
-    let text = NSPasteboard.general.string
-
     let result = await Recognizer.detect(image: image, level: .accurate)
-    let candidates = (result?.candidates ?? []) + [text].compactMap { $0 }
+    let candidates = result?.candidates ?? []
 
-    if let first = candidates.first, !first.isEmpty && image != nil {
-      NSPasteboard.general.string = first
-    }
-
-    let entities = candidates.map {
-      ResultEntity(title: $0, subtitle: nil)
-    }
-
-    if entities.count > 1 {
-      return .result(value: entities + [
-        ResultEntity(
-          title: candidates.joined(separator: "\n"),
-          subtitle: Localized.menuTitleJoinWithLineBreaks
-        ),
-        ResultEntity(
-          title: candidates.joined(separator: " "),
-          subtitle: Localized.menuTitleJoinWithSpaces
-        ),
-        ResultEntity(
-          title: candidates.joined(),
-          subtitle: Localized.menuTitleJoinDirectly
-        ),
-      ])
-    }
-
-    return .result(value: entities)
+    return .result(value: candidates.map {
+      ResultEntity(title: $0)
+    })
   }
 }
