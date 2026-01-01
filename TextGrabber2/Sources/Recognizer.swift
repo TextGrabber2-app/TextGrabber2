@@ -16,12 +16,14 @@ enum Recognizer {
     let candidates: [String]
 
     init(candidates: [String]) {
-      var seen = Set(candidates)
-      let aggregated = candidates + candidates
-        .flatMap { Detector.matches(in: $0) }
-        .filter { seen.insert($0).inserted }
+      let aggregated = candidates + (candidates.flatMap {
+        Detector.matches(in: $0)
+      })
 
-      self.candidates = aggregated.filter { !$0.isEmpty }
+      var seen = Set<String>()
+      self.candidates = aggregated.filter {
+        !$0.isEmpty && seen.insert($0).inserted
+      }
     }
 
     var lineBreaksJoined: String {
