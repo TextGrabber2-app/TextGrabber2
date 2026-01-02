@@ -145,7 +145,7 @@ final class App: NSObject, NSApplicationDelegate {
   lazy var translateItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleTranslate)
     item.addAction { [weak self] in
-      Translator.showWindow(text: self?.currentResult?.spacesJoined ?? "")
+      Translator.showWindow(text: self?.currentResult?.lineBreaksJoined ?? "")
     }
 
     return item

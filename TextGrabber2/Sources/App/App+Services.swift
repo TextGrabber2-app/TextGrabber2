@@ -28,7 +28,7 @@ extension App {
         if let result = self?.currentResult {
           NSPasteboard.general.insertItem(
             type: .string,
-            data: result.spacesJoined.data(using: .utf8)
+            data: result.lineBreaksJoined.data(using: .utf8)
           )
         }
 
