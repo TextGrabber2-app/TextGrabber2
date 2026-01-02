@@ -8,28 +8,29 @@
 
 [![](https://img.shields.io/badge/Platform-macOS_15.0+-blue?color=007bff)](https://github.com/TextGrabber2-app/TextGrabber2/releases/latest)  [![](https://github.com/TextGrabber2-app/TextGrabber2/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/TextGrabber2-app/TextGrabber2/actions/workflows/build.yml)
 
-TextGrabber2 is a free and **open-source** macOS menu bar app that efficiently [detects text](https://github.com/TextGrabber2-app/TextGrabber2/wiki#capture-screen-on-mac) from copied images, and [runs actions](https://github.com/TextGrabber2-app/TextGrabber2/wiki#connect-to-system-services) based on it. This eliminates the need to save images as files and then delete them solely for the purpose of text detection.
+TextGrabber2 is a free and **open-source** “Copy-to-Action” tool that lets you [extract text](https://github.com/TextGrabber2-app/TextGrabber2/wiki#capture-screen-on-mac) from copied images and seamlessly [run actions](https://github.com/TextGrabber2-app/TextGrabber2/wiki#connect-to-system-services).
+
+Actions are based on system services that support the Apple [Shortcuts](https://support.apple.com/guide/shortcuts-mac/welcome/mac) you're already familiar with.
 
 <img src="./Screenshots/01.png" width="360" alt="Screenshot 01"> <img src="./Screenshots/02.png" width="360" alt="Screenshot 02">
 
 > [!TIP]
+>
 > Discover our other free and open-source apps at [libremac.github.io](https://libremac.github.io/).
 
-For example, press `Control-Shift-Command-4` to capture a portion of the screen and then open TextGrabber2 from the menu bar. It also functions effectively for any form of image copying.
+With TextGrabber2, you can:
 
-You can also use TextGrabber2 to automatically prune your pasteboard data. See [Content Filters](https://github.com/TextGrabber2-app/TextGrabber2/wiki#content-filters) for more details.
-
-In macOS Tahoe and later, you can directly extract text from copied images using Spotlight, through the action called `Extract Text from Copied Image`.
+- Extract text from copied images and trigger specific actions.
+- Copy text and automate tasks with system services.
+- Automatically prune clipboard data using custom rules or services.
+- Gain more control over your clipboard with Shortcuts actions.
+- Use handy built-in tools like Translate and Quick Look.
 
 See the [wiki](https://github.com/TextGrabber2-app/TextGrabber2/wiki) for more details and usage examples.
 
 > [!NOTE]
 >
-> Note that keyboard shortcuts can be remapped (and it's recommended since pressing 4 keys is a bit clunky). Please check out Apple's [documentation](https://support.apple.com/guide/mac-help/mchlp2271/mac) for details.
->
-> Learn more [here](https://github.com/TextGrabber2-app/TextGrabber2/wiki#capture-screen-on-mac).
->
-> For information on pasteboard access issues in macOS 15.4 and later, please refer to our [wiki](https://github.com/TextGrabber2-app/TextGrabber2/wiki#limited-access).
+> For information on clipboard access issues in macOS 15.4 and later, please refer to our [wiki](https://github.com/TextGrabber2-app/TextGrabber2/wiki#limited-access).
 
 ## Installation
 
@@ -49,7 +50,9 @@ TextGrabber2 utilizes the built-in [Vision](https://developer.apple.com/document
 
 TextGrabber2 connects to [system services](https://github.com/TextGrabber2-app/TextGrabber2/wiki#connect-to-system-services), you can easily integrate your workflows.
 
-TextGrabber2 does NOT have any settings; it works magically until something goes wrong.
+TextGrabber2 observes the clipboard and runs [rules or services](https://github.com/TextGrabber2-app/TextGrabber2/wiki#content-filters) to prune clipboard data.
+
+TextGrabber2 supports [adding key bindings](https://github.com/TextGrabber2-app/TextGrabber2/wiki#add-key-bindings), making common actions faster and easier.
 
 It's simple, privacy-oriented, brutal and beautiful.
 
