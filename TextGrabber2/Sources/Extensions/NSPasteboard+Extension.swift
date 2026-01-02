@@ -43,10 +43,6 @@ extension NSPasteboard {
     return (readObjects(forClasses: [NSImage.self]) as? [NSImage])?.first
   }
 
-  var hasImageOnly: Bool {
-    string == nil && image != nil
-  }
-
   var hasLimitedAccess: Bool {
     guard #available(macOS 15.4, *) else {
       return false
@@ -59,28 +55,12 @@ extension NSPasteboard {
     !hasLimitedAccess
   }
 
-  func getDataItems() -> [NSPasteboard.PasteboardType: Data] {
-    (types ?? []).reduce(into: [NSPasteboard.PasteboardType: Data]()) { items, type in
-      items[type] = data(forType: type)
-    }
-  }
-
   @discardableResult
-  func setDataItems(_ items: [NSPasteboard.PasteboardType: Data]) -> Bool {
-    var items = items
-    legacyTypes.forEach {
-      // Ensure legacy types are consistent to prevent the changes from being reverted
-      items[.init($0.key)] = items[.init($0.value)]
-    }
+  func insertItem(type: NSPasteboard.PasteboardType, data: Data?, clearOthers: Bool = false) -> Bool {
+    var items = clearOthers ? [:] : getDataItems()
+    items[type] = data
 
-    var result = true
-    declareTypes(Array(items.keys), owner: nil)
-
-    for (type, data) in items {
-      result = result && setData(data, forType: type)
-    }
-
-    return result
+    return setDataItems(items, sourceType: type)
   }
 
   @MainActor
@@ -105,6 +85,45 @@ extension NSPasteboard {
 }
 
 // MARK: - Private
+
+private extension NSPasteboard {
+  func getDataItems() -> [NSPasteboard.PasteboardType: Data] {
+    (types ?? []).reduce(into: [NSPasteboard.PasteboardType: Data]()) { items, type in
+      items[type] = data(forType: type)
+    }
+  }
+
+  @discardableResult
+  func setDataItems(
+    _ items: [NSPasteboard.PasteboardType: Data],
+    sourceType: NSPasteboard.PasteboardType
+  ) -> Bool {
+    var items = items
+
+    // Ensure legacy types are consistent to prevent the changes from being reverted
+    legacyTypes.forEach {
+      let legacy = NSPasteboard.PasteboardType(rawValue: $0.key)
+      let modern = NSPasteboard.PasteboardType(rawValue: $0.value)
+
+      if sourceType == legacy {
+        items[modern] = items[legacy]
+      }
+
+      if sourceType == modern {
+        items[legacy] = items[modern]
+      }
+    }
+
+    var result = true
+    declareTypes(Array(items.keys), owner: nil)
+
+    for (type, data) in items {
+      result = result && setData(data, forType: type)
+    }
+
+    return result
+  }
+}
 
 private let legacyTypes = [
   "NSStringPboardType": "public.utf8-plain-text",

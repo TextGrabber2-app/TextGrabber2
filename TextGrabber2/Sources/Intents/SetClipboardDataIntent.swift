@@ -32,9 +32,12 @@ struct SetClipboardDataIntent: AppIntent {
     let pasteboard = NSPasteboard.general
     let pboardType = NSPasteboard.PasteboardType(type)
 
-    var items: [NSPasteboard.PasteboardType: Data] = clearOthers ? [:] : pasteboard.getDataItems()
-    items[pboardType] = file?.data
+    let result = pasteboard.insertItem(
+      type: pboardType,
+      data: file?.data,
+      clearOthers: clearOthers
+    )
 
-    return .result(value: pasteboard.setDataItems(items))
+    return .result(value: result)
   }
 }
