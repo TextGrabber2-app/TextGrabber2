@@ -21,7 +21,7 @@ struct SetClipboardDataIntent: AppIntent {
   @Parameter(title: "Content Type", default: "public.utf8-plain-text", inputOptions: .init(capitalizationType: .none, autocorrect: false, smartQuotes: false, smartDashes: false))
   var type: String
 
-  @Parameter(title: "File")
+  @Parameter(title: "File", description: "The clipboard data (as a file). Leave this field empty to clear this type.")
   var file: IntentFile?
 
   @Parameter(title: "Clear Other Items", description: "When enabled, this action clears all other items.", default: false)

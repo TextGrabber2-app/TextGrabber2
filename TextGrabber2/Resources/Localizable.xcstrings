@@ -662,6 +662,22 @@
         }
       }
     },
+    "The clipboard data (as a file). Leave this field empty to clear this type." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪贴板数据（以文件形式）。将此字段留空可清空此类型。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪貼簿資料（以檔案形式）。將此欄位留空可清空此型別。"
+          }
+        }
+      }
+    },
     "Translate" : {
       "comment" : "[Menu] Translate text using the system service",
       "localizations" : {
