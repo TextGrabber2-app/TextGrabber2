@@ -84,8 +84,7 @@ private extension ContentFilters {
 
       // "replaceWith"
       if let text, let match, let replacement = replaceWith {
-        var items = pasteboard.getDataItems()
-        items[type] = text
+        let data = text
           .replacingOccurrences(
             of: match,
             with: replacement,
@@ -93,7 +92,7 @@ private extension ContentFilters {
           )
           .data(using: .utf8)
 
-        pasteboard.setDataItems(items)
+        pasteboard.insertItem(type: type, data: data)
       }
     }
   }

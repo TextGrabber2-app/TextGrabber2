@@ -25,8 +25,11 @@ extension App {
       let item = ServiceItem(title: displayName)
 
       item.addAction { [weak self] in
-        if NSPasteboard.general.hasImageOnly {
-          NSPasteboard.general.string = self?.currentResult?.spacesJoined
+        if let result = self?.currentResult {
+          NSPasteboard.general.insertItem(
+            type: .string,
+            data: result.spacesJoined.data(using: .utf8)
+          )
         }
 
         if !NSPerformService(serviceName, .general) {
