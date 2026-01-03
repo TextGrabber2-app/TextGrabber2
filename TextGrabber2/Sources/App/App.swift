@@ -84,7 +84,7 @@ final class App: NSObject, NSApplicationDelegate {
   }()
 
   lazy var howToItem: NSMenuItem = {
-    let item = NSMenuItem(title: NSPasteboard.general.hasLimitedAccess ? Localized.menuTitleHowToSetUp : Localized.menuTitleHowToCapture)
+    let item = NSMenuItem(title: NSPasteboard.general.hasLimitedAccess ? Localized.menuTitleHowToSetUp : Localized.menuTitleHowToUse)
     item.addAction { [weak self] in
       let section = NSPasteboard.general.hasLimitedAccess ? "limited-access" : "capture-screen-on-mac"
       NSWorkspace.shared.safelyOpenURL(string: "\(Links.github)/wiki#\(section)")
@@ -107,11 +107,11 @@ final class App: NSObject, NSApplicationDelegate {
     let menu = NSMenu()
     menu.addItem(.separator())
 
-    menu.addItem(withTitle: Localized.menuTitleConfigure) {
+    menu.addItem(withTitle: Localized.menuTitleSettings) {
       NSWorkspace.shared.open(Services.fileURL)
     }
 
-    menu.addItem(withTitle: Localized.menuTitleDocumentation) {
+    menu.addItem(withTitle: Localized.menuTitleUserManual) {
       NSWorkspace.shared.safelyOpenURL(string: "\(Links.github)/wiki#connect-to-system-services")
     }
 
@@ -137,7 +137,7 @@ final class App: NSObject, NSApplicationDelegate {
       menu.addItem(contentFiltersItem)
     }
 
-    let item = NSMenuItem(title: Localized.menuTitleClipboard)
+    let item = NSMenuItem(title: Localized.menuTitleClipboardTools)
     item.submenu = menu
     return item
   }()
@@ -216,11 +216,11 @@ final class App: NSObject, NSApplicationDelegate {
 
   lazy var contentFiltersItem: NSMenuItem = {
     let menu = NSMenu()
-    menu.addItem(withTitle: Localized.menuTitleConfigure) {
+    menu.addItem(withTitle: Localized.menuTitleSettings) {
       NSWorkspace.shared.open(ContentFilters.fileURL)
     }
 
-    menu.addItem(withTitle: Localized.menuTitleDocumentation) {
+    menu.addItem(withTitle: Localized.menuTitleUserManual) {
       NSWorkspace.shared.safelyOpenURL(string: "\(Links.github)/wiki#content-filters")
     }
 

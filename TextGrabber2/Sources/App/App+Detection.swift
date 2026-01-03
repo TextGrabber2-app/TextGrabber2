@@ -76,8 +76,10 @@ private extension App {
 
     if NSPasteboard.general.hasLimitedAccess {
       hintItem.title = Localized.menuTitleHintLimitedAccess
+    } else if resultData.candidates.isEmpty {
+      hintItem.title = Localized.menuTitleHintCopyToGetStarted
     } else {
-      hintItem.title = resultData.candidates.isEmpty ? Localized.menuTitleHintCapture : Localized.menuTitleHintCopy
+      hintItem.title = String(format: Localized.menuTitleHintItemsFound, resultData.candidates.count)
     }
 
     let separator = NSMenuItem.separator()

@@ -17,6 +17,53 @@
         }
       }
     },
+    "%lld Items Found" : {
+      "comment" : "[Menu] Hint for number of items found",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Item Found"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Items Found"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hans" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "找到 %lld 项"
+                }
+              }
+            }
+          }
+        },
+        "zh-Hant" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "找到 %lld 項"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "🎉 Version %@ is out" : {
       "comment" : "[Menu] Title format for a new version",
       "localizations" : {
@@ -30,23 +77,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "🎉 版本 %@ 已釋出"
-          }
-        }
-      }
-    },
-    "Capture Screen to Detect" : {
-      "comment" : "[Menu] Hint for capturing the screen",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "捕捉屏幕来检测"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "擷取螢幕來檢測"
           }
         }
       }
@@ -84,40 +114,6 @@
         }
       }
     },
-    "Click to Copy" : {
-      "comment" : "[Menu] Hint for copying text",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "点击来复制内容"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "點選來拷貝內容"
-          }
-        }
-      }
-    },
-    "Clipboard" : {
-      "comment" : "[Menu] Clipboard options",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "剪贴板"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "剪貼簿"
-          }
-        }
-      }
-    },
     "Clipboard (TextGrabber2)" : {
       "localizations" : {
         "zh-Hans" : {
@@ -130,6 +126,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "剪貼簿內容 (TextGrabber2)"
+          }
+        }
+      }
+    },
+    "Clipboard Tools" : {
+      "comment" : "[Menu] Clipboard tools",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪贴板工具"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "剪貼簿工具"
           }
         }
       }
@@ -197,6 +210,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拷貝全部"
+          }
+        }
+      }
+    },
+    "Copy to Get Started" : {
+      "comment" : "[Menu] Hint for copying something to start",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "复制即可开始"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "拷貝即可開始"
           }
         }
       }
@@ -380,23 +410,6 @@
         }
       }
     },
-    "How to Capture?" : {
-      "comment" : "[Menu] How to use the app",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "如何捕捉？"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "如何捕捉？"
-          }
-        }
-      }
-    },
     "How to Set Up?" : {
       "comment" : "[Menu] How to set up the app",
       "localizations" : {
@@ -410,6 +423,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "如何設定？"
+          }
+        }
+      }
+    },
+    "How to Use?" : {
+      "comment" : "[Menu] How to use the app",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如何使用？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如何使用？"
           }
         }
       }

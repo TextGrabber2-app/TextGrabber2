@@ -24,7 +24,7 @@ extension App {
   }
 
   func clearMenuItems() {
-    hintItem.title = NSPasteboard.general.hasLimitedAccess ? Localized.menuTitleHintLimitedAccess : Localized.menuTitleHintCapture
+    hintItem.title = NSPasteboard.general.hasLimitedAccess ? Localized.menuTitleHintLimitedAccess : Localized.menuTitleHintCopyToGetStarted
     mainMenu.removeItems {
       $0 is ResultItem
     }
