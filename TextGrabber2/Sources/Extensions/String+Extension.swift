@@ -15,6 +15,10 @@ extension String {
     components(separatedBy: .newlines).joined(separator: " ")
   }
 
+  var utf8Data: Data? {
+    data(using: .utf8)
+  }
+
   /**
    Returns a truncated string that fits the desired drawing width, with specified font.
    */

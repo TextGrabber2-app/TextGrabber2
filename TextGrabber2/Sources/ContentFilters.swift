@@ -90,7 +90,7 @@ private extension ContentFilters {
             with: replacement,
             options: .regularExpression
           )
-          .data(using: .utf8)
+          .utf8Data
 
         pasteboard.insertItem(type: type, data: data)
       }

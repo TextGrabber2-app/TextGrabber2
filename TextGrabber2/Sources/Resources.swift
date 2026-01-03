@@ -16,6 +16,7 @@ import Foundation
 enum Localized {
   static let languageIdentifier = String(localized: "en-US", comment: "Identifier used to locate localized resources")
   static let failedToRun = String(localized: "Failed to run \"%@\".", comment: "Error message when a system service failed")
+  static let copiedContentName = String(localized: "Clipboard (TextGrabber2)", comment: "File name for the preview file")
   static let menuTitleHintCopyToGetStarted = String(localized: "Copy to Get Started", comment: "[Menu] Hint for copying something to start")
   static let menuTitleHintItemsFound = String(localized: "%lld Items Found", comment: "[Menu] Hint for number of items found")
   static let menuTitleHintLimitedAccess = String(localized: "Limited Access", comment: "[Menu] Hint for limited access")

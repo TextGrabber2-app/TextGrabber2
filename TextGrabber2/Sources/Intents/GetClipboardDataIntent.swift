@@ -34,7 +34,7 @@ struct GetClipboardDataIntent: AppIntent {
       return "txt"
     }()
 
-    let resultName = "\(String(localized: "Clipboard (TextGrabber2)")).\(fileExtension)"
+    let resultName = "\(Localized.copiedContentName).\(fileExtension)"
     let resultFile = IntentFile(data: fileData, filename: resultName)
 
     return .result(value: resultFile)

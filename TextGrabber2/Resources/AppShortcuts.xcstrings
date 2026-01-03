@@ -88,14 +88,14 @@
         }
       }
     },
-    "Preview copied image using ${applicationName}" : {
+    "Preview copied content using ${applicationName}" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringSet" : {
             "state" : "new",
             "values" : [
-              "Preview copied image using ${applicationName}"
+              "Preview copied content using ${applicationName}"
             ]
           }
         },
@@ -103,7 +103,7 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "使用 ${applicationName} 预览复制的图片。"
+              "使用 ${applicationName} 预览复制的内容。"
             ]
           }
         },
@@ -111,7 +111,7 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "使用 ${applicationName} 預覽拷貝的圖像。"
+              "使用 ${applicationName} 預覽拷貝的內容。"
             ]
           }
         }
