@@ -89,6 +89,14 @@ private extension App {
       let item = ResultItem(title: text.singleLine.truncatedToFit(width: 320, font: .menuFont(ofSize: 0)))
       menu.insertItem(item, at: menu.index(of: separator) + 1)
 
+      if #available(macOS 26.0, *) {
+        // Rely on the system design
+        item.image = NSImage(systemSymbolName: Icons.textAlignLeft, accessibilityDescription: nil)
+      } else {
+        // Use a smaller size on purpose to look better
+        item.image = .with(symbolName: Icons.textAlignLeft, pointSize: 11.0)
+      }
+
       item.addAction { [weak self] in
         NSPasteboard.general.string = text
         self?.increaseUserClickCount()
