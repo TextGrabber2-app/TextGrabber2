@@ -12,7 +12,7 @@ import AppKit
 extension App {
   func statusItemClicked() {
     // Hide the user guide after the user becomes familiar
-    if userClickCount > 3 && !NSPasteboard.general.hasLimitedAccess {
+    if userClickCount > 4 && !NSPasteboard.general.hasLimitedAccess {
       howToItem.isHidden = true
     }
 
