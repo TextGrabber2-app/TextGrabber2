@@ -11,25 +11,28 @@ import QuickLookUI
 // MARK: - QuickLook Previewing
 
 extension App: @preconcurrency QLPreviewPanelDataSource {
-  var previewingFileURL: URL {
-    .previewingDirectory.appendingPathComponent("TextGrabber2.png")
-  }
-
   func numberOfPreviewItems(in panel: QLPreviewPanel?) -> Int {
     1
   }
 
   func previewPanel(_ panel: QLPreviewPanel?, previewItemAt index: Int) -> (any QLPreviewItem)? {
-    previewingFileURL as NSURL
+    previewingFileURL as? NSURL
   }
 
-  func previewCopiedImage() {
-    guard let pngData = NSPasteboard.general.image?.pngData else {
-      return Logger.log(.info, "No image for preview")
+  func previewCopiedContent() {
+    let pngData = NSPasteboard.general.image?.pngData
+    let textData = NSPasteboard.general.string?.utf8Data
+
+    let fileExtension = pngData == nil ? "txt" : "png"
+    let fileName = "\(Localized.copiedContentName).\(fileExtension)"
+    self.previewingFileURL = .previewingDirectory.appending(path: fileName, directoryHint: .notDirectory)
+
+    guard let data = pngData ?? textData, let previewingFileURL else {
+      return Logger.log(.info, "No content for preview")
     }
 
     NSApp.bringToFront()
-    try? pngData.write(to: self.previewingFileURL)
+    try? data.write(to: previewingFileURL)
 
     let previewPanel = QLPreviewPanel.shared()
     previewPanel?.dataSource = self

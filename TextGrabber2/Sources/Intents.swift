@@ -22,7 +22,7 @@ struct IntentProvider: AppShortcutsProvider {
       AppShortcut(
         intent: PreviewImageIntent(),
         phrases: [
-          "Preview copied image using \(.applicationName)",
+          "Preview copied content using \(.applicationName)",
         ],
         shortTitle: "\(PreviewImageIntent.title)",
         systemImageName: "eye"

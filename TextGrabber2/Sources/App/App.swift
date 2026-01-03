@@ -12,6 +12,7 @@ import ServiceManagement
 final class App: NSObject, NSApplicationDelegate {
   var copyObserver: Task<Void, Never>?
   var currentResult: Recognizer.ResultData?
+  var previewingFileURL: URL?
   var silentDetectCount = 0
   var contentProcessedTime: TimeInterval = 0
 
@@ -44,7 +45,7 @@ final class App: NSObject, NSApplicationDelegate {
     menu.addItem(copyAllQuickItem)
     menu.addItem(.separator())
     menu.addItem(servicesItem)
-    menu.addItem(clipboardItem)
+    menu.addItem(clipboardToolsItem)
     menu.addItem(.separator())
     menu.addItem(launchAtLoginItem)
 
@@ -120,13 +121,13 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
-  lazy var clipboardItem: NSMenuItem = {
+  lazy var clipboardToolsItem: NSMenuItem = {
     let menu = NSMenu()
     menu.autoenablesItems = false
 
     menu.addItem(translateItem)
     menu.addItem(quickLookItem)
-    menu.addItem(saveImageItem)
+    menu.addItem(saveAsFileItem)
     menu.addItem(.separator())
     menu.addItem(copyAllMenuItem)
     menu.addItem(clearContentsItem)
@@ -154,16 +155,16 @@ final class App: NSObject, NSApplicationDelegate {
   lazy var quickLookItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleQuickLook)
     item.addAction { [weak self] in
-      self?.previewCopiedImage()
+      self?.previewCopiedContent()
     }
 
     return item
   }()
 
-  lazy var saveImageItem: NSMenuItem = {
+  lazy var saveAsFileItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleSaveAsFile)
     item.addAction {
-      NSPasteboard.general.saveImageAsFile()
+      NSPasteboard.general.saveContentAsFile()
     }
 
     return item

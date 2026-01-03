@@ -64,22 +64,25 @@ extension NSPasteboard {
   }
 
   @MainActor
-  func saveImageAsFile() {
+  func saveContentAsFile() {
     NSApp.bringToFront()
 
+    let pngData = image?.pngData
+    let textData = string?.utf8Data
+
     let savePanel = NSSavePanel()
-    savePanel.allowedContentTypes = [.png]
+    savePanel.allowedContentTypes = pngData == nil ? [.plainText] : [.png]
     savePanel.isExtensionHidden = false
     savePanel.titlebarAppearsTransparent = true
 
-    guard let pngData = image?.pngData, savePanel.runModal() == .OK, let url = savePanel.url else {
+    guard let data = pngData ?? textData, savePanel.runModal() == .OK, let url = savePanel.url else {
       return
     }
 
     do {
-      try pngData.write(to: url, options: .atomic)
+      try data.write(to: url, options: .atomic)
     } catch {
-      Logger.log(.error, "Failed to save the image")
+      Logger.log(.error, "Failed to save the content")
     }
   }
 }

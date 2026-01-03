@@ -115,6 +115,7 @@
       }
     },
     "Clipboard (TextGrabber2)" : {
+      "comment" : "File name for the preview file",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -495,34 +496,34 @@
         }
       }
     },
-    "Preview Copied Image" : {
+    "Preview Copied Content" : {
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "预览复制的图片"
+            "value" : "预览复制的内容"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "預覽拷貝的圖像"
+            "value" : "預覽拷貝的內容"
           }
         }
       }
     },
-    "Previews copied image using TextGrabber2." : {
+    "Previews copied content using TextGrabber2." : {
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "使用 TextGrabber2 预览复制的图片。"
+            "value" : "使用 TextGrabber2 预览复制的内容。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "使用 TextGrabber2 預覽拷貝的圖像。"
+            "value" : "使用 TextGrabber2 預覽拷貝的內容。"
           }
         }
       }

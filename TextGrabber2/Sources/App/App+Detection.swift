@@ -26,7 +26,7 @@ extension App {
 
     translateItem.isEnabled = false
     quickLookItem.isEnabled = false
-    saveImageItem.isEnabled = false
+    saveAsFileItem.isEnabled = false
     clearContentsItem.isEnabled = !NSPasteboard.general.isEmpty
 
     copyAllQuickItem.isHidden = true
@@ -68,8 +68,8 @@ private extension App {
 
     currentResult = resultData
     translateItem.isEnabled = resultData.candidates.hasValue
-    quickLookItem.isEnabled = imageResult.candidates.hasValue
-    saveImageItem.isEnabled = imageResult.candidates.hasValue
+    quickLookItem.isEnabled = resultData.candidates.hasValue
+    saveAsFileItem.isEnabled = resultData.candidates.hasValue
 
     copyAllQuickItem.isHidden = resultData.candidates.count < 2
     copyAllMenuItem.isEnabled = resultData.candidates.hasValue
