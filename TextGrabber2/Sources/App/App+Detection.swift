@@ -56,8 +56,13 @@ extension App {
 private extension App {
   func updateResult(_ imageResult: Recognizer.ResultData, textCopied: String?, in menu: NSMenu) {
     // Combine recognized items and copied text
-    let allItems = imageResult.candidates + [textCopied].compactMap { $0 }
-    let resultData = type(of: imageResult).init(candidates: allItems)
+    let resultData = Recognizer.ResultData(candidates: imageResult.candidates + [textCopied].compactMap {
+      guard let text = $0 else {
+        return nil
+      }
+
+      return .init(text: text)
+    })
 
     guard currentResult != resultData else {
       #if DEBUG
@@ -85,25 +90,25 @@ private extension App {
     let separator = NSMenuItem.separator()
     menu.insertItem(separator, at: menu.index(of: howToItem) + 1)
 
-    for text in resultData.candidates.reversed() {
-      let item = ResultItem(title: text.singleLine.truncatedToFit(width: 320, font: .menuFont(ofSize: 0)))
+    for candidate in resultData.candidates.reversed() {
+      let item = ResultItem(title: candidate.text.singleLine.truncatedToFit(width: 320, font: .menuFont(ofSize: 0)))
       menu.insertItem(item, at: menu.index(of: separator) + 1)
 
       if #available(macOS 26.0, *) {
         // Rely on the system design
-        item.image = NSImage(systemSymbolName: Icons.textAlignLeft, accessibilityDescription: nil)
+        item.image = NSImage(systemSymbolName: candidate.icon, accessibilityDescription: nil)
       } else {
         // Use a smaller size on purpose to look better
-        item.image = .with(symbolName: Icons.textAlignLeft, pointSize: 11.0)
+        item.image = .with(symbolName: candidate.icon, pointSize: 11.0)
       }
 
       item.addAction { [weak self] in
-        NSPasteboard.general.string = text
+        NSPasteboard.general.string = candidate.text
         self?.increaseUserClickCount()
       }
 
-      if item.title != text {
-        item.toolTip = text
+      if item.title != candidate.text {
+        item.toolTip = candidate.text
       }
     }
   }

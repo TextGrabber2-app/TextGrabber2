@@ -38,7 +38,7 @@ struct ExtractTextIntent: AppIntent {
     let candidates = result?.candidates ?? []
 
     return .result(value: candidates.map {
-      ResultEntity(title: $0)
+      ResultEntity(title: $0.text)
     })
   }
 }

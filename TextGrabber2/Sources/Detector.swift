@@ -11,7 +11,7 @@ import Foundation
  https://developer.apple.com/documentation/foundation/nsdatadetector
  */
 enum Detector {
-  static func matches(in text: String) -> [String] {
+  static func matches(in text: String) -> [Recognizer.Candidate] {
     guard let detector = try? NSDataDetector(types: types) else {
       Logger.assertFail("Failed to create NSDataDetector")
       return []
@@ -23,9 +23,17 @@ enum Detector {
     return matches.compactMap { match in
       switch match.resultType {
       case .phoneNumber:
-        return match.phoneNumber
+        if let text = match.phoneNumber {
+          return .init(text: text, kind: .phoneNumber)
+        }
+
+        return nil
       case .link:
-        return match.url?.absoluteString
+        if let text = match.url?.absoluteString {
+          return .init(text: text, kind: .link)
+        }
+
+        return nil
       default:
         return nil
       }
