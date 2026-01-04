@@ -258,13 +258,17 @@ final class App: NSObject, NSApplicationDelegate {
 
   var isMenuVisible = false {
     didSet {
-      statusItem.button?.highlight(isMenuVisible)
+      guard isMenuVisible != oldValue else {
+        return
+      }
 
       if isMenuVisible {
         unregisterKeyBindings()
       } else {
         registerKeyBindings()
       }
+
+      statusItem.button?.highlight(isMenuVisible)
     }
   }
 
