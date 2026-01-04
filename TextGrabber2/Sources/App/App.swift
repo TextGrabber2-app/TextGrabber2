@@ -295,6 +295,7 @@ extension App {
   }
 
   enum Keys {
+    static let disableUpdates = "general.disable-updates"
     static let statusBarIcon = "general.status-bar-icon"
     static let userClickCount = "general.user-click-count"
     static let observeChanges = "pasteboard.observe-changes"
