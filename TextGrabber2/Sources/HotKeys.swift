@@ -20,7 +20,7 @@ enum HotKeys {
 
   static func unregisterAll() {
     eventHotKeys.forEach {
-      UnregisterEventHotKey($0)
+      UnregisterEventHotKey($0.value)
     }
 
     eventHotKeys.removeAll()
@@ -67,6 +67,15 @@ private extension HotKeys {
   }
 
   static func register(keyCode: UInt32, modifiers: Modifiers, handler: @escaping () -> Void) {
+    let hotKeyString = hotKeyString(
+      for: keyCode,
+      modifiers: modifiers
+    )
+
+    if let usedHotKey = eventHotKeys[hotKeyString] {
+      UnregisterEventHotKey(usedHotKey)
+    }
+
     var eventHotKey: EventHotKeyRef?
     let registerError = RegisterEventHotKey(
       keyCode,
@@ -77,13 +86,12 @@ private extension HotKeys {
       &eventHotKey
     )
 
-    if let eventHotKey, registerError == noErr {
-      eventHotKeys.append(eventHotKey)
-    } else {
+    if registerError != noErr {
       Logger.log(.error, "Failed to register hotKey: \(keyCode), \(modifiers)")
     }
 
     installEventHandler()
+    eventHotKeys[hotKeyString] = eventHotKey
     mappedHandlers[hotKeyID] = handler
     hotKeyID += 1
   }
@@ -115,10 +123,15 @@ private extension HotKeys {
   }
 }
 
-@MainActor private var eventHotKeys = [EventHotKeyRef]()
+@MainActor private var eventHotKeys = [String: EventHotKeyRef]()
 @MainActor private var eventHandler: EventHandlerRef?
 @MainActor private var hotKeyID = UInt32(0)
 @MainActor private var mappedHandlers = [UInt32: () -> Void]()
+
+@MainActor
+private func hotKeyString(for code: UInt32, modifiers: HotKeys.Modifiers) -> String {
+  "\(code)-\(modifiers)"
+}
 
 @MainActor
 private func handleEvent(_ event: EventRef?) -> OSStatus {
