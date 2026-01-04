@@ -38,6 +38,7 @@ final class App: NSObject, NSApplicationDelegate {
   lazy var mainMenu: NSMenu = {
     let menu = NSMenu()
     menu.delegate = self
+    menu.minimumWidth = 220
 
     menu.addItem(hintItem)
     menu.addItem(howToItem)
