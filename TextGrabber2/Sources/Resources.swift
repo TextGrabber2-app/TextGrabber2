@@ -48,6 +48,8 @@ enum Localized {
 // Note: double check availability and deployment target before adding new icons
 enum Icons {
   static let handRaisedSlash = "hand.raised.slash"
+  static let link = "link"
+  static let phone = "phone"
   static let textAlignLeft = "text.alignleft"
   static let textViewFinder = "text.viewfinder"
 }

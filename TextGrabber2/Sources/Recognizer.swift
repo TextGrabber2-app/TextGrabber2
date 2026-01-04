@@ -12,30 +12,54 @@ import AppKit
  https://developer.apple.com/documentation/vision/recognizing_text_in_images
  */
 enum Recognizer {
-  struct ResultData: Equatable {
-    let candidates: [String]
+  struct Candidate: Equatable, Hashable {
+    enum Kind {
+      case text
+      case phoneNumber
+      case link
+    }
 
-    init(candidates: [String]) {
+    let text: String
+    let kind: Kind
+
+    init(text: String, kind: Kind = .text) {
+      self.text = text
+      self.kind = kind
+    }
+
+    var icon: String {
+      switch kind {
+      case .text: return Icons.textAlignLeft
+      case .phoneNumber: return Icons.phone
+      case .link: return Icons.link
+      }
+    }
+  }
+
+  struct ResultData: Equatable {
+    let candidates: [Candidate]
+
+    init(candidates: [Candidate]) {
       let aggregated = candidates + (candidates.flatMap {
-        Detector.matches(in: $0)
+        Detector.matches(in: $0.text)
       })
 
       var seen = Set<String>()
       self.candidates = aggregated.filter {
-        !$0.isEmpty && seen.insert($0).inserted
+        !$0.text.isEmpty && seen.insert($0.text).inserted
       }
     }
 
     var lineBreaksJoined: String {
-      candidates.joined(separator: "\n")
+      candidates.map(\.text).joined(separator: "\n")
     }
 
     var spacesJoined: String {
-      candidates.joined(separator: " ")
+      candidates.map(\.text).joined(separator: " ")
     }
 
     var directlyJoined: String {
-      candidates.joined()
+      candidates.map(\.text).joined()
     }
   }
 
@@ -55,7 +79,7 @@ enum Recognizer {
             return continuation.resume(returning: nil)
           }
 
-          continuation.resume(returning: ResultData(candidates: candidates))
+          continuation.resume(returning: ResultData(candidates: candidates.map { .init(text: $0) }))
         }
       }
 
