@@ -49,7 +49,7 @@ extension String {
 
   func matches(regex pattern: String, fallback: Bool = false) -> Bool {
     if let regex = try? Regex(pattern) {
-      return wholeMatch(of: regex) != nil
+      return firstMatch(of: regex) != nil
     }
 
     return fallback
