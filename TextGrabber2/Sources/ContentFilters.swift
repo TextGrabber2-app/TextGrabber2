@@ -47,6 +47,7 @@ private extension ContentFilters {
   struct Rule: Decodable {
     let type: String
     let match: String?
+    let sourceApp: String?
     let runService: String?
     let replaceWith: String?
 
@@ -63,6 +64,10 @@ private extension ContentFilters {
     }
 
     func handle(pasteboard: NSPasteboard, type: NSPasteboard.PasteboardType) {
+      if let sourceApp, NSWorkspace.shared.frontmostApplication?.localizedName != sourceApp {
+        return Logger.log(.debug, "The rule does not apply to the source application")
+      }
+
       let text = pasteboard.string(forType: type)
       let shouldHandle: Bool
 
@@ -87,10 +92,10 @@ private extension ContentFilters {
         let data = {
           if let match {
             return text?.replacingOccurrences(
-            of: match,
-            with: replacement,
-            options: .regularExpression
-          )
+              of: match,
+              with: replacement,
+              options: .regularExpression
+            )
           }
 
           return replacement
