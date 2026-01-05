@@ -32,6 +32,7 @@ enum ContentFilters {
     }
   }
 
+  @MainActor
   static func processRules(for pasteboard: NSPasteboard) {
     pasteboard.types?.forEach {
       for rule in rules where rule.canHandle(pboardType: $0) {
@@ -44,7 +45,7 @@ enum ContentFilters {
 // MARK: - Private
 
 private extension ContentFilters {
-  struct Rule: Decodable {
+  struct Rule: Decodable, Hashable {
     let type: String
     let match: String?
     let sourceApp: String?
@@ -63,9 +64,14 @@ private extension ContentFilters {
       return false
     }
 
+    @MainActor
     func handle(pasteboard: NSPasteboard, type: NSPasteboard.PasteboardType) {
       if let sourceApp, NSWorkspace.shared.frontmostApplication?.localizedName != sourceApp {
         return Logger.log(.debug, "The rule does not apply to the source application")
+      }
+
+      if let lastTime = contentProcessedTime[self], Date.timeIntervalSinceReferenceDate - lastTime < 2 {
+        return Logger.log(.debug, "The rule was just applied, skipping to prevent dead loops")
       }
 
       let text = pasteboard.string(forType: type)
@@ -106,6 +112,8 @@ private extension ContentFilters {
           data: data?.isEmpty == true ? nil : data
         )
       }
+
+      contentProcessedTime[self] = Date.timeIntervalSinceReferenceDate
     }
   }
 
@@ -126,4 +134,6 @@ private extension ContentFilters {
 
     return rules
   }()
+
+  @MainActor static var contentProcessedTime = [Rule: TimeInterval]()
 }

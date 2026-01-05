@@ -23,11 +23,7 @@ extension App {
     let interval: Duration = .seconds(observeInterval)
 
     let handleChanges = { [weak self] in
-      // Prevent infinite loops caused by pasteboard modifications
-      if let self, Date.timeIntervalSinceReferenceDate - self.contentProcessedTime > 2 {
-        ContentFilters.processRules(for: pasteboard)
-        self.contentProcessedTime = Date.timeIntervalSinceReferenceDate
-      }
+      ContentFilters.processRules(for: pasteboard)
 
       Task {
         await self?.startDetection()

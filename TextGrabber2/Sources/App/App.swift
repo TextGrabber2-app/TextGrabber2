@@ -14,7 +14,6 @@ final class App: NSObject, NSApplicationDelegate {
   var currentResult: Recognizer.ResultData?
   var previewingFileURL: URL?
   var silentDetectCount = 0
-  var contentProcessedTime: TimeInterval = 0
 
   lazy var statusItem: NSStatusItem = {
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
