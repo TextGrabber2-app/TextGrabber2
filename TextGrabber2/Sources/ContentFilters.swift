@@ -66,12 +66,12 @@ private extension ContentFilters {
 
     @MainActor
     func handle(pasteboard: NSPasteboard, type: NSPasteboard.PasteboardType) {
-      if let sourceApp, NSWorkspace.shared.frontmostApplication?.localizedName != sourceApp {
-        return Logger.log(.debug, "The rule does not apply to the source application")
-      }
-
       if let lastTime = contentProcessedTime[self], Date.timeIntervalSinceReferenceDate - lastTime < 2 {
         return Logger.log(.debug, "The rule was just applied, skipping to prevent dead loops")
+      }
+
+      if let sourceApp, NSWorkspace.shared.frontmostApplication?.localizedName != sourceApp {
+        return Logger.log(.debug, "The rule does not apply to the source application")
       }
 
       let text = pasteboard.string(forType: type)
