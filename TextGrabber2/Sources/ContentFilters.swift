@@ -83,16 +83,23 @@ private extension ContentFilters {
       }
 
       // "replaceWith"
-      if let text, let match, let replacement = replaceWith {
-        let data = text
-          .replacingOccurrences(
+      if let replacement = replaceWith {
+        let data = {
+          if let match {
+            return text?.replacingOccurrences(
             of: match,
             with: replacement,
             options: .regularExpression
           )
-          .utf8Data
+          }
 
-        pasteboard.insertItem(type: type, data: data)
+          return replacement
+        }()?.utf8Data
+
+        pasteboard.insertItem(
+          type: type,
+          data: data?.isEmpty == true ? nil : data
+        )
       }
     }
   }
