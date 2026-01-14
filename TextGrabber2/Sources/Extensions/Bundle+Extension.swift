@@ -24,4 +24,25 @@ extension Bundle {
   var humanReadableVersion: String {
     "\(Localized.menuTitleVersion) \(shortVersionString)"
   }
+
+  static func loadBundle(named bundleName: String) {
+    // Joined as: /System/Library/PrivateFrameworks/bundleName.framework
+    let path = [
+      "",
+      "System",
+      "Library",
+      "PrivateFrameworks",
+      "\(bundleName).framework",
+    ].joined(separator: "/")
+
+    guard let bundle = Bundle(path: path) else {
+      return Logger.assertFail("Missing \(bundleName) bundle")
+    }
+
+    guard !bundle.isLoaded else {
+      return
+    }
+
+    bundle.load()
+  }
 }
