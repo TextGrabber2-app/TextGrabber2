@@ -33,31 +33,10 @@ enum Translator {
 
 private extension Translator {
   static var controllerClass: NSViewController.Type? {
-    loadBundle()
+    Bundle.loadBundle(named: "TranslationUIServices")
 
     // LTUITranslationViewController
     let className = "LTUI" + "TranslationViewController"
     return NSClassFromString(className) as? NSViewController.Type
-  }
-
-  static func loadBundle() {
-    // Joined as: /System/Library/PrivateFrameworks/TranslationUIServices.framework
-    let path = [
-      "",
-      "System",
-      "Library",
-      "PrivateFrameworks",
-      "TranslationUIServices.framework",
-    ].joined(separator: "/")
-
-    guard let bundle = Bundle(path: path) else {
-      return Logger.assertFail("Missing TranslationUIServices")
-    }
-
-    guard !bundle.isLoaded else {
-      return
-    }
-
-    bundle.load()
   }
 }
