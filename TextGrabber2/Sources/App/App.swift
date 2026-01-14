@@ -153,7 +153,7 @@ final class App: NSObject, NSApplicationDelegate {
       if let window = NSApp.popoverWindow {
         window.closePopover()
       } else {
-        let text = self?.currentResult?.lineBreaksJoined ?? ""
+        let text = self?.currentResult?.spacesJoined ?? ""
         Translator.showPopover(text: text, sourceView: sourceView)
         NSApp.popoverWindow?.makeKeyAndOrderFront(nil)
       }
