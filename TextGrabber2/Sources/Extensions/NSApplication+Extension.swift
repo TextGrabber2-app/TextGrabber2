@@ -8,6 +8,10 @@
 import AppKit
 
 extension NSApplication {
+  var popoverWindow: NSWindow? {
+    windows.first(where: \.isPopoverWindow)
+  }
+
   func bringToFront() {
     activate(ignoringOtherApps: true)
 

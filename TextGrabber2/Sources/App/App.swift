@@ -146,7 +146,17 @@ final class App: NSObject, NSApplicationDelegate {
   lazy var translateItem: NSMenuItem = {
     let item = NSMenuItem(title: Localized.menuTitleTranslate)
     item.addAction { [weak self] in
-      Translator.showWindow(text: self?.currentResult?.lineBreaksJoined ?? "")
+      guard let sourceView = self?.statusItem.button else {
+        return Logger.log(.error, "Missing status item button")
+      }
+
+      if let window = NSApp.popoverWindow {
+        window.closePopover()
+      } else {
+        let text = self?.currentResult?.lineBreaksJoined ?? ""
+        Translator.showPopover(text: text, sourceView: sourceView)
+        NSApp.popoverWindow?.makeKeyAndOrderFront(nil)
+      }
     }
 
     return item

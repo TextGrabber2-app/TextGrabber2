@@ -9,32 +9,24 @@ import AppKit
 
 @MainActor
 enum Translator {
-  static func showWindow(text: String) {
+  static func showPopover(text: String, sourceView: NSView) {
     NSApp.bringToFront()
     contentVC?.setValue(NSAttributedString(string: text), forKey: "text")
 
-    windowController.window?.alphaValue = 0
-    windowController.showWindow(nil)
+    let popover = NSPopover()
+    popover.behavior = .transient
+    popover.contentViewController = contentVC
 
-    DispatchQueue.main.asyncAfter(deadline: .now() + 0.02) {
-      windowController.window?.center()
-      NSAnimationContext.runAnimationGroup { context in
-        context.duration = 0.2
-        windowController.window?.animator().alphaValue = 1
-      }
-    }
+    popover.show(
+      relativeTo: sourceView.bounds,
+      of: sourceView,
+      preferredEdge: .maxY
+    )
   }
 
   // MARK: - Private
 
   private static let contentVC = controllerClass?.init()
-  private static let windowController = {
-    let window = NSWindow(contentViewController: contentVC ?? NSViewController())
-    window.styleMask = [.closable, .titled]
-    window.title = ""
-    window.isReleasedWhenClosed = false
-    return NSWindowController(window: window)
-  }()
 }
 
 // MARK: - Private
