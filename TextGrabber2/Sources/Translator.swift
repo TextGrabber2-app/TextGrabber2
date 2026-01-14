@@ -10,7 +10,7 @@ import AppKit
 @MainActor
 enum Translator {
   static func showPopover(text: String, sourceView: NSView) {
-    NSApp.bringToFront()
+    Logger.assert(contentVC != nil, "Missing contentVC")
     contentVC?.setValue(NSAttributedString(string: text), forKey: "text")
 
     let popover = NSPopover()

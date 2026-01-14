@@ -153,8 +153,15 @@ final class App: NSObject, NSApplicationDelegate {
       if let window = NSApp.popoverWindow {
         window.closePopover()
       } else {
-        let text = self?.currentResult?.spacesJoined ?? ""
-        Translator.showPopover(text: text, sourceView: sourceView)
+        let text = self?.currentResult?.spacesJoined.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        NSApp.bringToFront()
+
+        if text.isWord {
+          LookUp.showPopover(text: text, sourceView: sourceView)
+        } else {
+          Translator.showPopover(text: text, sourceView: sourceView)
+        }
+
         NSApp.popoverWindow?.makeKeyAndOrderFront(nil)
       }
     }
