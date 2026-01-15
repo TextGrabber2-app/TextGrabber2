@@ -16,7 +16,7 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "使用 ${applicationName} 从复制的图片中提取文本。"
+              "使用 ${applicationName} 从复制的图片中提取文本"
             ]
           }
         },
@@ -24,7 +24,7 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "使用 ${applicationName} 從拷貝的圖像中提取文字。"
+              "使用 ${applicationName} 從拷貝的圖像中提取文字"
             ]
           }
         }
@@ -45,7 +45,7 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "使用 ${applicationName} 获取剪贴板数据。"
+              "使用 ${applicationName} 获取剪贴板数据"
             ]
           }
         },
@@ -53,7 +53,7 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "使用 ${applicationName} 獲取剪貼簿資料。"
+              "使用 ${applicationName} 獲取剪貼簿資料"
             ]
           }
         }
@@ -74,7 +74,7 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "使用 ${applicationName} 获取可用的剪贴板数据类型。"
+              "使用 ${applicationName} 获取可用的剪贴板数据类型"
             ]
           }
         },
@@ -82,7 +82,7 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "使用 ${applicationName} 獲取可用的剪貼簿資料型別。"
+              "使用 ${applicationName} 獲取可用的剪貼簿資料型別"
             ]
           }
         }
@@ -103,7 +103,7 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "使用 ${applicationName} 执行操作。"
+              "使用 ${applicationName} 执行操作"
             ]
           }
         },
@@ -111,7 +111,7 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "使用 ${applicationName} 執行操作。"
+              "使用 ${applicationName} 執行操作"
             ]
           }
         }
@@ -132,7 +132,7 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "使用 ${applicationName} 预览复制的内容。"
+              "使用 ${applicationName} 预览复制的内容"
             ]
           }
         },
@@ -140,7 +140,7 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "使用 ${applicationName} 預覽拷貝的內容。"
+              "使用 ${applicationName} 預覽拷貝的內容"
             ]
           }
         }
@@ -161,7 +161,7 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "使用 ${applicationName} 设置剪贴板数据。"
+              "使用 ${applicationName} 设置剪贴板数据"
             ]
           }
         },
@@ -169,7 +169,7 @@
           "stringSet" : {
             "state" : "translated",
             "values" : [
-              "使用 ${applicationName} 設定剪貼簿資料。"
+              "使用 ${applicationName} 設定剪貼簿資料"
             ]
           }
         }
