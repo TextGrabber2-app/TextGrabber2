@@ -8,6 +8,10 @@
 import AppKit
 
 extension NSWorkspace {
+  var frontmostAppName: String {
+    frontmostApplication?.localizedName ?? ""
+  }
+
   @discardableResult
   func safelyOpenURL(string: String) -> Bool {
     guard let url = URL(string: string) else {
