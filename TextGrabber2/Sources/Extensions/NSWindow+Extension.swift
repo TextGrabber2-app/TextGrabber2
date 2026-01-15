@@ -12,6 +12,10 @@ extension NSWindow {
     className.contains("PopoverWindow")
   }
 
+  var isOverlayWindow: Bool {
+    className.contains("TextFinderOverlayWindow")
+  }
+
   func closePopover() {
     guard isPopoverWindow else {
       return

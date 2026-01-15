@@ -6,6 +6,8 @@
 //
 
 import AppKit
+import CoreServices
+import NaturalLanguage
 
 extension String {
   /**
@@ -17,6 +19,34 @@ extension String {
 
   var utf8Data: Data? {
     data(using: .utf8)
+  }
+
+  var isWord: Bool {
+    guard count <= 32 else {
+      // Too long
+      return false
+    }
+
+    let tokenizer = NLTokenizer(unit: .word)
+    tokenizer.string = self
+
+    var tokenCount = 0
+    tokenizer.enumerateTokens(in: startIndex..<endIndex) { _, _ in
+      tokenCount += 1
+      return tokenCount <= 1
+    }
+
+    guard tokenCount == 1 else {
+      // More than one token
+      return false
+    }
+
+    let term = self as CFString
+    let range = DCSGetTermRangeInString(nil, term, 0)
+
+    // Can be found in system dictionaries
+    let definition = DCSCopyTextDefinition(nil, term, range)
+    return definition != nil
   }
 
   /**
