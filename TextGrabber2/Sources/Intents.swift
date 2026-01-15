@@ -51,6 +51,14 @@ struct IntentProvider: AppShortcutsProvider {
         shortTitle: "\(SetClipboardDataIntent.title)",
         systemImageName: "pencil.and.list.clipboard"
       ),
+      AppShortcut(
+        intent: PerformActionIntent(),
+        phrases: [
+          "Perform action using \(.applicationName)",
+        ],
+        shortTitle: "\(PerformActionIntent.title)",
+        systemImageName: "play.circle"
+      ),
     ]
   }
 }

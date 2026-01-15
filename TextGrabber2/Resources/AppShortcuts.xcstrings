@@ -88,6 +88,35 @@
         }
       }
     },
+    "Perform action using ${applicationName}" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "Perform action using ${applicationName}"
+            ]
+          }
+        },
+        "zh-Hans" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "使用 ${applicationName} 执行操作。"
+            ]
+          }
+        },
+        "zh-Hant" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "使用 ${applicationName} 執行操作。"
+            ]
+          }
+        }
+      }
+    },
     "Preview copied content using ${applicationName}" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
