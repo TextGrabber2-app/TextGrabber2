@@ -52,13 +52,32 @@ private extension ContentFilters {
     let runService: String?
     let replaceWith: String?
 
-    func canHandle(pboardType: NSPasteboard.PasteboardType) -> Bool {
-      if type == pboardType.rawValue {
-        return true
+    var types: [String] {
+      split(value: type)
+    }
+
+    var sourceApps: [String]? {
+      guard let sourceApp else {
+        return nil
       }
 
-      if let type1 = UTType(type), let type2 = UTType(pboardType.rawValue) {
-        return type2.conforms(to: type1)
+      return split(value: sourceApp)
+    }
+
+    func split(value: String) -> [String] {
+      // E.g., public.tiff, com.adobe.pdf
+      value.split(separator: /, */).map { String($0) }
+    }
+
+    func canHandle(pboardType: NSPasteboard.PasteboardType) -> Bool {
+      for type in types {
+        if type == pboardType.rawValue {
+          return true
+        }
+
+        if let type1 = UTType(type), let type2 = UTType(pboardType.rawValue), type2.conforms(to: type1) {
+          return true
+        }
       }
 
       return false
@@ -70,7 +89,7 @@ private extension ContentFilters {
         return Logger.log(.debug, "The rule was just applied, skipping to prevent dead loops")
       }
 
-      if let sourceApp, NSWorkspace.shared.frontmostApplication?.localizedName != sourceApp {
+      if let sourceApps, !sourceApps.contains(NSWorkspace.shared.frontmostAppName) {
         return Logger.log(.debug, "The rule does not apply to the source application")
       }
 
