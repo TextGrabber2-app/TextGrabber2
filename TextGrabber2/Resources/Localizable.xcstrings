@@ -81,6 +81,22 @@
         }
       }
     },
+    "Action Name" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "操作名称"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "操作名稱"
+          }
+        }
+      }
+    },
     "Clear Contents" : {
       "comment" : "[Menu] Clear the clipboard",
       "localizations" : {
@@ -492,6 +508,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "監聽剪貼簿變化"
+          }
+        }
+      }
+    },
+    "Perform ${actionName} in TextGrabber2" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 TextGrabber2 执行 ${actionName}"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在 TextGrabber2 執行 ${actionName}"
+          }
+        }
+      }
+    },
+    "Perform TextGrabber2 Action" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "执行 TextGrabber2 操作"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "執行 TextGrabber2 操作"
+          }
+        }
+      }
+    },
+    "Performs a TextGrabber2 action available in the menu." : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "执行一项 TextGrabber2 菜单上可用的操作。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "執行一項 TextGrabber2 選單上可用的操作。"
           }
         }
       }
