@@ -85,7 +85,7 @@ private extension ContentFilters {
 
     @MainActor
     func handle(pasteboard: NSPasteboard, type: NSPasteboard.PasteboardType) {
-      if let lastTime = contentProcessedTime[self], Date.timeIntervalSinceReferenceDate - lastTime < 2 {
+      if let lastTime = contentProcessedTime[type], Date.timeIntervalSinceReferenceDate - lastTime < 2 {
         return Logger.log(.debug, "The rule was just applied, skipping to prevent dead loops")
       }
 
@@ -132,7 +132,7 @@ private extension ContentFilters {
         )
       }
 
-      contentProcessedTime[self] = Date.timeIntervalSinceReferenceDate
+      contentProcessedTime[type] = Date.timeIntervalSinceReferenceDate
     }
   }
 
@@ -154,5 +154,5 @@ private extension ContentFilters {
     return rules
   }()
 
-  @MainActor static var contentProcessedTime = [Rule: TimeInterval]()
+  @MainActor static var contentProcessedTime = [NSPasteboard.PasteboardType: TimeInterval]()
 }
