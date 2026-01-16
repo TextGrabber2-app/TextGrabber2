@@ -43,7 +43,12 @@ extension App {
         return event
       }
 
-      self?.statusItemClicked()
+      if let window = NSApp.popoverWindow {
+        window.closePopover()
+      } else {
+        self?.statusItemClicked()
+      }
+
       return nil
     }
 
