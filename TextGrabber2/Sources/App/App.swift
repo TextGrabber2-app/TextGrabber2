@@ -354,6 +354,11 @@ extension App {
     }
   }
 
+  func applicationDidBecomeActive(_ notification: Notification) {
+    // LSUIElement = YES does not work reliably; keyboard events are sometimes not handled.
+    NSApp.setActivationPolicy(.accessory)
+  }
+
   func applicationWillTerminate(_ notification: Notification) {
     try? FileManager.default.removeItem(at: .previewingDirectory)
   }
