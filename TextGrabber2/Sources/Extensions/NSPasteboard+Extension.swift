@@ -63,6 +63,22 @@ extension NSPasteboard {
     return setDataItems(items, sourceType: type)
   }
 
+  @discardableResult
+  func clearTypes(_ types: [NSPasteboard.PasteboardType]) -> Bool {
+    var items = getDataItems()
+
+    for type in types {
+      items[type] = nil
+
+      // Mirror types must be updated at the same time
+      if let mirror = mirrorTypes[type.rawValue] {
+        items[.init(mirror)] = nil
+      }
+    }
+
+    return setDataItems(items)
+  }
+
   @MainActor
   func saveContentAsFile() {
     NSApp.bringToFront()

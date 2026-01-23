@@ -51,6 +51,7 @@ private extension ContentFilters {
     let sourceApp: String?
     let runService: String?
     let replaceWith: String?
+    let clearTypes: [String]?
 
     var types: [String] {
       split(value: type)
@@ -130,6 +131,11 @@ private extension ContentFilters {
           type: type,
           data: data?.isEmpty == true ? nil : data
         )
+      }
+
+      // "clearTypes"
+      if let clearTypes {
+        pasteboard.clearTypes(clearTypes.map { .init($0) })
       }
 
       contentProcessedTime[type] = Date.timeIntervalSinceReferenceDate
