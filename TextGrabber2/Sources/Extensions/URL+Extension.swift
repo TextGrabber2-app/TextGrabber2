@@ -5,7 +5,7 @@
 //  Created by cyan on 2025/10/30.
 //
 
-import Foundation
+import AppKit
 
 extension URL {
   static var previewingDirectory: URL {
@@ -21,6 +21,15 @@ extension URL {
     }
 
     return directory
+  }
+
+  static var clipboardInspectorURL: URL {
+    if let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "app.cyan.whatcopied") {
+      return url
+    }
+
+    // swiftlint:disable:next force_unwrapping
+    return URL(string: "https://github.com/WhatCopied-app/WhatCopied")!
   }
 }
 

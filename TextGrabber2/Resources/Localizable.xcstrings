@@ -378,6 +378,23 @@
         }
       }
     },
+    "Get Inspector" : {
+      "comment" : "[Menu] Get the WhatCopied application",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "获取检查器"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "獲取檢查器"
+          }
+        }
+      }
+    },
     "Gets available content types from the clipboard." : {
       "localizations" : {
         "zh-Hans" : {
@@ -457,6 +474,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "如何使用？"
+          }
+        }
+      }
+    },
+    "Inspect Clipboard" : {
+      "comment" : "[Menu] Open the WhatCopied application",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "检查剪贴板"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "檢查剪貼簿"
           }
         }
       }

@@ -58,14 +58,18 @@ extension App {
 
 extension App: NSMenuDelegate {
   func menuNeedsUpdate(_ menu: NSMenu) {
-    guard KeyBindings.items.hasValue else {
-      return
+    if KeyBindings.items.hasValue {
+      menu.enumerateDescendants { item in
+        if let keyBinding = (KeyBindings.items.first { $0.actionName == item.title }) {
+          item.setKeyBinding(with: keyBinding)
+        }
+      }
     }
 
-    menu.enumerateDescendants { item in
-      if let keyBinding = (KeyBindings.items.first { $0.actionName == item.title }) {
-        item.setKeyBinding(with: keyBinding)
-      }
+    if URL.clipboardInspectorURL.pathExtension == "app" {
+      clipboardInspectorItem.title = Localized.menuTitleInspectClipboard
+    } else {
+      clipboardInspectorItem.title = Localized.menuTitleGetInspector
     }
   }
 
