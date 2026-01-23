@@ -8,8 +8,13 @@
 import AppKit
 
 extension NSWorkspace {
-  var frontmostAppName: String {
-    frontmostApplication?.localizedName ?? ""
+  var frontmostAppNames: Set<String> {
+    Set(
+      [
+        frontmostApplication?.localizedName,
+        frontmostApplication?.bundleURL?.deletingPathExtension().lastPathComponent,
+      ].compactMap(\.self)
+    )
   }
 
   @discardableResult
