@@ -36,6 +36,8 @@ enum Localized {
   static let menuTitleClearContents = String(localized: "Clear Contents", comment: "[Menu] Clear the clipboard")
   static let menuTitleObserveChanges = String(localized: "Observe Changes", comment: "[Menu] Observe changes to the clipboard")
   static let menuTitleContentFilters = String(localized: "Content Filters", comment: "[Menu] Filter content based on rules")
+  static let menuTitleGetInspector = String(localized: "Get Inspector", comment: "[Menu] Get the WhatCopied application")
+  static let menuTitleInspectClipboard = String(localized: "Inspect Clipboard", comment: "[Menu] Open the WhatCopied application")
   static let menuTitleGitHub = String(localized: "GitHub", comment: "[Menu] Open the TextGrabber2 repository on GitHub")
   static let menuTitleLaunchAtLogin = String(localized: "Launch at Login", comment: "[Menu] Automatically start the app at login")
   static let menuTitleVersion = String(localized: "Version", comment: "[Menu] Version number label")

@@ -234,6 +234,9 @@ final class App: NSObject, NSApplicationDelegate {
 
   lazy var contentFiltersItem: NSMenuItem = {
     let menu = NSMenu()
+    menu.addItem(clipboardInspectorItem)
+    menu.addItem(.separator())
+
     menu.addItem(withTitle: Localized.menuTitleSettings) {
       NSWorkspace.shared.open(ContentFilters.fileURL)
     }
@@ -244,6 +247,15 @@ final class App: NSObject, NSApplicationDelegate {
 
     let item = NSMenuItem(title: Localized.menuTitleContentFilters)
     item.submenu = menu
+    return item
+  }()
+
+  lazy var clipboardInspectorItem: NSMenuItem = {
+    let item = NSMenuItem()
+    item.addAction {
+      NSWorkspace.shared.open(.clipboardInspectorURL)
+    }
+
     return item
   }()
 
