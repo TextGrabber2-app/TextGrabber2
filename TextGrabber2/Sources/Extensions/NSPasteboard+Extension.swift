@@ -99,22 +99,13 @@ private extension NSPasteboard {
   @discardableResult
   func setDataItems(
     _ items: [NSPasteboard.PasteboardType: Data],
-    sourceType: NSPasteboard.PasteboardType
+    sourceType: NSPasteboard.PasteboardType? = nil
   ) -> Bool {
     var items = items
 
-    // Ensure legacy types are consistent to prevent the changes from being reverted
-    legacyTypes.forEach {
-      let legacy = NSPasteboard.PasteboardType(rawValue: $0.key)
-      let modern = NSPasteboard.PasteboardType(rawValue: $0.value)
-
-      if sourceType == legacy {
-        items[modern] = items[legacy]
-      }
-
-      if sourceType == modern {
-        items[legacy] = items[modern]
-      }
+    // Mirror types must be updated at the same time
+    if let sourceType, let mirror = mirrorTypes[sourceType.rawValue] {
+      items[.init(mirror)] = items[sourceType]
     }
 
     var result = true
@@ -128,17 +119,40 @@ private extension NSPasteboard {
   }
 }
 
-private let legacyTypes = [
+private let mirrorTypes = [
   "NSStringPboardType": "public.utf8-plain-text",
+  "public.utf8-plain-text": "NSStringPboardType",
+
   "NSFilenamesPboardType": "public.file-url",
+  "public.file-url": "NSFilenamesPboardType",
+
   "NeXT TIFF v4.0 pasteboard type": "public.tiff",
+  "public.tiff": "NeXT TIFF v4.0 pasteboard type",
+
   "NeXT Rich Text Format v1.0 pasteboard type": "public.rtf",
+  "public.rtf": "NeXT Rich Text Format v1.0 pasteboard type",
+
   "NeXT RTFD pasteboard type": "com.apple.flat-rtfd",
+  "com.apple.flat-rtfd": "NeXT RTFD pasteboard type",
+
   "Apple HTML pasteboard type": "public.html",
+  "public.html": "Apple HTML pasteboard type",
+
   "Apple Web Archive pasteboard type": "com.apple.webarchive",
+  "com.apple.webarchive": "Apple Web Archive pasteboard type",
+
   "Apple URL pasteboard type": "public.url",
+  "public.url": "Apple URL pasteboard type",
+
   "Apple PDF pasteboard type": "com.adobe.pdf",
+  "com.adobe.pdf": "Apple PDF pasteboard type",
+
   "Apple PNG pasteboard type": "public.png",
+  "public.png": "Apple PNG pasteboard type",
+
   "NSColor pasteboard type": "com.apple.cocoa.pasteboard.color",
+  "com.apple.cocoa.pasteboard.color": "NSColor pasteboard type",
+
   "iOS rich content paste pasteboard type": "com.apple.uikit.attributedstring",
+  "com.apple.uikit.attributedstring": "iOS rich content paste pasteboard type",
 ]
