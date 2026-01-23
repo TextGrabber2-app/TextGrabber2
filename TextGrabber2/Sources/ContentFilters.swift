@@ -89,7 +89,7 @@ private extension ContentFilters {
         return Logger.log(.debug, "The rule was just applied, skipping to prevent dead loops")
       }
 
-      if let sourceApps, !sourceApps.contains(NSWorkspace.shared.frontmostAppName) {
+      if let sourceApps, NSWorkspace.shared.frontmostAppNames.isDisjoint(with: sourceApps) {
         return Logger.log(.debug, "The rule does not apply to the source application")
       }
 
