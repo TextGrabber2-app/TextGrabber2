@@ -26,10 +26,7 @@ extension App {
 
       item.addAction { [weak self] in
         if let result = self?.currentResult {
-          NSPasteboard.general.insertItem(
-            type: .string,
-            data: result.spacesJoined.utf8Data
-          )
+          NSPasteboard.general.string = result.spacesJoined
         }
 
         if !NSPerformService(serviceName, .general) {
