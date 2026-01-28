@@ -49,6 +49,6 @@ private extension App {
       return userValue
     }
 
-    return ContentFilters.hasRules ? 0.4 : 1.0
+    return ContentFilters.hasRules ? 0.3 : 1.0
   }
 }
