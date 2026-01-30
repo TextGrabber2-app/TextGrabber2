@@ -22,6 +22,9 @@ enum LookUp {
 
     // Get the controller and show the popover
     let controller = invocation(presenter, selector, .init(string: text), .zero, sourceView, .init())
+    let popover = controller.value(forKey: "popover") as? NSPopover
+
+    (NSApp.delegate as? App)?.overrideDelegate(of: popover)
     controller.perform(sel_getUid("showPopover"))
 
     // Remove the text highlight effects

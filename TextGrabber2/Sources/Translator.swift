@@ -17,11 +17,8 @@ enum Translator {
     popover.behavior = .transient
     popover.contentViewController = contentVC
 
-    popover.show(
-      relativeTo: sourceView.bounds,
-      of: sourceView,
-      preferredEdge: .maxY
-    )
+    (NSApp.delegate as? App)?.overrideDelegate(of: popover)
+    popover.show(relativeTo: sourceView.bounds, of: sourceView, preferredEdge: .maxY)
   }
 
   // MARK: - Private
