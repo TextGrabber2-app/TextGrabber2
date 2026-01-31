@@ -297,7 +297,7 @@
         }
       }
     },
-    "Failed to run \"%@\"." : {
+    "Failed to run “%@”." : {
       "comment" : "Error message when a system service failed",
       "localizations" : {
         "zh-Hans" : {
