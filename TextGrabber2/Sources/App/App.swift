@@ -371,13 +371,6 @@ extension App {
     NSApp.setActivationPolicy(.accessory)
   }
 
-  func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-    // Open the menu instead
-    statusItemClicked()
-
-    return false
-  }
-
   func applicationWillTerminate(_ notification: Notification) {
     try? FileManager.default.removeItem(at: .previewingDirectory)
   }
