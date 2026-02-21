@@ -45,7 +45,7 @@ enum Recognizer {
       })
 
       var seen = [String: Int]()
-      var result = [Candidate]()
+      var results = [Candidate]()
 
       for candidate in aggregated {
         guard !candidate.text.isEmpty else {
@@ -53,17 +53,17 @@ enum Recognizer {
         }
 
         if let index = seen[candidate.text] {
-          if result[index].kind == .text,
+          if results[index].kind == .text,
              candidate.kind != .text {
-            result[index] = candidate
+            results[index] = candidate
           }
         } else {
-          seen[candidate.text] = result.count
-          result.append(candidate)
+          seen[candidate.text] = results.count
+          results.append(candidate)
         }
       }
 
-      self.candidates = result
+      self.candidates = results
     }
 
     var lineBreaksJoined: String {
