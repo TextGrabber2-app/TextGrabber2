@@ -51,8 +51,10 @@ enum Recognizer {
         guard !candidate.text.isEmpty else {
           continue
         }
+
         if let index = seen[candidate.text] {
-          if result[index].kind == .text && candidate.kind != .text {
+          if result[index].kind == .text,
+             candidate.kind != .text {
             result[index] = candidate
           }
         } else {
