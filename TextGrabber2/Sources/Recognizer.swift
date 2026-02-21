@@ -49,9 +49,9 @@ enum Recognizer {
 
       for candidate in aggregated {
         guard !candidate.text.isEmpty else { continue }
-        if let existingIndex = seen[candidate.text] {
-          if result[existingIndex].kind == .text && candidate.kind != .text {
-            result[existingIndex] = candidate
+        if let index = seen[candidate.text] {
+          if result[index].kind == .text && candidate.kind != .text {
+            result[index] = candidate
           }
         } else {
           seen[candidate.text] = result.count
