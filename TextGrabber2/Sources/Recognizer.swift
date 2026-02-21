@@ -53,7 +53,9 @@ enum Recognizer {
         }
 
         if let index = seen[candidate.text] {
-          results[index] = candidate
+          if results[index].kind == .text, candidate.kind != .text {
+            results[index] = candidate
+          }
         } else {
           seen[candidate.text] = results.count
           results.append(candidate)
