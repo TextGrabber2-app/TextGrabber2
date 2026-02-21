@@ -44,10 +44,25 @@ enum Recognizer {
         Detector.matches(in: $0.text)
       })
 
-      var seen = Set<String>()
-      self.candidates = aggregated.filter {
-        !$0.text.isEmpty && seen.insert($0.text).inserted
+      var seen = [String: Int]()
+      var results = [Candidate]()
+
+      for candidate in aggregated {
+        guard !candidate.text.isEmpty else {
+          continue
+        }
+
+        if let index = seen[candidate.text] {
+          if results[index].kind == .text, candidate.kind != .text {
+            results[index] = candidate
+          }
+        } else {
+          seen[candidate.text] = results.count
+          results.append(candidate)
+        }
       }
+
+      self.candidates = results
     }
 
     var lineBreaksJoined: String {
