@@ -48,7 +48,9 @@ enum Recognizer {
       var result = [Candidate]()
 
       for candidate in aggregated {
-        guard !candidate.text.isEmpty else { continue }
+        guard !candidate.text.isEmpty else {
+          continue
+        }
         if let index = seen[candidate.text] {
           if result[index].kind == .text && candidate.kind != .text {
             result[index] = candidate
