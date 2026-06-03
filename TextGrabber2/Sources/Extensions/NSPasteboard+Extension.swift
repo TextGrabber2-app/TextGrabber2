@@ -107,7 +107,7 @@ extension NSPasteboard {
 
 private extension NSPasteboard {
   func getDataItems() -> [NSPasteboard.PasteboardType: Data] {
-    (types ?? []).reduce(into: [NSPasteboard.PasteboardType: Data]()) { items, type in
+    (types ?? []).reduce(into: [Self.PasteboardType: Data]()) { items, type in
       items[type] = data(forType: type)
     }
   }
