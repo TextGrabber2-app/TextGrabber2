@@ -38,8 +38,8 @@ extension NSImage {
     weight: NSFont.Weight = .regular,
     accessibilityLabel: String? = nil
   ) -> NSImage? {
-    let image = NSImage(systemSymbolName: symbolName, accessibilityDescription: accessibilityLabel)
-    let config = NSImage.SymbolConfiguration(pointSize: pointSize, weight: weight)
+    let image = Self(systemSymbolName: symbolName, accessibilityDescription: accessibilityLabel)
+    let config = Self.SymbolConfiguration(pointSize: pointSize, weight: weight)
     return image?.withSymbolConfiguration(config)
   }
 }

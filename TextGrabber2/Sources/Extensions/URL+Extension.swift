@@ -29,7 +29,7 @@ extension URL {
     }
 
     // swiftlint:disable:next force_unwrapping
-    return URL(string: "https://github.com/WhatCopied-app/WhatCopied")!
+    return Self(string: "https://github.com/WhatCopied-app/WhatCopied")!
   }
 }
 
