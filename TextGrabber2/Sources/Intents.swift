@@ -16,7 +16,7 @@ struct IntentProvider: AppShortcutsProvider {
         phrases: [
           "Extract text from copied image using \(.applicationName)",
         ],
-        shortTitle: "\(ExtractTextIntent.title)",
+        shortTitle: "Extract Text from Copied Image",
         systemImageName: "text.viewfinder"
       ),
       AppShortcut(
@@ -24,7 +24,7 @@ struct IntentProvider: AppShortcutsProvider {
         phrases: [
           "Preview copied content using \(.applicationName)",
         ],
-        shortTitle: "\(PreviewImageIntent.title)",
+        shortTitle: "Preview Copied Content",
         systemImageName: "eye"
       ),
       AppShortcut(
@@ -32,7 +32,7 @@ struct IntentProvider: AppShortcutsProvider {
         phrases: [
           "Get clipboard types using \(.applicationName)",
         ],
-        shortTitle: "\(GetClipboardTypesIntent.title)",
+        shortTitle: "Get Clipboard Types",
         systemImageName: "list.bullet.clipboard"
       ),
       AppShortcut(
@@ -40,7 +40,7 @@ struct IntentProvider: AppShortcutsProvider {
         phrases: [
           "Get clipboard data using \(.applicationName)",
         ],
-        shortTitle: "\(GetClipboardDataIntent.title)",
+        shortTitle: "Get Clipboard Data",
         systemImageName: "list.clipboard"
       ),
       AppShortcut(
@@ -48,7 +48,7 @@ struct IntentProvider: AppShortcutsProvider {
         phrases: [
           "Set clipboard data using \(.applicationName)",
         ],
-        shortTitle: "\(SetClipboardDataIntent.title)",
+        shortTitle: "Set Clipboard Data",
         systemImageName: "pencil.and.list.clipboard"
       ),
       AppShortcut(
@@ -56,7 +56,7 @@ struct IntentProvider: AppShortcutsProvider {
         phrases: [
           "Perform action using \(.applicationName)",
         ],
-        shortTitle: "\(PerformActionIntent.title)",
+        shortTitle: "Perform TextGrabber2 Action",
         systemImageName: "play.circle"
       ),
     ]
