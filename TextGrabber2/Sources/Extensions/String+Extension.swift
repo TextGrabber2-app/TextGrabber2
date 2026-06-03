@@ -44,6 +44,11 @@ extension String {
     let term = self as CFString
     let range = DCSGetTermRangeInString(nil, term, 0)
 
+    guard range.location != kCFNotFound && range.length > 0 else {
+      // Invalid range, such as (-1, 0)
+      return false
+    }
+
     // Can be found in system dictionaries
     let definition = DCSCopyTextDefinition(nil, term, range)
     return definition != nil
