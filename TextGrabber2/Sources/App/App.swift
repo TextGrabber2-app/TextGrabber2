@@ -79,6 +79,7 @@ final class App: NSObject, NSApplicationDelegate {
     let item = NSMenuItem()
     if NSPasteboard.general.hasLimitedAccess {
       item.image = NSImage(systemSymbolName: Icons.handRaisedSlash, accessibilityDescription: nil)
+      item.ensureImageVisibility()
     }
 
     return item

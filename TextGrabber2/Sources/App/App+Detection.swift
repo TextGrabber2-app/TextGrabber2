@@ -102,6 +102,7 @@ private extension App {
         item.image = .with(symbolName: candidate.icon, pointSize: 11.0)
       }
 
+      item.ensureImageVisibility()
       item.addAction { [weak self] in
         NSPasteboard.general.string = candidate.text
         self?.increaseUserClickCount()
