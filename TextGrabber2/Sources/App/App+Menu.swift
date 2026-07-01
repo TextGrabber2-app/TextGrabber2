@@ -58,6 +58,10 @@ extension App {
 
 extension App: NSMenuDelegate {
   func menuNeedsUpdate(_ menu: NSMenu) {
+    guard menu == mainMenu else {
+      return
+    }
+
     if KeyBindings.items.hasValue {
       menu.enumerateDescendants { item in
         if let keyBinding = (KeyBindings.items.first { $0.actionName == item.title }) {
@@ -73,7 +77,27 @@ extension App: NSMenuDelegate {
     }
   }
 
+  func menuWillOpen(_ menu: NSMenu) {
+    guard menu == servicesItem.submenu else {
+      return
+    }
+
+    // Host the text so NSApp.servicesMenu can be populated
+    servicesHost.activate(text: currentResult?.spacesJoined ?? "")
+  }
+
   func menuDidClose(_ menu: NSMenu) {
-    isMenuVisible = false
+    if menu == mainMenu {
+      isMenuVisible = false
+    }
+
+    // Tear down on any menu close; menuDidClose isn't reliable for the submenu
+    // (see the outside-click fallback in addEventMonitors), and this is a no-op
+    // unless the host is active
+    Task {
+      if let updatedText = await servicesHost.scheduleTeardown() {
+        NSPasteboard.general.string = updatedText
+      }
+    }
   }
 }

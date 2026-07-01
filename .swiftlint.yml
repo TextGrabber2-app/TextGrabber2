@@ -454,3 +454,7 @@ type_name:
   max_length:
     warning: 75
     error: 75
+
+type_body_length:
+  warning: 300
+  error: 500

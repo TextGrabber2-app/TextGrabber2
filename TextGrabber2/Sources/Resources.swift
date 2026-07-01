@@ -23,6 +23,7 @@ enum Localized {
   static let menuTitleHowToUse = String(localized: "How to Use?", comment: "[Menu] How to use the app")
   static let menuTitleHowToSetUp = String(localized: "How to Set Up?", comment: "[Menu] How to set up the app")
   static let menuTitleServices = String(localized: "Services", comment: "[Menu] System services menu")
+  static let menuTitleSystemServices = String(localized: "System Services", comment: "[Menu] Open the default system services menu")
   static let menuTitleSettings = String(localized: "Settings…", comment: "[Menu] Configure system services")
   static let menuTitleUserManual = String(localized: "User Manual", comment: "[Menu] Open the wiki for system services")
   static let menuTitleClipboardTools = String(localized: "Clipboard Tools", comment: "[Menu] Clipboard tools")

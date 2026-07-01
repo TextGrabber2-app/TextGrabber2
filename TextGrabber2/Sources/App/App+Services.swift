@@ -15,6 +15,7 @@ extension App {
   }
 
   func updateServices() {
+    // User defined
     servicesItem.submenu?.removeItems {
       $0 is ServiceItem
     }
@@ -36,5 +37,9 @@ extension App {
 
       servicesItem.submenu?.insertItem(item, at: 0)
     }
+
+    // System default
+    NSApp.servicesMenu = systemServicesItem.submenu
+    systemServicesItem.image = nil
   }
 }

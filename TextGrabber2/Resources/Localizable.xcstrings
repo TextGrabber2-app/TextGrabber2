@@ -775,6 +775,23 @@
         }
       }
     },
+    "System Services" : {
+      "comment" : "[Menu] Open the default system services menu",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "系统服务"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "系統服務"
+          }
+        }
+      }
+    },
     "TextGrabber2" : {
       "localizations" : {
         "zh-Hans" : {
