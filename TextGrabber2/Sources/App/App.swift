@@ -10,6 +10,7 @@ import ServiceManagement
 
 @MainActor
 final class App: NSObject, NSApplicationDelegate {
+  let servicesHost = ServicesHost()
   var copyObserver: Task<Void, Never>?
   var currentResult: Recognizer.ResultData?
   var previewingFileURL: URL?
@@ -107,6 +108,13 @@ final class App: NSObject, NSApplicationDelegate {
 
   lazy var servicesItem: NSMenuItem = {
     let menu = NSMenu()
+    menu.delegate = self
+
+    if !Services.items.isEmpty {
+      menu.addItem(.separator())
+    }
+
+    menu.addItem(systemServicesItem)
     menu.addItem(.separator())
 
     menu.addItem(withTitle: Localized.menuTitleSettings) {
@@ -119,6 +127,12 @@ final class App: NSObject, NSApplicationDelegate {
 
     let item = NSMenuItem(title: Localized.menuTitleServices)
     item.submenu = menu
+    return item
+  }()
+
+  lazy var systemServicesItem: NSMenuItem = {
+    let item = NSMenuItem(title: Localized.menuTitleSystemServices)
+    item.submenu = NSMenu()
     return item
   }()
 
