@@ -24,8 +24,16 @@ extension App: @preconcurrency QLPreviewPanelDataSource {
     let textData = NSPasteboard.general.string?.utf8Data
 
     let fileExtension = pngData == nil ? "txt" : "png"
-    let fileName = "\(Localized.copiedContentName).\(fileExtension)"
-    self.previewingFileURL = .previewingDirectory.appending(path: fileName, directoryHint: .notDirectory)
+    let fileName: String
+
+    if let pngData, NSBitmapImageRep(data: pngData)?.isRetina == true {
+      fileName = "\(Localized.copiedContentName)@2x.\(fileExtension)"
+    } else {
+      fileName = "\(Localized.copiedContentName).\(fileExtension)"
+    }
+
+    let directory: URL = .previewingDirectory
+    previewingFileURL = directory.appending(path: fileName, directoryHint: .notDirectory)
 
     guard let data = pngData ?? textData, let previewingFileURL else {
       return Logger.log(.info, "No content for preview")
