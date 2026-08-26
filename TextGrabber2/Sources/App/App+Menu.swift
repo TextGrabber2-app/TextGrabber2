@@ -31,15 +31,10 @@ extension App {
   }
 
   func presentMainMenu() {
-    let location: CGPoint = {
-      if #available(macOS 26.0, *) {
-        return CGPoint(x: -8, y: 0)
-      }
+    let appearance = NSApp.effectiveAppearance
+    mainMenu.appearance = appearance
 
-      return CGPoint(x: -8, y: (statusItem.button?.frame.height ?? 0) + 4)
-    }()
-
-    mainMenu.appearance = NSApp.effectiveAppearance
+    let location = CGPoint(x: -8, y: (statusItem.button?.frame.height ?? 0) + 4)
     mainMenu.popUp(positioning: nil, at: location, in: statusItem.button)
   }
 
