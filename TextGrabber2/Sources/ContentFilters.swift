@@ -21,12 +21,22 @@ enum ContentFilters {
   }
 
   static func initialize() {
-    guard !FileManager.default.fileExists(atPath: fileURL.path(percentEncoded: false)) else {
+    if FileManager.default.fileExists(atPath: fileURL.path(percentEncoded: false)) {
+      do {
+        try ConfigurationFile<Rule>.migrate(at: fileURL, schemaURL: SchemaURLs.contentFilters)
+      } catch {
+        Logger.log(.error, "Failed to migrate \(Constants.fileName): \(error)")
+      }
+
       return Logger.log(.info, "\(Constants.fileName) was created before")
     }
 
     do {
-      try "[]\n".write(to: fileURL, atomically: true, encoding: .utf8)
+      try "{\n  \"$schema\": \"\(SchemaURLs.contentFilters)\",\n  \"items\": []\n}\n".write(
+        to: fileURL,
+        atomically: true,
+        encoding: .utf8
+      )
     } catch {
       Logger.log(.error, "\(error)")
     }
@@ -152,7 +162,7 @@ private extension ContentFilters {
       return []
     }
 
-    guard let rules = try? JSONDecoder().decode([Rule].self, from: data) else {
+    guard let rules = try? JSONDecoder().decode(ConfigurationFile<Rule>.self, from: data).items else {
       Logger.log(.error, "Failed to decode the file")
       return []
     }
