@@ -198,6 +198,23 @@
         }
       }
     },
+    "Content Filters Help" : {
+      "comment" : "[Menu] Open the content filters help",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内容过滤器帮助"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "內容過濾器說明"
+          }
+        }
+      }
+    },
     "Content Type" : {
       "localizations" : {
         "zh-Hans" : {
@@ -710,6 +727,23 @@
         }
       }
     },
+    "Services Help" : {
+      "comment" : "[Menu] Open the system services help",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服务帮助"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服務說明"
+          }
+        }
+      }
+    },
     "Set Clipboard Data" : {
       "localizations" : {
         "zh-Hans" : {
@@ -837,23 +871,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "翻譯"
-          }
-        }
-      }
-    },
-    "User Manual" : {
-      "comment" : "[Menu] Open the wiki for system services",
-      "localizations" : {
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用手册"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "使用手冊"
           }
         }
       }

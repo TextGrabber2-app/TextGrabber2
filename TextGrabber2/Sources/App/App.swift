@@ -121,7 +121,7 @@ final class App: NSObject, NSApplicationDelegate {
       NSWorkspace.shared.open(Services.fileURL)
     }
 
-    menu.addItem(withTitle: Localized.menuTitleUserManual) {
+    menu.addItem(withTitle: Localized.menuTitleServicesHelp) {
       NSWorkspace.shared.safelyOpenURL(string: "\(Links.github)/wiki#connect-to-system-services")
     }
 
@@ -143,6 +143,10 @@ final class App: NSObject, NSApplicationDelegate {
     menu.addItem(translateItem)
     menu.addItem(quickLookItem)
     menu.addItem(saveAsFileItem)
+
+    menu.addItem(.separator())
+    menu.addItem(clipboardInspectorItem)
+
     menu.addItem(.separator())
     menu.addItem(copyAllMenuItem)
     menu.addItem(clearContentsItem)
@@ -202,6 +206,15 @@ final class App: NSObject, NSApplicationDelegate {
     return item
   }()
 
+  lazy var clipboardInspectorItem: NSMenuItem = {
+    let item = NSMenuItem()
+    item.addAction {
+      NSWorkspace.shared.open(.clipboardInspectorURL)
+    }
+
+    return item
+  }()
+
   lazy var copyAllMenuItem: NSMenuItem = {
     let menu = NSMenu()
     menu.addItem(withTitle: Localized.menuTitleJoinWithLineBreaks) {
@@ -249,28 +262,16 @@ final class App: NSObject, NSApplicationDelegate {
 
   lazy var contentFiltersItem: NSMenuItem = {
     let menu = NSMenu()
-    menu.addItem(clipboardInspectorItem)
-    menu.addItem(.separator())
-
     menu.addItem(withTitle: Localized.menuTitleSettings) {
       NSWorkspace.shared.open(ContentFilters.fileURL)
     }
 
-    menu.addItem(withTitle: Localized.menuTitleUserManual) {
+    menu.addItem(withTitle: Localized.menuTitleContentFiltersHelp) {
       NSWorkspace.shared.safelyOpenURL(string: "\(Links.github)/wiki#content-filters")
     }
 
     let item = NSMenuItem(title: Localized.menuTitleContentFilters)
     item.submenu = menu
-    return item
-  }()
-
-  lazy var clipboardInspectorItem: NSMenuItem = {
-    let item = NSMenuItem()
-    item.addAction {
-      NSWorkspace.shared.open(.clipboardInspectorURL)
-    }
-
     return item
   }()
 
