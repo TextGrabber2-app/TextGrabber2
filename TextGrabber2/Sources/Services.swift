@@ -31,7 +31,7 @@ enum Services {
       return []
     }
 
-    guard let items = try? JSONDecoder().decode([Item].self, from: data) else {
+    guard let items = try? JSONDecoder().decode(ConfigurationFile<Item>.self, from: data).items else {
       Logger.log(.error, "Failed to decode the file")
       return []
     }
@@ -40,7 +40,13 @@ enum Services {
   }()
 
   static func initialize() {
-    guard !FileManager.default.fileExists(atPath: fileURL.path(percentEncoded: false)) else {
+    if FileManager.default.fileExists(atPath: fileURL.path(percentEncoded: false)) {
+      do {
+        try ConfigurationFile<Item>.migrate(at: fileURL, schemaURL: SchemaURLs.services)
+      } catch {
+        Logger.log(.error, "Failed to migrate \(Constants.fileName): \(error)")
+      }
+
       return Logger.log(.info, "\(Constants.fileName) was created before")
     }
 
