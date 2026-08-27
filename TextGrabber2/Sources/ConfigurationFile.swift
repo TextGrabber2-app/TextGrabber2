@@ -8,9 +8,10 @@
 import Foundation
 
 enum SchemaURLs {
-  static let contentFilters = "https://raw.githubusercontent.com/TextGrabber2-app/schemas/main/content-filters.json"
-  static let keyBindings = "https://raw.githubusercontent.com/TextGrabber2-app/schemas/main/key-bindings.json"
-  static let services = "https://raw.githubusercontent.com/TextGrabber2-app/schemas/main/services.json"
+  static let baseURL = "https://raw.githubusercontent.com/TextGrabber2-app/schemas/main"
+  static let services = "\(baseURL)/services.json"
+  static let contentFilters = "\(baseURL)/content-filters.json"
+  static let keyBindings = "\(baseURL)/key-bindings.json"
 }
 
 struct ConfigurationFile<Item: Decodable>: Decodable {
