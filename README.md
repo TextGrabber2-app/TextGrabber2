@@ -6,7 +6,7 @@
 
 # TextGrabber2
 
-[![](https://img.shields.io/badge/Platform-macOS_15.0+-blue?color=007bff)](https://github.com/TextGrabber2-app/TextGrabber2/releases/latest)  [![](https://github.com/TextGrabber2-app/TextGrabber2/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/TextGrabber2-app/TextGrabber2/actions/workflows/build.yml)
+[![](https://img.shields.io/badge/Platform-macOS_26.0+-blue?color=007bff)](https://github.com/TextGrabber2-app/TextGrabber2/releases/latest)  [![](https://github.com/TextGrabber2-app/TextGrabber2/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/TextGrabber2-app/TextGrabber2/actions/workflows/build.yml)
 
 TextGrabber2 is a free and **open-source** “Copy-to-Action” tool that lets you [extract text](https://github.com/TextGrabber2-app/TextGrabber2/wiki#capture-screen-on-mac) from copied images and seamlessly [run actions](https://github.com/TextGrabber2-app/TextGrabber2/wiki#connect-to-system-services).
 
@@ -30,7 +30,7 @@ See the [wiki](https://github.com/TextGrabber2-app/TextGrabber2/wiki) for more d
 
 > [!NOTE]
 >
-> For information on clipboard access issues in macOS 15.4 and later, please refer to our [wiki](https://github.com/TextGrabber2-app/TextGrabber2/wiki#limited-access).
+> For information on clipboard access restrictions, please refer to our [wiki](https://github.com/TextGrabber2-app/TextGrabber2/wiki#limited-access).
 
 ## Installation
 

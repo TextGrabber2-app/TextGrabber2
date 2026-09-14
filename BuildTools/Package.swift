@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
   name: "BuildTools",
   platforms: [
-    .macOS(.v15),
+    .macOS("26.0"),
   ],
   products: [
     .plugin(name: "SwiftLint", targets: ["SwiftLint"]),
