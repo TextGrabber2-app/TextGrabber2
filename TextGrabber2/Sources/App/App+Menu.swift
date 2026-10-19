@@ -10,7 +10,25 @@ import AppKit
 // MARK: - Menu
 
 extension App {
+  var usesNativeMenuPresentation: Bool {
+    // Native presentation is needed for the status item highlight on macOS 27
+    if #available(macOS 27.0, *) {
+      return true
+    }
+
+    return false
+  }
+
   func statusItemClicked() {
+    guard !isMenuVisible else {
+      return
+    }
+
+    if usesNativeMenuPresentation {
+      // A new request may arrive before the previous menu's deferred cleanup
+      statusItem.menu = nil
+    }
+
     // Hide the user guide after the user becomes familiar
     if userClickCount > 4 && !NSPasteboard.general.hasLimitedAccess {
       howToItem.isHidden = true
@@ -31,11 +49,21 @@ extension App {
   }
 
   func presentMainMenu() {
+    guard let button = statusItem.button else {
+      isMenuVisible = false
+      return Logger.log(.error, "Missing status item button")
+    }
+
     let appearance = NSApp.effectiveAppearance
     mainMenu.appearance = appearance
 
-    let location = CGPoint(x: -8, y: (statusItem.button?.frame.height ?? 0) + 4)
-    mainMenu.popUp(positioning: nil, at: location, in: statusItem.button)
+    if usesNativeMenuPresentation {
+      statusItem.menu = mainMenu
+      button.performClick(nil)
+    } else {
+      let location = CGPoint(x: -8, y: button.frame.height + 4)
+      mainMenu.popUp(positioning: nil, at: location, in: button)
+    }
   }
 
   func showAppUpdate(name: String, url: String) {
@@ -73,6 +101,10 @@ extension App: NSMenuDelegate {
   }
 
   func menuWillOpen(_ menu: NSMenu) {
+    if usesNativeMenuPresentation, menu == mainMenu {
+      isMenuVisible = true
+    }
+
     guard menu == servicesItem.submenu else {
       return
     }
@@ -83,6 +115,17 @@ extension App: NSMenuDelegate {
 
   func menuDidClose(_ menu: NSMenu) {
     if menu == mainMenu {
+      if usesNativeMenuPresentation {
+        // Let AppKit finish native highlight cleanup before detaching the menu
+        DispatchQueue.main.async { [weak self] in
+          guard let self, !self.isMenuVisible else {
+            return
+          }
+
+          self.statusItem.menu = nil
+        }
+      }
+
       isMenuVisible = false
     }
 
