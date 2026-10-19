@@ -94,14 +94,7 @@ private extension App {
       let item = ResultItem(title: candidate.text.singleLine.truncatedToFit(width: 320, font: .menuFont(ofSize: 0)))
       menu.insertItem(item, at: menu.index(of: separator) + 1)
 
-      if #available(macOS 26.0, *) {
-        // Rely on the system design
-        item.image = NSImage(systemSymbolName: candidate.icon, accessibilityDescription: nil)
-      } else {
-        // Use a smaller size on purpose to look better
-        item.image = .with(symbolName: candidate.icon, pointSize: 11.0)
-      }
-
+      item.image = NSImage(systemSymbolName: candidate.icon, accessibilityDescription: nil)
       item.ensureImageVisibility()
       item.addAction { [weak self] in
         NSPasteboard.general.string = candidate.text
