@@ -12,7 +12,7 @@ import AppKit
  https://developer.apple.com/documentation/vision/recognizing_text_in_images
  */
 enum Recognizer {
-  struct Candidate: Equatable, Hashable {
+  struct Candidate: Equatable {
     enum Kind {
       case text
       case phoneNumber

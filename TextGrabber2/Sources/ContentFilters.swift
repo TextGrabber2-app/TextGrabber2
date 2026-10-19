@@ -55,7 +55,7 @@ enum ContentFilters {
 // MARK: - Private
 
 private extension ContentFilters {
-  struct Rule: Decodable, Hashable {
+  struct Rule: Decodable {
     let type: String
     let match: String?
     let sourceApp: String?

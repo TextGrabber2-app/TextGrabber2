@@ -10,11 +10,7 @@ import os.log
 
 enum Logger {
   static func log(_ level: OSLogType, _ message: @autoclosure @escaping () -> String, file: StaticString = #file, line: UInt = #line, function: StaticString = #function) {
-    var file: String = "\(file)"
-    if let url = URL(string: file) {
-      file = url.lastPathComponent
-    }
-
+    let file = fileName(file)
     os_logger.log(level: level, "\(file):\(line), \(function) -> \(message())")
   }
 
@@ -26,6 +22,13 @@ enum Logger {
     if !condition() {
       assertionFailure(message(), file: file, line: line)
     }
+  }
+
+  @inline(never)
+  private static func fileName(_ file: StaticString) -> String {
+    // Share filename formatting across specialized logging calls
+    let file = "\(file)"
+    return URL(string: file)?.lastPathComponent ?? file
   }
 }
 
