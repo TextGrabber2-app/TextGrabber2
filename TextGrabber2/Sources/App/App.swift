@@ -313,7 +313,9 @@ final class App: NSObject, NSApplicationDelegate {
         registerKeyBindings()
       }
 
-      statusItem.button?.highlight(isMenuVisible)
+      if !usesNativeMenuPresentation {
+        statusItem.button?.highlight(isMenuVisible)
+      }
     }
   }
 

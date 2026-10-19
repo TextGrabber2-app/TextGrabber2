@@ -43,6 +43,12 @@ extension App {
         return event
       }
 
+      if self?.usesNativeMenuPresentation == true,
+         self?.isMenuVisible == true,
+         self?.statusItem.menu != nil {
+        return event
+      }
+
       if let window = NSApp.popoverWindow {
         window.closePopover()
       } else {
