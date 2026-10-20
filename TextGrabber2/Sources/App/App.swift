@@ -14,7 +14,7 @@ final class App: NSObject, NSApplicationDelegate {
   var copyObserver: Task<Void, Never>?
   var currentResult: Recognizer.ResultData?
   var previewingFileURL: URL?
-  var silentDetectCount = 0
+  var silentDetectCount: Int?
 
   lazy var statusItem: NSStatusItem = {
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
