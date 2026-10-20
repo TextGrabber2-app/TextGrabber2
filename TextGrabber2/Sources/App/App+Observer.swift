@@ -26,7 +26,7 @@ extension App {
       ContentFilters.processRules(for: pasteboard)
 
       Task {
-        await self?.startDetection()
+        await self?.startDetection(allowingFileAccess: false)
       }
     }
 

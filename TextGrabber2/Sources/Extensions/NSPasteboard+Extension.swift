@@ -27,6 +27,21 @@ extension NSPasteboard {
   }
 
   var image: NSImage? {
+    image(allowingFileAccess: true)
+  }
+
+  var containsFileReferences: Bool {
+    types?.contains {
+      $0 == .fileURL || $0.rawValue == "NSFilenamesPboardType"
+    } ?? false
+  }
+
+  func image(allowingFileAccess: Bool) -> NSImage? {
+    // Check types before requesting data or letting AppKit resolve file references
+    if !allowingFileAccess && containsFileReferences {
+      return nil
+    }
+
     // Copied file
     if let data = data(forType: .fileURL),
        let string = String(data: data, encoding: .utf8),

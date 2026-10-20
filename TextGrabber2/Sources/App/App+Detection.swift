@@ -10,7 +10,7 @@ import AppKit
 // MARK: - Text Detecting
 
 extension App {
-  func startDetection(userInitiated: Bool = false) async {
+  func startDetection(userInitiated: Bool = false, allowingFileAccess: Bool = true) async {
     let newCount = NSPasteboard.general.changeCount
     if silentDetectCount == newCount {
       if userInitiated {
@@ -21,6 +21,7 @@ extension App {
       return
     }
 
+    silentDetectCount = nil
     currentResult = nil
     clearMenuItems()
 
@@ -32,11 +33,17 @@ extension App {
     copyAllQuickItem.isHidden = true
     copyAllMenuItem.isEnabled = false
 
-    let image = NSPasteboard.general.image?.cgImage
+    let containsFiles = NSPasteboard.general.containsFileReferences
+    let image = NSPasteboard.general.image(allowingFileAccess: allowingFileAccess)?.cgImage
     let text = NSPasteboard.general.string
 
     if let result = await Recognizer.detect(image: image, level: .accurate) {
       updateResult(result, textCopied: text, in: mainMenu)
+
+      // Skipped or unreadable files must remain eligible for an explicit retry
+      if !containsFiles || image != nil {
+        silentDetectCount = newCount
+      }
     } else {
       Logger.log(.error, "Failed to detect text from image")
     }
@@ -45,8 +52,7 @@ extension App {
       Logger.log(.debug, "Presenting newly detected results")
       presentMainMenu()
     } else {
-      Logger.log(.debug, "Silently detected and cached")
-      silentDetectCount = newCount
+      Logger.log(.debug, "Silent detection finished")
     }
   }
 }
@@ -71,6 +77,7 @@ private extension App {
       return
     }
 
+    clearMenuItems()
     currentResult = resultData
     translateItem.isEnabled = resultData.candidates.hasValue
     quickLookItem.isEnabled = resultData.candidates.hasValue
