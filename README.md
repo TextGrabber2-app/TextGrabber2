@@ -39,7 +39,7 @@ Get `TextGrabber2.dmg` from the <a href="https://github.com/TextGrabber2-app/Tex
 
 > TextGrabber2 checks for updates automatically. However, it's worth noting that updates will likely be infrequent, typically limited to bug fixes.
 >
-> Older builds: [macos-13](https://github.com/TextGrabber2-app/TextGrabber2/releases/tag/macos-13), [macos-14](https://github.com/TextGrabber2-app/TextGrabber2/releases/tag/macos-14).
+> Older builds: [macos-13](https://github.com/TextGrabber2-app/TextGrabber2/releases/tag/macos-13), [macos-14](https://github.com/TextGrabber2-app/TextGrabber2/releases/tag/macos-14), [macos-15](https://github.com/TextGrabber2-app/TextGrabber2/releases/tag/macos-15).
 
 ## Why TextGrabber2
 
